@@ -1325,15 +1325,15 @@ public class Main {
                     String TAG = "";
                     System.out.println("国家タグを入力");
                     TAG = br.readLine();
-                    temp = temp + "\n " +TAG+ "";
+                    temp = temp + "\n ";
 
                     System.out.println("国家の名前を入力");
-                    temp = temp + ":0 \"" + br.readLine() + "\"\n";
+                    temp = temp +TAG + ":0 \"" + br.readLine() + "\"\n";
                     System.out.println(temp);
 
 
                     System.out.println("国家の民主主義の名前を入力");
-                    temp = temp + "_democratic:0 \"" + br.readLine() + "\"\n";
+                    temp = temp +TAG + "_democratic:0 \"" + br.readLine() + "\"\n";
                     System.out.println(temp);
 
                     System.out.println("国家の共産主義の名前を入力");

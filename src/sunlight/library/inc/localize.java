@@ -1,15 +1,23 @@
 package sunlight.library.inc;
 import java.io.*;
-import static sunlight.library.inc.Main.file_name;
-import static sunlight.library.inc.Main.temp;
+
+import static sunlight.library.inc.Main.*;
+import static sunlight.library.inc.Main.L_mode;
+
 public class localize {
     public static void localization(){
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
         System.out.println("翻訳ファイルの作成を開始します。");
         temp = "#This file was created using software created by \n#Sunlight.library and the STRaDA (Sunlight Technology Research and Development Association).\n";
-        temp = "l_english:";
         int sw = 1;
+        String  LM = "";
+        if (L_mode == 1) {
+            LM = "english";
+        }else if (L_mode == 2) {
+            LM = "japanese";
+        }
+        temp = "l_"+LM+":";
         System.out.println(System.getProperty("user.home"));
         try {
             System.out.println("ファイル名を入力してください。");

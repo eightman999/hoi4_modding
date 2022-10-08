@@ -166,4 +166,22 @@ public class SHIP_NAME_TYPES{
         temp = temp + "unique = {\n";
         STRAIT_NAME.STRAIT();
     }
+    public void BIRD(){
+        temp = temp + "###BIRD###\n";
+        temp = temp + Ctag +"_BIRD = {\n";
+        temp = temp + "\tname = NAME_THEME_BIRD\n";
+        temp = temp + "\tfor_countries = { " + Ctag + " }\n\n";
+        temp = temp + "\ttype = ship\n";
+        temp = temp + "unique = {\n";
+        BIRD_NAME.BIRD();
+    }
+    public void FISH(){
+        temp = temp + "###FISH###\n";
+        temp = temp + Ctag +"_FISH = {\n";
+        temp = temp + "\tname = NAME_THEME_FISH\n";
+        temp = temp + "\tfor_countries = { " + Ctag + " }\n\n";
+        temp = temp + "\ttype = ship\n";
+        temp = temp + "unique = {\n";
+        FISH_NAME.FISH();
+    }
 }

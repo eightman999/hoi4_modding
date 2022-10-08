@@ -28,6 +28,7 @@ public class build_cost_resources {
             if (Integer.parseInt(br.readLine())==0) {}else {
                 MSTR = MSTR + "\t\t\taluminium = " + br.readLine() + "\n";
             }
+            MSTR = MSTR + "\t\t}" + br.readLine() + "\n";
         } catch (IOException e) {
             System.out.println(e);
         }

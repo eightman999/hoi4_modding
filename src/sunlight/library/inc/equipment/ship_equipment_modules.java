@@ -1,5 +1,6 @@
 package sunlight.library.inc.equipment;
 
+import sunlight.library.inc.System.Error;
 import sunlight.library.inc.equipment.ship_modules.add_average_stats;
 import sunlight.library.inc.equipment.ship_modules.add_stats;
 import sunlight.library.inc.equipment.ship_modules.build_cost_resources;
@@ -41,13 +42,18 @@ public class ship_equipment_modules {
                 System.out.println("sfx?");
                 MSTR=MSTR+"\t\tsfx = "+br.readLine()+"\n\n";
                 System.out.println("statsを入力してください。ない場合は0を入力してください");
+                System.out.println("statsを入力してください。ある場合はそれ以外をを入力したのちステータスを入力してください");
                 //ステータス
                 add_stats as = new add_stats();
                 as.add_stats();
                 //multiply_stats
+                System.out.println("%のstatsを入力してください。ない場合は0を入力してください");
+                System.out.println("%のstatsを入力してください。ある場合はそれ以外をを入力したのちステータスを入力してください");
                 multiply_stats ms = new multiply_stats();
                 ms.multiply_stats();
                 //add_average_stats
+                System.out.println("平均値のstatsを入力してください。ない場合は0を入力してください");
+                System.out.println("平均値のstatsを入力してください。ある場合はそれ以外をを入力したのちステータスを入力してください");
                 add_average_stats aas = new add_average_stats();
                 aas.add_average_stats();
                 //build_cost_resources
@@ -61,12 +67,13 @@ public class ship_equipment_modules {
                 sw = Integer.parseInt(br.readLine());
                 System.out.println(sw);
                 if (sw==0){
+                    MSTR = MSTR + "}}" + br.readLine() + "\n";
                     System.out.println("ソフトを終了します。");
                     break;
+                }else {
+                    MSTR = MSTR + "\t\t}" + br.readLine() + "\n";
                 }
             }
-
-
             modulesosw.write(MSTR);
             modulesosw.close();
             localizationosw.write(LSTR);
@@ -74,6 +81,7 @@ public class ship_equipment_modules {
             localization.close();
             modules.close();
         }catch (IOException e) {
+            Error.ERROR();
             System.out.println(e);
         }
 

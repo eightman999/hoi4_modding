@@ -12,7 +12,8 @@ public class add_stats {
         BufferedReader br = new BufferedReader(isr);
         try {
             System.out.println("stats?-軽攻撃?");
-            if (Integer.parseInt(br.readLine())==0) { MSTR=MSTR + "add_stats = {\n"; }else {
+            if (Integer.parseInt(br.readLine())==0) {
+                MSTR=MSTR + "add_stats = {\n"; }else {
                 MSTR = MSTR + "add_stats = {\n\t\t\tlg_attack = " + br.readLine() + "\n";
             }
             System.out.println("stats?-重攻撃?");
@@ -27,18 +28,7 @@ public class add_stats {
             if (Integer.parseInt(br.readLine())==0) {}else {
                 MSTR = MSTR + "\t\t\tanti_air_attack = " + br.readLine() + "\n";
             }
-            System.out.println("stats?-人員?");
-            if (Integer.parseInt(br.readLine())==0) {}else {
-                MSTR = MSTR + "\t\t\tmanpower = " + br.readLine() + "\n";
-            }
-            System.out.println("stats?-海上発見?");
-            if (Integer.parseInt(br.readLine())==0) {}else {
-                MSTR = MSTR + "\t\t\tsurface_detection = " + br.readLine() + "\n";
-            }
-            System.out.println("stats?-海中発見?");
-            if (Integer.parseInt(br.readLine())==0) {}else {
-                MSTR = MSTR + "\t\t\tsub_detection = " + br.readLine() + "\n";
-            }
+
             System.out.println("stats?-海上発見?");
             if (Integer.parseInt(br.readLine())==0) {}else {
                 MSTR = MSTR + "\t\t\tsurface_detection = " + br.readLine() + "\n";
@@ -76,6 +66,10 @@ public class add_stats {
                 MSTR = MSTR + "\t\t\tfuel_consumption = " + br.readLine() + "\n";
             }
             MSTR=MSTR+"\t\t}\n\n";
+            System.out.println("stats?-人員?");
+            if (Integer.parseInt(br.readLine())==0) {}else {
+                MSTR = MSTR + "\t\t\tmanpower = " + br.readLine() + "\n";
+            }
         }catch (IOException e) {
             System.out.println(e);
         }

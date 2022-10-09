@@ -1,6 +1,6 @@
 package sunlight.library.inc;
 
-import sunlight.library.inc.System.Error;
+import sunlight.library.inc.System.Log_System;
 import sunlight.library.inc.equipment.ship_equipment_modules;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class equipmenttool {
             if (mode == 1||mode == 2){
 
             }else {
-                Error.ERROR();
+                Log_System.ERROR();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,7 +37,7 @@ public class equipmenttool {
         else if (mode == 2){
             ship_equipment_modules.SEM();
         }else {
-            Error.ERROR();
+            Log_System.ERROR();
         }
 
     }

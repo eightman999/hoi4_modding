@@ -1,6 +1,6 @@
 package sunlight.library.inc.equipment;
 
-import sunlight.library.inc.System.Error;
+import sunlight.library.inc.System.Log_System;
 import sunlight.library.inc.equipment.ship_modules.add_average_stats;
 import sunlight.library.inc.equipment.ship_modules.add_stats;
 import sunlight.library.inc.equipment.ship_modules.build_cost_resources;
@@ -81,7 +81,7 @@ public class ship_equipment_modules {
             localization.close();
             modules.close();
         }catch (IOException e) {
-            Error.ERROR();
+            Log_System.ERROR();
             System.out.println(e);
         }
 

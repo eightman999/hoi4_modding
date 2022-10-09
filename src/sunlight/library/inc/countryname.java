@@ -1,5 +1,5 @@
 package sunlight.library.inc;
-import sunlight.library.inc.System.Break;
+import sunlight.library.inc.System.Log_System;
 
 import java.io.*;
 
@@ -162,7 +162,7 @@ class baka {
                 sw = Integer.parseInt(br.readLine());
                 System.out.println(sw);
                 if (sw == 0) {
-                    Break.BREAK();
+                    Log_System.BREAK();
                     break;
                 }
             }
@@ -227,7 +227,7 @@ class vanila {
                 sw = Integer.parseInt(br.readLine());
                 System.out.println(sw);
                 if (sw == 0) {
-                    Break.BREAK();
+                    Log_System.BREAK();
                     break;
                 }
             }

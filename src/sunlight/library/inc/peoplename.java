@@ -1,6 +1,6 @@
 package sunlight.library.inc;
 
-import sunlight.library.inc.System.Error;
+import sunlight.library.inc.System.Log_System;
 import sunlight.library.inc.people_name.Na_Uji;
 import sunlight.library.inc.people_name.Uji_Na;
 
@@ -41,7 +41,7 @@ public class peoplename {
                     Na_Uji nu = new Na_Uji();
                     nu.NAME();
                 }else {
-                    Error.ERROR();
+                    Log_System.ERROR();
                 }
 
                 System.out.println(temp);

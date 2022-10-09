@@ -1,6 +1,6 @@
 package sunlight.library.inc;
 
-import sunlight.library.inc.System.Error;
+import sunlight.library.inc.System.Log_System;
 import sunlight.library.inc.ship_name_type.SHIP_NAME_TYPES;
 
 import java.io.*;
@@ -66,7 +66,7 @@ public class shipname {
                 }else if (Type == 18) {
                     sn.FISH();
                 }else {
-                    Error.ERROR();
+                    Log_System.ERROR();
                 }
                 System.out.println(temp);
                 System.out.println("続いて他の国を入力しますか？しない場合[0]する場合は[1]");

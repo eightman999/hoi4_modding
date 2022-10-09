@@ -16,7 +16,7 @@ public class Main {
     public static String LSTR = "";
     public static  String MSTR = "";
     public static int L_mode = 0;
-    public static int mode = 0;
+    static int mode = 0;
     public static void main(String[] args) {
         ROOT root = new ROOT();
         root.start();

@@ -17,7 +17,7 @@ public class localize {
         }else if (L_mode == 2) {
             LM = "japanese";
         }
-        temp = "l_"+LM+":";
+        temp = temp + "l_"+LM+":";
         System.out.println(System.getProperty("user.home"));
         try {
             System.out.println("ファイル名を入力してください。");

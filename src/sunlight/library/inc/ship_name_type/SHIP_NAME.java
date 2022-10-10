@@ -1,13 +1,15 @@
 package sunlight.library.inc.ship_name_type;
 
+import sunlight.library.inc.shipname;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import static sunlight.library.inc.Main.*;
 
-public class LIGHT_CRUISER_NAME {
-    public static void  CL_NAME(){
+public class SHIP_NAME {
+    public static void SHIP_NAME(){
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(isr);
         try {
@@ -31,7 +33,7 @@ public class LIGHT_CRUISER_NAME {
             while (true) {
                 num = num +1;
                 Type = 0;
-                System.out.println("軽巡洋艦の艦名を入力してください。\n");
+                System.out.println(shipname.Ship_Type +"の名前を入力してください。\n");
                 Stype = br.readLine();
                 temp = temp + "\"" + Stype + "\" ";
                 if (num == 10){

@@ -114,9 +114,38 @@ public class Goals_GUI extends JFrame implements ActionListener {
                     String fileName = list[i].getName();
                     System.out.println(fileName);
                     int index = fileName.lastIndexOf(".");
-                    temp = temp + "\t\tSpriteType = {\n\t\tname = \"GFX_" + fileName.substring(0, index) + "\"";
+                    temp = temp + "\t\tSpriteType = {\n\t\t\tname = \"GFX_" + fileName.substring(0, index) + "\"";
                     temp = temp + "\n\t\t\ttexturefile = \"" + texturefile_path.getText()+"/" + list[i].getName() + "\"";
                     temp = temp +"\n\t\t}\n";
+
+                    temp = temp + "\t\tSpriteType = {\n\t\t\tname = \"GFX_" + fileName.substring(0, index) + "_shine\"";
+                    temp = temp + "\n\t\t\ttexturefile = \"" + texturefile_path.getText()+"/" + list[i].getName() + "\"";
+                    temp = temp +"\n\t\t\teffectFile = \"gfx/FX/buttonstate.lua\"\n";
+                    temp = temp + "\n\t\t\tanimation = {\n\t\t\t\tanimationmaskfile = \""+ list[i].getName() +"\"";
+                    temp = temp + "\n\t\t\t\tanimationtexturefile = \"gfx/interface/goals/shine_overlay.dds\"\n";
+                    temp = temp + "\t\t\t\tanimationrotation = -90.0\n" +
+                            "\t\t\t\tanimationlooping = no\n" +
+                            "\t\t\t\tanimationtime = 0.75\n" +
+                            "\t\t\t\tanimationdelay = 0\n" +
+                            "\t\t\t\tanimationblendmode = \"add\"\n" +
+                            "\t\t\t\tanimationtype = \"scrolling\"\n" +
+                            "\t\t\t\tanimationrotationoffset = { x = 0.0 y = 0.0 }\n" +
+                            "\t\t\t\tanimationtexturescale = { x = 1.0 y = 1.0 } \n" +
+                            "\t\t\t}";
+                    temp = temp + "\n\t\t\tanimation = {\n\t\t\t\tanimationmaskfile = \""+ list[i].getName() +"\"";
+                    temp = temp + "\n\t\t\t\tanimationtexturefile = \"gfx/interface/goals/shine_overlay.dds\"\n";
+                    temp = temp + "\t\t\t\tanimationrotation = 90.0\n" +
+                            "\t\t\t\tanimationlooping = no\n" +
+                            "\t\t\t\tanimationtime = 0.75\n" +
+                            "\t\t\t\tanimationdelay = 0\n" +
+                            "\t\t\t\tanimationblendmode = \"add\"\n" +
+                            "\t\t\t\tanimationtype = \"scrolling\"\n" +
+                            "\t\t\t\tanimationrotationoffset = { x = 0.0 y = 0.0 }\n" +
+                            "\t\t\t\tanimationtexturescale = { x = 1.0 y = 1.0 } \n" +
+                            "\t\t}\n";
+                    temp = temp +"\t\t\tlegacy_lazy_load = no\n" +
+                            "\t\t\t}\n";
+
                 }
                 else if(list[i].isDirectory()) { //ディレクトリの場合
                     //何もしない

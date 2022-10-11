@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="hoi4_technology_modding:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/hoi4_technology_modding_jar</output-path>
+    <root id="archive" name="hoi4_technology_modding.jar">
+      <element id="module-output" name="hoi4_technology_modding" />
+    </root>
+  </artifact>
+</component>

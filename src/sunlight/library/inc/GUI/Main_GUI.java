@@ -1,4 +1,6 @@
 package sunlight.library.inc.GUI;
+import sunlight.library.inc.GUI.GFX.GFX_GUI;
+import sunlight.library.inc.GUI.GFX.Goals_GUI;
 import sunlight.library.inc.GUI.Localize.Localize_GUI;
 
 import javax.imageio.ImageIO;
@@ -41,6 +43,8 @@ public class Main_GUI extends JFrame implements ActionListener {
         cb.addItem(l.LOCALIZE);
         cb.addItem(l.EQUIPMENT);
         cb.addItem(l.COUNTRY);
+        cb.addItem(l.GFX);
+        cb.addItem(l.GOAL);
         JComboBox cbl = new JComboBox();
         cbl.addItem(l.NONE);
         cbl.addItem(l.ENGLISH);
@@ -82,6 +86,12 @@ public class Main_GUI extends JFrame implements ActionListener {
                         l.Please_Select_mode,
                         l.Please_Select_mode,
                         JOptionPane.WARNING_MESSAGE);
+            }else if (Mode == "Goals"){
+                Goals_GUI GGUI = new Goals_GUI();
+                GGUI.goals_GUI();
+            }else if (Mode == "GFX"){
+                GFX_GUI GFGUI = new GFX_GUI();
+                GFGUI.gfx_GUI();
             }
         }
     }

@@ -156,7 +156,7 @@ public class Localize_GUI extends JFrame implements ActionListener {
 
     class menuSaveListener extends Component implements ActionListener {
         public void actionPerformed(ActionEvent e){
-            temp = "#This file was created using software created by \n#Sunlight.library and the STRaDA (Sunlight Technology Research and Development Association).\n";
+            temp = "#It is described by Sunlight.library and software created by STRaDA (Sunlight Technology Research and Development Association).\n";
             temp = temp + "l_"+LM+":";
             temp = temp + "\n" + STR;
             try {
@@ -186,7 +186,7 @@ public class Localize_GUI extends JFrame implements ActionListener {
                 com_pr = linecount_s;
                 pb.setValue(1);
                 String str_s = textArea_s.getText();
-                String str_t = textArea_s.getText();
+                String str_t = textArea_t.getText();
                 String[] strs = str_s.split("\n");
                 String[] strt = str_t.split("\n");
 
@@ -194,7 +194,7 @@ public class Localize_GUI extends JFrame implements ActionListener {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0 ; i < strs.length ; i++){
                     pb.setValue(i);
-                    sb.append(strt[i]+ ":0 \"" + strs[i] + "\"\n");
+                    sb.append(strs[i]+ ":0 \"" + strt[i] + "\"\n");
                 }
                 STR = String.valueOf(sb);
                 textArea_d.setText(new String(sb));

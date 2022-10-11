@@ -11,6 +11,8 @@ public class language {
         public String ENGLISH = "English";
         public String JAPANESE = "Japanese";
         public String Please_Select_mode = "Please Select mode";
+        public String GFX = "GFX";
+        public String GOAL = "Goals";
 //        public void C_languages(){
 //               if (Main_GUI.L_mode == 0){
 //                       DONE = "完了";

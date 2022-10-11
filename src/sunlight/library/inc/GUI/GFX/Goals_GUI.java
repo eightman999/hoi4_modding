@@ -25,6 +25,7 @@ public class Goals_GUI extends JFrame implements ActionListener {
     String file_name = "00_Goals.gfx";
     JTextField texturefile_path = new JTextField("",15);
     JTextField fn = new JTextField("File Path", 15);
+    JTextField fnm = new JTextField("File name", 15);
     String temp =
             "#It is described by Sunlight.library and software created by STRaDA (Sunlight Technology Research and Development Association).\n" +
             "spriteTypes = {\n";
@@ -82,12 +83,15 @@ public class Goals_GUI extends JFrame implements ActionListener {
         done.setBounds(505,10,80,20);
         load.setBounds(505,50,80,20);
         fn.setBounds(160,10,300,20);
+        fnm.setBounds(160,75,300,20);
+        p1.add(fnm);
         p1.add(done);
         p1.add(label1);
         p1.add(label);
         p1.add(fn);
         p1.add(path);
         p1.add(load);
+
         p1.add(texturefile_path);
         done.addActionListener(new DoneActionListener());
         load.addActionListener(new LoadActionListener());
@@ -153,7 +157,7 @@ public class Goals_GUI extends JFrame implements ActionListener {
             }
             temp = temp +"}\n";
             try {
-                FileOutputStream fos = new FileOutputStream(System.getProperty("user.home") + "/Desktop/" + file_name);
+                FileOutputStream fos = new FileOutputStream(System.getProperty("user.home") + "/Desktop/" + fnm.getText());
                 OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
                 osw.write(temp);
                 osw.close();

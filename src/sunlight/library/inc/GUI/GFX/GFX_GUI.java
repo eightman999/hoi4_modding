@@ -23,6 +23,7 @@ public class GFX_GUI extends JFrame implements ActionListener {
     String file_path = "";
     JTextField texturefile_path = new JTextField("", 15);
     JTextField fn = new JTextField("File Path", 15);
+    JTextField fnm = new JTextField("File name", 15);
     String temp =
             "#It is described by Sunlight.library and software created by STRaDA (Sunlight Technology Research and Development Association).\n" +
                     "spriteTypes = {\n";
@@ -89,6 +90,8 @@ public class GFX_GUI extends JFrame implements ActionListener {
         p1.add(path);
         p1.add(load);
         p1.add(texturefile_path);
+        fnm.setBounds(160,75,300,20);
+        p1.add(fnm);
         done.addActionListener(new GFX_GUI.DoneActionListener());
         load.addActionListener(new GFX_GUI.LoadActionListener());
     }
@@ -125,7 +128,7 @@ public class GFX_GUI extends JFrame implements ActionListener {
             }
             temp = temp +"}\n";
             try {
-                FileOutputStream fos = new FileOutputStream(System.getProperty("user.home") + "/Desktop/" + file_name);
+                FileOutputStream fos = new FileOutputStream(System.getProperty("user.home") + "/Desktop/" + fnm.getText());
                 OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
                 osw.write(temp);
                 osw.close();

@@ -113,6 +113,7 @@ public class Localize_GUI extends JFrame implements ActionListener {
         inputt.setBounds(440,55,200,20);
         combined.setBounds(230,160,200,100);
         pb.setBounds(120,670,400,20);
+        p.add(menuBar);
         p1.add(fn);
         p1.add(label);
         p1.add(label1);
@@ -197,6 +198,18 @@ public class Localize_GUI extends JFrame implements ActionListener {
                         "左右で行数が違います！",
                         "",
                         JOptionPane.ERROR_MESSAGE);
+            }
+            temp = "#It is described by Sunlight.library and software created by STRaDA (Sunlight Technology Research and Development Association).\n";
+            temp = temp + "l_"+LM+":";
+            temp = temp + "\n" + STR;
+            try {
+                FileOutputStream fos = new FileOutputStream(System.getProperty("user.home") + "/Desktop/" + file_name);
+                OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+                osw.write(temp);
+                osw.close();
+                fos.close();
+            }catch (IOException er) {
+                System.out.println(er);
             }
 
         }

@@ -117,7 +117,8 @@ public class GFX_GUI extends JFrame implements ActionListener {
             }
             temp = temp +"}\n";
             try {
-                FileOutputStream fos = new FileOutputStream(System.getProperty("user.home") + "/Desktop/" + fnm.getText());
+                FileOutputStream fos = new FileOutputStream("/"+file_path+"/"+fnm.getText()+".gfx");
+                System.out.println("/"+file_path+"/"+fnm.getText()+".gfx");
                 OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
                 osw.write(temp);
                 osw.close();

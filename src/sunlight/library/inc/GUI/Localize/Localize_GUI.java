@@ -49,12 +49,6 @@ public class Localize_GUI extends JFrame implements ActionListener {
         JMenuBar menuBar = new JMenuBar();
         JMenu menuFile = new JMenu("File");
         JMenuItem menuSave = new JMenuItem("Save");
-        JMenuItem menuExit = new JMenuItem("Exit");
-        JMenu menuView = new JMenu("View");
-        JCheckBoxMenuItem menuTool = new JCheckBoxMenuItem("Text import mode ");
-        JMenu menuSize = new JMenu("Size");
-//        JMenuItem menuSizeLarge = new JMenuItem("Large");
-//        JMenuItem menuSizeSmall = new JMenuItem("Small");
         textArea_s.setWrapStyleWord(true);
         textArea_s.setLineWrap(false);
         textArea_t.setWrapStyleWord(true);
@@ -73,31 +67,22 @@ public class Localize_GUI extends JFrame implements ActionListener {
         textArea_d.setEditable(false);
 
 
-        menuFile.setMnemonic('F');
+
         menuSave.setMnemonic(VK_CONTROL + 'S');
-        menuExit.setMnemonic('x');
-        menuView.setMnemonic('V');
-        menuTool.setMnemonic('T');
-        menuSize.setMnemonic('S');
+
 //        menuSizeLarge.setMnemonic('L');
 //        menuSizeSmall.setMnemonic('S');
 
         menuSave.addActionListener(new menuSaveListener());
-        menuExit.addActionListener(this);
-        menuTool.addActionListener(this);
+
 
         JButton combined = new JButton("combined");
 //        menuSizeSmall.addActionListener(this);
         combined.addActionListener(new combinedListener());
         getRootPane().setJMenuBar(menuBar);
-        menuBar.add(menuFile);
+
         menuFile.add(menuSave);
-        menuFile.add(menuExit);
-        menuBar.add(menuView);
-        menuView.add(menuTool);
-//        menuView.add(menuSize);
-//        menuSize.add(menuSizeLarge);
-//        menuSize.add(menuSizeSmall);
+
 
 
 

@@ -14,7 +14,7 @@ import java.io.OutputStreamWriter;
 import static java.awt.event.KeyEvent.VK_CONTROL;
 
 
-public class GFX_GUI extends JFrame implements ActionListener {
+public class NV_MOD_GFX_GUI extends JFrame implements ActionListener {
     JTextArea textArea_s = new JTextArea();
     String file_name = "00_GFX.gfx";
     language l = new language();
@@ -29,12 +29,12 @@ public class GFX_GUI extends JFrame implements ActionListener {
                     "spriteTypes = {\n";
 
     public void gfx_GUI() {
-        GFX_GUI Lframe = new GFX_GUI();
+        NV_MOD_GFX_GUI Lframe = new NV_MOD_GFX_GUI();
         Lframe.setLocationRelativeTo(null);
         Lframe.setVisible(true);
     }
 
-    public GFX_GUI() {
+    public NV_MOD_GFX_GUI() {
         setBounds(100, 100, 660, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel p1 = new JPanel();
@@ -45,19 +45,30 @@ public class GFX_GUI extends JFrame implements ActionListener {
         JMenuBar menuBar = new JMenuBar();
         JMenu menuFile = new JMenu("File");
         JMenuItem menuSave = new JMenuItem("Save");
-
+        JMenuItem menuExit = new JMenuItem("Exit");
+        JMenu menuView = new JMenu("View");
+        JCheckBoxMenuItem menuTool = new JCheckBoxMenuItem("Text import mode ");
+        JMenu menuSize = new JMenu("Size");
+        menuFile.setMnemonic('F');
         menuSave.setMnemonic(VK_CONTROL + 'S');
+        menuExit.setMnemonic('x');
+        menuView.setMnemonic('V');
+        menuTool.setMnemonic('T');
+        menuSize.setMnemonic('S');
         textArea_s.setWrapStyleWord(true);
         textArea_s.setLineWrap(false);
         JScrollPane scrollPane = new JScrollPane(textArea_s);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(500, 1000));
-
+        menuExit.addActionListener(this);
+        menuTool.addActionListener(this);
 
         getRootPane().setJMenuBar(menuBar);
         menuBar.add(menuFile);
         menuFile.add(menuSave);
-
+        menuFile.add(menuExit);
+        menuBar.add(menuView);
+        menuView.add(menuTool);
         add(p1);
         JLabel label = new JLabel("Path : ");
 
@@ -81,8 +92,8 @@ public class GFX_GUI extends JFrame implements ActionListener {
         p1.add(texturefile_path);
         fnm.setBounds(160,75,300,20);
         p1.add(fnm);
-        done.addActionListener(new GFX_GUI.DoneActionListener());
-        load.addActionListener(new GFX_GUI.LoadActionListener());
+        done.addActionListener(new NV_MOD_GFX_GUI.DoneActionListener());
+        load.addActionListener(new NV_MOD_GFX_GUI.LoadActionListener());
     }
 
     @Override
@@ -99,32 +110,6 @@ public class GFX_GUI extends JFrame implements ActionListener {
 
     class LoadActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            File dir = new File(file_path);
-            File[] list = dir.listFiles();
-            for(int i=0; i<list.length; i++) {
-                if(list[i].isFile()) {          //ファイルの場合
-                    System.out.println(list[i].getName());
-                    String fileName = list[i].getName();
-                    System.out.println(fileName);
-                    int index = fileName.lastIndexOf(".");
-                    temp = temp + "\t\tSpriteType = {\n\t\tname = \"GFX_" + fileName.substring(0, index) + "\"";
-                    temp = temp + "\n\t\t\ttexturefile = \"" + texturefile_path.getText()+"/" + list[i].getName() + "\"";
-                    temp = temp +"\n\t\t}\n";
-                }
-                else if(list[i].isDirectory()) { //ディレクトリの場合
-                    //何もしない
-                }
-            }
-            temp = temp +"}\n";
-            try {
-                FileOutputStream fos = new FileOutputStream(System.getProperty("user.home") + "/Desktop/" + fnm.getText());
-                OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
-                osw.write(temp);
-                osw.close();
-                fos.close();
-            }catch (IOException er) {
-                System.out.println(er);
-            }
 
         }
 

@@ -1,6 +1,7 @@
 package sunlight.library.inc.GUI;
 import sunlight.library.inc.GUI.GFX.GFX_GUI;
 import sunlight.library.inc.GUI.GFX.Goals_GUI;
+import sunlight.library.inc.GUI.GFX.SHIP_GFX_GUI;
 import sunlight.library.inc.GUI.Localize.Localize_GUI;
 
 import javax.imageio.ImageIO;
@@ -8,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -24,6 +26,7 @@ public class Main_GUI extends JFrame implements ActionListener {
     String LMD = "";
     public static int L_mode = 0;
     String Mode = "";
+    JPopupMenu popup;
     public static void main(String[] args) {
         Main_GUI frame = new Main_GUI("Hoi4 modding tool");
 
@@ -42,6 +45,7 @@ public class Main_GUI extends JFrame implements ActionListener {
         cb.addItem(l.NONE);
         cb.addItem(l.LOCALIZE);
         cb.addItem(l.EQUIPMENT);
+        cb.addItem("Ship Hull");
         cb.addItem(l.COUNTRY);
         cb.addItem(l.GFX);
         cb.addItem(l.GOAL);
@@ -53,6 +57,12 @@ public class Main_GUI extends JFrame implements ActionListener {
         cbl.addActionListener(new LGActionListener());
         JButton done = new JButton(l.DONE);
         JButton done1 = new JButton(l.DONE);
+        popup = new JPopupMenu();
+
+        JMenuItem hullMenuItem = new JMenuItem("SHIP HULL");
+        JMenuItem moduleMenuItem = new JMenuItem("SHIP MODULES");
+        popup.add(hullMenuItem);
+        popup.add(moduleMenuItem);
 
         done.addActionListener(new DoneActionListener());
         done1.addActionListener(new LDonectionListener());
@@ -92,7 +102,27 @@ public class Main_GUI extends JFrame implements ActionListener {
             }else if (Mode == "GFX"){
                 GFX_GUI GFGUI = new GFX_GUI();
                 GFGUI.gfx_GUI();
+            }else if (Mode == "Ship Hull"){
+                SHIP_GFX_GUI sgg = new SHIP_GFX_GUI();
+                sgg.gfx_GUI();
             }
+        }
+    }
+    public void mouseReleased(MouseEvent e){
+        showPopup(e);
+    }
+
+    public void mousePressed(MouseEvent e){
+        showPopup(e);
+    }
+
+    public void mouseClicked(MouseEvent e){}
+    public void mouseEntered(MouseEvent e){}
+    public void mouseExited(MouseEvent e){}
+
+    private void showPopup(MouseEvent e) {
+        if (e.isPopupTrigger()) {
+            popup.show(e.getComponent(), e.getX(), e.getY());
         }
     }
     class LGActionListener implements ActionListener {

@@ -5,8 +5,7 @@ import sunlight.library.inc.CUI.*;
 public class ROOT {
 
   public void localize() {
-    localize lc = new localize();
-    lc.localization();
+    localize.localization();
   }
 
   public void equipmenttool() {
@@ -25,8 +24,7 @@ public class ROOT {
   }
 
   public void country_name() {
-    country_name cn = new country_name();
-    cn.country_names();
+    country_name.country_names();
   }
 
   public void start() {

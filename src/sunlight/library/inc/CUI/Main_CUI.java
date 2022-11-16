@@ -7,7 +7,7 @@ public class Main_CUI {
 
   public static String temp = "";
   public static String file_name = "";
-  public static String Stype = "";
+  public static String S_type = "";
   public static String IN_Stype = "";
   public static String Ctag = "";
   public static String INS;

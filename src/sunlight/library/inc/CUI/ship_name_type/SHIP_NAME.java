@@ -9,7 +9,7 @@ import sunlight.library.inc.CUI.ship_name;
 
 public class SHIP_NAME {
 
-  public static void SHIP_NAME() {
+  public static void SHIP_NAMES() {
     InputStreamReader isr = new InputStreamReader(System.in);
     BufferedReader br = new BufferedReader(isr);
     try {
@@ -17,9 +17,9 @@ public class SHIP_NAME {
         Type = 0;
         System.out.println("適応する船のタイプを入力してください。\n");
         IN_Stype = br.readLine();
-        Stype = Stype + " " + IN_Stype;
+        S_type = S_type + " " + IN_Stype;
         System.out.println(
-          "適応する船のタイプは" + Stype + "のみでよろしいですか？\n"
+          "適応する船のタイプは" + S_type + "のみでよろしいですか？\n"
         );
         System.out.println(
           "よければ[0]を　まだ入力する場合は[1]を入力してください。"
@@ -42,8 +42,8 @@ public class SHIP_NAME {
         System.out.println(
           ship_name.Ship_Type + "の名前を入力してください。\n"
         );
-        Stype = br.readLine();
-        temp = temp + "\"" + Stype + "\" ";
+        S_type = br.readLine();
+        temp = temp + "\"" + S_type + "\" ";
         if (num == 10) {
           temp = temp + "\n\t";
           num = 0;

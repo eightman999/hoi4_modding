@@ -39,77 +39,77 @@ public class ship_name {
         if (Type == 0) {
           Ship_Type = "駆逐艦";
           sn.DESTROYER();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 1) {
           Ship_Type = "軽巡洋艦";
           sn.LIGHT_CRUISER();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 2) {
           Ship_Type = "重巡洋艦";
           sn.HEAVY_CRUISER();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 3) {
           Ship_Type = "戦艦";
           sn.BATTLESHIP();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 4) {
           Ship_Type = "巡洋戦艦";
           sn.BATTLE_CRUISER();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 5) {
           Ship_Type = "航空母艦";
           sn.AIRCRAFT_CARRIER();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 6) {
           Ship_Type = "軽空母";
           sn.LIGHT_CARRIER();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 7) {
           Ship_Type = "大型潜水艦";
           sn.HEAVY_SUBMAIRNE();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 8) {
           Ship_Type = "中型潜水艦";
           sn.SUBMARINE();
         } else if (Type == 9) {
           Ship_Type = "小型潜水艦";
           sn.LIGHT_SUBMARINE();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 10) {
           Ship_Type = "都市";
           sn.CITIES();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 11) {
           Ship_Type = "山";
           sn.MOUNTAINS();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 12) {
           Ship_Type = "川";
           sn.RIVERS();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 13) {
           Ship_Type = "植物";
           sn.PLANTS();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 14) {
           Ship_Type = "旧国名・州";
           sn.PREFECTURES();
         } else if (Type == 15) {
           Ship_Type = "島";
           sn.ISLANDS();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 16) {
           Ship_Type = "海峡";
           sn.STRAIT();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 17) {
           Ship_Type = "鳥";
           sn.BIRD();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else if (Type == 18) {
           Ship_Type = "魚";
           sn.FISH();
-          SHIP_NAME.SHIP_NAME();
+          SHIP_NAME.SHIP_NAMES();
         } else {
           Log_System.ERROR();
         }

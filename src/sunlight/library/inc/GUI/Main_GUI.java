@@ -1,152 +1,186 @@
 package sunlight.library.inc.GUI;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import javax.swing.*;
 import sunlight.library.inc.GUI.GFX.GFX_GUI;
 import sunlight.library.inc.GUI.GFX.Goals_GUI;
 import sunlight.library.inc.GUI.GFX.SHIP_GFX_GUI;
 import sunlight.library.inc.GUI.Localize.Localize_GUI;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-
 public class Main_GUI extends JFrame implements ActionListener {
-    language l = new language();
-    public static String temp = "";
-    public static String file_name = "";
-    public static String Stype = "";
-    public static String IN_Stype = "";
-    public static String Ctag = "";
-    public static String   INS;
-    public static int sw = 1;
-    public static int Type = 0;
-    String LMD = "";
-    public static int L_mode = 0;
-    String Mode = "";
-    JPopupMenu popup;
-    public static void main(String[] args) {
-        Main_GUI frame = new Main_GUI("Hoi4 modding tool");
 
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-    Main_GUI (String title){
-        setTitle(title);
-        setBounds(100, 100, 400, 100);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel p = new JPanel();
-        JPanel p1 = new JPanel();
-        JLabel label = new JLabel(l.MODE_SELECT);
-        JLabel label1 = new JLabel(l.LG_SELECT);
-        JComboBox cb = new JComboBox();
-        cb.addItem(l.NONE);
-        cb.addItem(l.LOCALIZE);
-        cb.addItem(l.EQUIPMENT);
-        cb.addItem("Ship Hull");
-        cb.addItem(l.COUNTRY);
-        cb.addItem(l.GFX);
-        cb.addItem(l.GOAL);
-        JComboBox cbl = new JComboBox();
-        cbl.addItem(l.NONE);
-        cbl.addItem(l.ENGLISH);
-        cbl.addItem(l.JAPANESE);
-        cb.addActionListener(this);
-        cbl.addActionListener(new LGActionListener());
-        JButton done = new JButton(l.DONE);
-        JButton done1 = new JButton(l.DONE);
-        popup = new JPopupMenu();
+  public static String temp = "";
+  public static String file_name = "";
+  public static String Stype = "";
+  public static String IN_Stype = "";
+  public static String Ctag = "";
+  public static String INS;
+  public static int sw = 1;
+  public static int Type = 0;
+  public static int L_mode = 0;
 
-        JMenuItem hullMenuItem = new JMenuItem("SHIP HULL");
-        JMenuItem moduleMenuItem = new JMenuItem("SHIP MODULES");
-        popup.add(hullMenuItem);
-        popup.add(moduleMenuItem);
+  String LMD = "";
+  String Mode = "";
+  JPopupMenu popup;
+  JPanel p = new JPanel();
+  JPanel p1 = new JPanel();
+  JLabel label = new JLabel(language.MODE_SELECT);
+  JLabel label1 = new JLabel(language.LG_SELECT);
+  JButton done = new JButton(language.DONE);
+  JButton done1 = new JButton(language.DONE);
+  JComboBox<String> cb = new JComboBox<>();
+  JComboBox<String> cbl = new JComboBox<>();
 
-        done.addActionListener(new DoneActionListener());
-        done1.addActionListener(new LDonectionListener());
-        p.add(label);
-        p.add(cb);
-        p.add(done);
+  public static void main(String[] args) {
+    Main_GUI frame = new Main_GUI(language.Title);
 
-        p1.add(label1);
-        p1.add(cbl);
-        p1.add(done1);
+    frame.setLocationRelativeTo(null);
+    frame.setVisible(true);
+  }
 
+  Main_GUI(String title) {
+    load_screen(title);
+    done.addActionListener(new DoneActionListener());
+    done1.addActionListener(new LDonectionListener());
+    cb.addActionListener(this);
+    cbl.addActionListener(new LGActionListener());
+  }
 
-        Container contentPane = getContentPane();
-        contentPane.add(p, BorderLayout.CENTER);
-        contentPane.add(p1, BorderLayout.NORTH);
-    }
+  public void load_screen(String title) {
+    setTitle(title);
+    setBounds(100, 100, 400, 100);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    cb.addItem(language.NONE);
+    cb.addItem(language.LOCALIZE);
+    cb.addItem(language.EQUIPMENT);
+    cb.addItem(language.SHL);
+    cb.addItem(language.COUNTRY);
+    cb.addItem(language.GFX);
+    cb.addItem(language.GOAL);
+
+    cbl.addItem(language.NONE);
+    cbl.addItem(language.ENGLISH);
+    cbl.addItem(language.JAPANESE);
+
+    popup = new JPopupMenu();
+
+    JMenuItem hullMenuItem = new JMenuItem("SHIP HULL");
+    JMenuItem moduleMenuItem = new JMenuItem("SHIP MODULES");
+    popup.add(hullMenuItem);
+    popup.add(moduleMenuItem);
+
+    p.add(label);
+    p.add(cb);
+    p.add(done);
+
+    p1.add(label1);
+    p1.add(cbl);
+    p1.add(done1);
+
+    Container contentPane = getContentPane();
+    contentPane.add(p, BorderLayout.CENTER);
+    contentPane.add(p1, BorderLayout.NORTH);
+  }
+
+  public void kill_screen() {
+    cb.removeAllItems();
+    cbl.removeAllItems();
+    JButton done = new JButton(language.DONE);
+    JButton done1 = new JButton(language.DONE);
+    p.remove(label);
+    p.remove(cb);
+    p.remove(done);
+    p1.remove(label1);
+    p1.remove(cbl);
+    p1.remove(done1);
+  }
+
+  public void actionPerformed(ActionEvent e) {
+    // JComboBox cb = (JComboBox) e.getSource();
+    Mode = String.valueOf(cb.getSelectedItem());
+    System.out.println(cb.getSelectedItem());
+  }
+
+  class DoneActionListener implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
-        JComboBox cb = (JComboBox)e.getSource();
-        Mode = String.valueOf(cb.getSelectedItem());
-        System.out.println(cb.getSelectedItem());
+      if (Mode == "Localize") {
+        Localize_GUI LGUI = new Localize_GUI();
+        LGUI.localize_GUI();
+      } else if (LMD == "未選択" || LMD == "None" || LMD == "") {
+        JOptionPane.showMessageDialog(
+          null,
+          language.Please_Select_mode,
+          language.Please_Select_mode,
+          JOptionPane.WARNING_MESSAGE
+        );
+      } else if (Mode == language.GOAL) {
+        Goals_GUI GGUI = new Goals_GUI();
+        GGUI.goals_GUI();
+      } else if (Mode == language.GFX) {
+        GFX_GUI GFGUI = new GFX_GUI();
+        GFGUI.gfx_GUI();
+      } else if (Mode == language.SHL) {
+        SHIP_GFX_GUI sgg = new SHIP_GFX_GUI();
+        sgg.gfx_GUI();
+      }
     }
-    class DoneActionListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
+  }
 
-            if(Mode == "Localize"){
-                Localize_GUI LGUI = new Localize_GUI();
-                LGUI.localize_GUI();
-            }else if (Mode == "" || Mode == "None"){
-                JOptionPane.showMessageDialog(null,
-                        l.Please_Select_mode,
-                        l.Please_Select_mode,
-                        JOptionPane.WARNING_MESSAGE);
-            }else if (Mode == "Goals"){
-                Goals_GUI GGUI = new Goals_GUI();
-                GGUI.goals_GUI();
-            }else if (Mode == "GFX"){
-                GFX_GUI GFGUI = new GFX_GUI();
-                GFGUI.gfx_GUI();
-            }else if (Mode == "Ship Hull"){
-                SHIP_GFX_GUI sgg = new SHIP_GFX_GUI();
-                sgg.gfx_GUI();
-            }
-        }
-    }
-    public void mouseReleased(MouseEvent e){
-        showPopup(e);
-    }
+  public void mouseReleased(MouseEvent e) {
+    showPopup(e);
+  }
 
-    public void mousePressed(MouseEvent e){
-        showPopup(e);
-    }
+  public void mousePressed(MouseEvent e) {
+    showPopup(e);
+  }
 
-    public void mouseClicked(MouseEvent e){}
-    public void mouseEntered(MouseEvent e){}
-    public void mouseExited(MouseEvent e){}
+  public void mouseClicked(MouseEvent e) {}
 
-    private void showPopup(MouseEvent e) {
-        if (e.isPopupTrigger()) {
-            popup.show(e.getComponent(), e.getX(), e.getY());
-        }
-    }
-    class LGActionListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            JComboBox cbl = (JComboBox)e.getSource();
-            LMD = String.valueOf(cbl.getSelectedItem());
-            System.out.println(cbl.getSelectedItem());
-        }
-    }
-    class LDonectionListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            if(LMD == "None"||LMD == ""){
-                JOptionPane.showMessageDialog(null,
-                        "言語モードを選択してください",
-                        "Please Select language mode",
-                        JOptionPane.WARNING_MESSAGE);
-            }else if(LMD == l.ENGLISH){
-                L_mode = 1;
-//                l.C_languages();
+  public void mouseEntered(MouseEvent e) {}
 
-            }else if(LMD == l.JAPANESE) {
-                L_mode = 0;
-//                l.C_languages();
-            }
-        }
+  public void mouseExited(MouseEvent e) {}
+
+  private void showPopup(MouseEvent e) {
+    if (e.isPopupTrigger()) {
+      popup.show(e.getComponent(), e.getX(), e.getY());
     }
+  }
+
+  class LGActionListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+      LMD = String.valueOf(cbl.getSelectedItem());
+      System.out.println(cbl.getSelectedItem());
+    }
+  }
+
+  class LDonectionListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+      if (LMD == "未選択" || LMD == "None" || LMD == "") {
+        JOptionPane.showMessageDialog(
+          null,
+          "言語モードを選択してください",
+          "Please Select language mode",
+          JOptionPane.WARNING_MESSAGE
+        );
+      } else if (LMD == "英語" || LMD == "English") {
+        L_mode = 1;
+        language.C_languages();
+        kill_screen();
+        load_screen(language.Title);
+        LMD = "";
+      } else if (LMD == "日本語" || LMD == "Japanese") {
+        L_mode = 0;
+        language.C_languages();
+        kill_screen();
+        load_screen(language.Title);
+        LMD = "";
+      }
+    }
+  }
 }

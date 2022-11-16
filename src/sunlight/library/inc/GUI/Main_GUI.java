@@ -36,7 +36,6 @@ public class Main_GUI extends JFrame implements ActionListener {
 
   public static void main(String[] args) {
     Main_GUI frame = new Main_GUI(language.Title);
-
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
@@ -66,12 +65,10 @@ public class Main_GUI extends JFrame implements ActionListener {
     cbl.addItem(language.JAPANESE);
 
     popup = new JPopupMenu();
-
-    JMenuItem hullMenuItem = new JMenuItem("SHIP HULL");
-    JMenuItem moduleMenuItem = new JMenuItem("SHIP MODULES");
-    popup.add(hullMenuItem);
-    popup.add(moduleMenuItem);
-
+    label.setText(language.MODE_SELECT);
+    label1.setText(language.LG_SELECT);
+    done.setText(language.DONE);
+    done1.setText(language.DONE);
     p.add(label);
     p.add(cb);
     p.add(done);
@@ -88,8 +85,6 @@ public class Main_GUI extends JFrame implements ActionListener {
   public void kill_screen() {
     cb.removeAllItems();
     cbl.removeAllItems();
-    JButton done = new JButton(language.DONE);
-    JButton done1 = new JButton(language.DONE);
     p.remove(label);
     p.remove(cb);
     p.remove(done);
@@ -107,16 +102,9 @@ public class Main_GUI extends JFrame implements ActionListener {
   class DoneActionListener implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
-      if (Mode == "Localize") {
+      if (Mode == language.LOCALIZE) {
         Localize_GUI LGUI = new Localize_GUI();
         LGUI.localize_GUI();
-      } else if (LMD == "未選択" || LMD == "None" || LMD == "") {
-        JOptionPane.showMessageDialog(
-          null,
-          language.Please_Select_mode,
-          language.Please_Select_mode,
-          JOptionPane.WARNING_MESSAGE
-        );
       } else if (Mode == language.GOAL) {
         Goals_GUI GGUI = new Goals_GUI();
         GGUI.goals_GUI();
@@ -126,7 +114,17 @@ public class Main_GUI extends JFrame implements ActionListener {
       } else if (Mode == language.SHL) {
         SHIP_GFX_GUI sgg = new SHIP_GFX_GUI();
         sgg.gfx_GUI();
+      } else if (LMD == "未選択" || LMD == "None" || LMD == "") {
+        JOptionPane.showMessageDialog(
+          null,
+          language.Please_Select_mode,
+          language.Please_Select_mode,
+          JOptionPane.WARNING_MESSAGE
+        );
       }
+      System.out.println(language.GOAL);
+      System.out.println(language.GFX);
+      System.out.println(language.SHL);
     }
   }
 
@@ -137,12 +135,6 @@ public class Main_GUI extends JFrame implements ActionListener {
   public void mousePressed(MouseEvent e) {
     showPopup(e);
   }
-
-  public void mouseClicked(MouseEvent e) {}
-
-  public void mouseEntered(MouseEvent e) {}
-
-  public void mouseExited(MouseEvent e) {}
 
   private void showPopup(MouseEvent e) {
     if (e.isPopupTrigger()) {

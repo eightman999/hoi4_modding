@@ -1,117 +1,102 @@
 package sunlight.library.inc.GUI.GFX;
 
-import sunlight.library.inc.GUI.language;
+import static java.awt.event.KeyEvent.VK_CONTROL;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-
-import static java.awt.event.KeyEvent.VK_CONTROL;
-
+import javax.swing.*;
+import sunlight.library.inc.GUI.language;
 
 public class NV_MOD_GFX_GUI extends JFrame implements ActionListener {
-    JTextArea textArea_s = new JTextArea();
-    String file_name = "00_GFX.gfx";
-    language l = new language();
-    JPanel p = new JPanel();
-    JLabel path = new JLabel("");
-    String file_path = "";
-    JTextField texturefile_path = new JTextField("", 15);
-    JTextField fn = new JTextField("File Path", 15);
-    JTextField fnm = new JTextField("File name", 15);
-    String temp =
-            "#It is described by Sunlight.library and software created by STRaDA (Sunlight Technology Research and Development Association).\n" +
-                    "spriteTypes = {\n";
 
-    public void gfx_GUI() {
-        NV_MOD_GFX_GUI Lframe = new NV_MOD_GFX_GUI();
-        Lframe.setLocationRelativeTo(null);
-        Lframe.setVisible(true);
-    }
+  JTextArea textArea_s = new JTextArea();
+  String file_name = "00_GFX.gfx";
+  language l = new language();
+  JPanel p = new JPanel();
+  JLabel path = new JLabel("");
+  String file_path = "";
+  JTextField texturefile_path = new JTextField("", 15);
+  JTextField fn = new JTextField("File Path", 15);
+  JTextField fnm = new JTextField("File name", 15);
+  String temp = "#" + language.CCC + "\n" + "spriteTypes = {\n";
 
-    public NV_MOD_GFX_GUI() {
-        setBounds(100, 100, 660, 700);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        JPanel p1 = new JPanel();
+  public void gfx_GUI() {
+    NV_MOD_GFX_GUI Lframe = new NV_MOD_GFX_GUI();
+    Lframe.setLocationRelativeTo(null);
+    Lframe.setVisible(true);
+  }
 
-        Container contentPane = getContentPane();
-        contentPane.add(p, BorderLayout.CENTER);
+  public NV_MOD_GFX_GUI() {
+    setBounds(100, 100, 660, 700);
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    JPanel p1 = new JPanel();
 
-        JMenuBar menuBar = new JMenuBar();
-        JMenu menuFile = new JMenu("File");
-        JMenuItem menuSave = new JMenuItem("Save");
-        JMenuItem menuExit = new JMenuItem("Exit");
-        JMenu menuView = new JMenu("View");
-        JCheckBoxMenuItem menuTool = new JCheckBoxMenuItem("Text import mode ");
-        JMenu menuSize = new JMenu("Size");
-        menuFile.setMnemonic('F');
-        menuSave.setMnemonic(VK_CONTROL + 'S');
-        menuExit.setMnemonic('x');
-        menuView.setMnemonic('V');
-        menuTool.setMnemonic('T');
-        menuSize.setMnemonic('S');
-        textArea_s.setWrapStyleWord(true);
-        textArea_s.setLineWrap(false);
-        JScrollPane scrollPane = new JScrollPane(textArea_s);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(500, 1000));
-        menuExit.addActionListener(this);
-        menuTool.addActionListener(this);
+    Container contentPane = getContentPane();
+    contentPane.add(p, BorderLayout.CENTER);
 
-        getRootPane().setJMenuBar(menuBar);
-        menuBar.add(menuFile);
-        menuFile.add(menuSave);
-        menuFile.add(menuExit);
-        menuBar.add(menuView);
-        menuView.add(menuTool);
-        add(p1);
-        JLabel label = new JLabel("Path : ");
+    JMenuBar menuBar = new JMenuBar();
+    JMenu menuFile = new JMenu(language.File);
+    JMenuItem menuSave = new JMenuItem(language.Save);
+    JMenuItem menuExit = new JMenuItem("Exit");
+    JMenu menuView = new JMenu("View");
+    JCheckBoxMenuItem menuTool = new JCheckBoxMenuItem("Text import mode ");
+    textArea_s.setWrapStyleWord(true);
+    textArea_s.setLineWrap(false);
+    JScrollPane scrollPane = new JScrollPane(textArea_s);
+    scrollPane.setVerticalScrollBarPolicy(
+      JScrollPane.VERTICAL_SCROLLBAR_ALWAYS
+    );
+    scrollPane.setPreferredSize(new Dimension(500, 1000));
+    menuExit.addActionListener(this);
+    menuTool.addActionListener(this);
 
-        p1.setLayout(null);
-        JLabel label1 = new JLabel(".gfx");
-//        label1.setBounds(465,10,40,20);
-        label.setBounds(120, 10, 40, 20);
-        path.setBounds(120, 50, 340, 20);
-        texturefile_path.setBounds(120, 35, 340, 20);
-        JButton done = new JButton(l.DONE);
-        JButton load = new JButton("Load&Save");
-        done.setBounds(505, 10, 80, 20);
-        load.setBounds(505, 50, 80, 20);
-        fn.setBounds(160, 10, 300, 20);
-        p1.add(done);
-        p1.add(label1);
-        p1.add(label);
-        p1.add(fn);
-        p1.add(path);
-        p1.add(load);
-        p1.add(texturefile_path);
-        fnm.setBounds(160,75,300,20);
-        p1.add(fnm);
-        done.addActionListener(new NV_MOD_GFX_GUI.DoneActionListener());
-        load.addActionListener(new NV_MOD_GFX_GUI.LoadActionListener());
-    }
+    getRootPane().setJMenuBar(menuBar);
+    menuBar.add(menuFile);
+    menuFile.add(menuSave);
+    menuFile.add(menuExit);
+    menuBar.add(menuView);
+    menuView.add(menuTool);
+    add(p1);
+    JLabel label = new JLabel("Path : ");
 
-    @Override
+    p1.setLayout(null);
+    JLabel label1 = new JLabel(".gfx");
+    //        label1.setBounds(465,10,40,20);
+    label.setBounds(120, 10, 40, 20);
+    path.setBounds(120, 50, 340, 20);
+    texturefile_path.setBounds(120, 35, 340, 20);
+    JButton done = new JButton(language.DONE);
+    JButton load = new JButton("Load&Save");
+    done.setBounds(505, 10, 80, 20);
+    load.setBounds(505, 50, 80, 20);
+    fn.setBounds(160, 10, 300, 20);
+    p1.add(done);
+    p1.add(label1);
+    p1.add(label);
+    p1.add(fn);
+    p1.add(path);
+    p1.add(load);
+    p1.add(texturefile_path);
+    fnm.setBounds(160, 75, 300, 20);
+    p1.add(fnm);
+    done.addActionListener(new NV_MOD_GFX_GUI.DoneActionListener());
+    load.addActionListener(new NV_MOD_GFX_GUI.LoadActionListener());
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {}
+
+  class DoneActionListener implements ActionListener {
+
     public void actionPerformed(ActionEvent e) {
-
+      file_path = fn.getText();
+      path.setText("file Path : " + file_path);
     }
+  }
 
-    class DoneActionListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            file_path = fn.getText();
-            path.setText("file Path : " + file_path);
-        }
-    }
+  class LoadActionListener implements ActionListener {
 
-    class LoadActionListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-
-        }
-
-    }
+    public void actionPerformed(ActionEvent e) {}
+  }
 }

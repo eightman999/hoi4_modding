@@ -1,7 +1,5 @@
 package sunlight.library.inc.GUI.GFX;
 
-import static java.awt.event.KeyEvent.VK_CONTROL;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,15 +14,15 @@ public class NV_MOD_GFX_GUI extends JFrame implements ActionListener {
   JPanel p = new JPanel();
   JLabel path = new JLabel("");
   String file_path = "";
-  JTextField texturefile_path = new JTextField("", 15);
+  JTextField texture_file_path = new JTextField("", 15);
   JTextField fn = new JTextField("File Path", 15);
   JTextField fnm = new JTextField("File name", 15);
   String temp = "#" + language.CCC + "\n" + "spriteTypes = {\n";
 
   public void gfx_GUI() {
-    NV_MOD_GFX_GUI Lframe = new NV_MOD_GFX_GUI();
-    Lframe.setLocationRelativeTo(null);
-    Lframe.setVisible(true);
+    NV_MOD_GFX_GUI L_frame = new NV_MOD_GFX_GUI();
+    L_frame.setLocationRelativeTo(null);
+    L_frame.setVisible(true);
   }
 
   public NV_MOD_GFX_GUI() {
@@ -65,7 +63,7 @@ public class NV_MOD_GFX_GUI extends JFrame implements ActionListener {
     //        label1.setBounds(465,10,40,20);
     label.setBounds(120, 10, 40, 20);
     path.setBounds(120, 50, 340, 20);
-    texturefile_path.setBounds(120, 35, 340, 20);
+    texture_file_path.setBounds(120, 35, 340, 20);
     JButton done = new JButton(language.DONE);
     JButton load = new JButton("Load&Save");
     done.setBounds(505, 10, 80, 20);
@@ -77,7 +75,7 @@ public class NV_MOD_GFX_GUI extends JFrame implements ActionListener {
     p1.add(fn);
     p1.add(path);
     p1.add(load);
-    p1.add(texturefile_path);
+    p1.add(texture_file_path);
     fnm.setBounds(160, 75, 300, 20);
     p1.add(fnm);
     done.addActionListener(new NV_MOD_GFX_GUI.DoneActionListener());

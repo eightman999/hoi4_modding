@@ -18,7 +18,7 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
   String file_path = "";
   JLabel wIcon = new JLabel();
   JLabel BG = new JLabel();
-  JTextField texturefile_path = new JTextField("", 15);
+  JTextField texture_file_path = new JTextField("", 15);
   JTextField fnm = new JTextField("File name", 15);
   JLabel impath = new JLabel("");
   BufferedImage wPic = null;
@@ -321,7 +321,7 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
           temp1 =
             temp1 +
             "\n\t\t\ttexturefile = \"" +
-            texturefile_path.getText() +
+            texture_file_path.getText() +
             "/" +
             list[i].getName() +
             "\"";

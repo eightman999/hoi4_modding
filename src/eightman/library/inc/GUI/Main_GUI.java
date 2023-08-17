@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+
 import javax.swing.*;
 import eightman.library.inc.GUI.GFX.GFX_GUI;
 import eightman.library.inc.GUI.GFX.Goals_GUI;
@@ -34,7 +36,7 @@ public class Main_GUI extends JFrame implements ActionListener {
   JComboBox<String> cb = new JComboBox<>();
   JComboBox<String> cbl = new JComboBox<>();
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException{
     Main_GUI frame = new Main_GUI(language.Title);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);

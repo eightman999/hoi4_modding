@@ -27,7 +27,7 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
   BufferedImage slotlock = null;
   BufferedImage slot = null;
   String temp1 =
-    "#It is described by eightman.library and software created by STRaDA (eightman Technology Research and Development Association).\n" +
+    "#It is described by eightman.library and software created by  eightman\n" +
     "spriteTypes = {\n";
   Boolean f1 = true;
   Boolean f2 = true;

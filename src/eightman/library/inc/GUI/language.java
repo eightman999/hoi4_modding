@@ -22,7 +22,7 @@ public class language {
   public static String str_loc = "Starts the creation of a translation file.";
   public static String LR_no = "";
   public static String CCC =
-    "It is described by eightman.library and software created by STRaDA (eightman Technology Research and Development Association).";
+    "It is described by eightman.library and software created by eightman";
 
   public static void C_languages() {
     if (Main_GUI.L_mode == 0) {

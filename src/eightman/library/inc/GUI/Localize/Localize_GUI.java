@@ -136,7 +136,7 @@ public class Localize_GUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
       temp =
-        "#It is described by eightman.library and software created by STRaDA (eightman Technology Research and Development Association).\n";
+        "#It is described by eightman.library and software created by  eightman\n";
       temp = temp + "l_" + LM + ":";
       temp = temp + "\n" + STR;
       try {
@@ -198,7 +198,7 @@ public class Localize_GUI extends JFrame implements ActionListener {
         );
       }
       temp =
-        "#It is described by eightman.library and software created by STRaDA (eightman Technology Research and Development Association).\n";
+        "#It is described by eightman.library and software created by  eightman\n";
       temp = temp + "l_" + LM + ":";
       temp = temp + "\n" + STR;
       try {

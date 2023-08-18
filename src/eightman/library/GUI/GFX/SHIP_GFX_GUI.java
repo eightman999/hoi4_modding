@@ -303,8 +303,9 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
       }
     }
   }
-
-  class LoadActionListener implements ActionListener {
+  
+  /*セーブ*/
+  class SAVE_ActionListener implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
       File dir = new File(file_path);

@@ -1,0 +1,22 @@
+{
+  "DONE": "Done",
+  "LOCALIZE": "Localize",
+  "EQUIPMENT": "Equipment",
+  "COUNTRY": "country",
+  "NONE": "None",
+  "MODE_SELECT": "Select Mode",
+  "LG_SELECT": "Select language",
+  "ENGLISH": "English",
+  "JAPANESE": "Japanese",
+  "Please_Select_mode": "Please Select mode",
+  "GFX": "GFX",
+  "GOAL": "Goals",
+  "SHL": "Ship Hull",
+  "Title": "Hoi4 modding tool",
+  "File": "File",
+  "Save": "Save",
+  "combined": "combined",
+  "str_loc": "Starts the creation of a translation file.",
+  "LR_no": "The number of lines is different on the left and right.",
+  "IMAGE": "Image File"
+}

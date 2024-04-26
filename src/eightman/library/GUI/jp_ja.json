@@ -1,0 +1,22 @@
+{
+  "DONE": "完了",
+  "LOCALIZE": "翻訳ファイル作成",
+  "EQUIPMENT": "装備作成",
+  "COUNTRY": "国家作成",
+  "NONE": "未選択",
+  "MODE_SELECT": "モード選択",
+  "LG_SELECT": "言語選択",
+  "ENGLISH": "英語",
+  "JAPANESE": "日本語",
+  "Please_Select_mode": "モードを選択してください",
+  "SHL": "船体設定",
+  "GOAL": "NF用画像",
+  "GFX": "画像適用",
+  "Title": "Hoi4 mod開発支援ツール",
+  "File": "ファイル",
+  "Save": "セーブ",
+  "combined": "結合",
+  "str_loc": "翻訳ファイルの作成を開始します。",
+  "LR_no": "左右で行数が違います",
+  "IMAGE": "画像ファイル"
+}

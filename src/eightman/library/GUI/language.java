@@ -1,7 +1,6 @@
 package eightman.library.GUI;
 
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,41 +26,64 @@ public class language {
     public static String combined = "combined";
     public static String str_loc = "Starts the creation of a translation file.";
     public static String LR_no = "";
-    public static String CCC =
-            "It is described by eightman.library and software created by eightman";
+    public static String CCC = "It is described by eightman and software created by eightman";
     public static String IMAGE = "Image File";
+    public static String PREF = "Preferences";
+    public static String Loc_Pref = "Localization Preferences";
+    public static String SAVE_SETTINGS = "設定保存";
+    public static String FONT = "Font";
+    public static String MODULE = "Module";
 
     public static void C_languages() {
-        String languageFile = Main_GUI.L_mode == 0 ? "jp_ja.json" : "en_en.json";
+        String languageFile;
+        if (Main_GUI.L_mode == 0) {
+            languageFile = "jp_ja.json";
+        } else if (Main_GUI.L_mode == 1) {
+            languageFile = "en_en.json";
+        } else if (Main_GUI.L_mode == 2) {
+            languageFile = "en_us.json";
+        } else {
+            languageFile = "default.json"; // L_modeが0, 1, 2以外の場合のデフォルト値
+        }
+        System.out.println("Selected language: " + (Main_GUI.L_mode == 0 ? "Japanese" : "English"));
         JSONObject langJson = new JSONObject(readFile(languageFile));
+        if (langJson.has("DONE")) {
+            DONE = langJson.getString("DONE");
+        }
         DONE = langJson.getString("DONE");
         LOCALIZE = langJson.getString("LOCALIZE");
         EQUIPMENT = langJson.getString("EQUIPMENT");
-        COUNTRY = langJson.getString("country");
-        NONE = langJson.getString("None");
-        MODE_SELECT = langJson.getString("Select Mode");
-        LG_SELECT = langJson.getString("Select language");
-        ENGLISH = langJson.getString("English");
-        JAPANESE = langJson.getString("Japanese");
-        Please_Select_mode = langJson.getString("Please Select mode");
+        COUNTRY = langJson.getString("COUNTRY");
+        NONE = langJson.getString("NONE");
+        MODE_SELECT = langJson.getString("MODE_SELECT");
+        LG_SELECT = langJson.getString("LG_SELECT");
+        ENGLISH = langJson.getString("ENGLISH");
+        JAPANESE = langJson.getString("JAPANESE");
+        Please_Select_mode = langJson.getString("Please_Select_mode");
         GFX = langJson.getString("GFX");
-        GOAL = langJson.getString("Goals");
-        SHL = langJson.getString("Ship Hull");
-        Title = langJson.getString("Hoi4 modding tool");
+        GOAL = langJson.getString("GOAL");
+        SHL = langJson.getString("SHL");
+        Title = langJson.getString("Title");
         File = langJson.getString("File");
         Save = langJson.getString("Save");
         combined = langJson.getString("combined");
-        str_loc = langJson.getString("Starts the creation of a translation file.");
-        LR_no = langJson.getString("The number of lines is different on the left and right.");
-        IMAGE = langJson.getString("Image File");
-        private static String readFile (String filename){
-            String content = "";
-            try {
-                content = new String(Files.readAllBytes(Paths.get(filename)));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return content;
+        str_loc = langJson.getString("str_loc");
+        LR_no = langJson.getString("LR_no");
+        IMAGE = langJson.getString("IMAGE");
+        PREF = langJson.getString("PREF");
+        Loc_Pref = langJson.getString("Loc_Pref");
+        SAVE_SETTINGS = langJson.getString("SAVE_SETTINGS");
+        FONT = langJson.getString("FONT");
+        MODULE = langJson.getString("MODULE");
+    }
+
+    private static String readFile(String filename) {
+        String content = "";
+        try {
+            content = new String(Files.readAllBytes(Paths.get("./src/eightman/library/GUI/Localize/json/" + filename)));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return content;
     }
 }

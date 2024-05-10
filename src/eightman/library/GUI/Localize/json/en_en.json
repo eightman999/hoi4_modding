@@ -18,5 +18,10 @@
   "combined": "combined",
   "str_loc": "Starts the creation of a translation file.",
   "LR_no": "The number of lines is different on the left and right.",
-  "IMAGE": "Image File"
+  "IMAGE": "Image File",
+  "PREF": "Preferences",
+  "Loc_Pref": "Localization Preferences",
+  "SAVE_SETTINGS": "Save Settings",
+  "FONT": "Font",
+  "MODULE": "Module"
 }

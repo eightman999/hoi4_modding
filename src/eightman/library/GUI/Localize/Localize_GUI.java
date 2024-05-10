@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 import static eightman.library.GUI.Main_GUI.file_name;
+//import static eightman.library.GUI.Main_GUI.temp;
 import static eightman.library.GUI.Main_GUI.temp;
 import static java.awt.event.KeyEvent.VK_CONTROL;
 
@@ -139,8 +140,7 @@ public class Localize_GUI extends JFrame implements ActionListener {
     class menuSaveListener extends Component implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            temp =
-                    "#It is described by eightman.library and software created by  eightman\n";
+            temp = "#It is described by eightman.library and software created by  eightman\n";
             temp = temp + "l_" + LM + ":";
             temp = temp + "\n" + STR;
             try {

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import eightman.library.GUI.Main_GUI;
 
+import javax.swing.*;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +12,13 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import static eightman.library.GUI.Main_GUI.modPathListModel;
 import static eightman.library.GUI.Main_GUI.modPathMap;
@@ -72,10 +79,59 @@ public class MT_core {
                 try (FileWriter writer = new FileWriter(configPath.toString())) {
                     writer.write(json);
                 }
-                System.out.println("実行回数: " + runCount);
+                MT_System.out.println("実行回数: " + runCount);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+    public static class MT_System {
+        private static final Logger logger = Logger.getLogger(MT_System.class.getName());
+        public static void setupLogger() {
+            try {
+                // ログメッセージのフォーマットを設定
+                System.setProperty("java.util.logging.SimpleFormatter.format",
+                        "[%1$tF %1$tT] [%4$-7s] %5$s %n");
+
+                // 現在の日時を取得
+                Date now = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmm");
+                String dateString = format.format(now);
+
+                // ログを出力するディレクトリを作成
+                Path logDir = Paths.get("./Hoi4_modding_Tool/logs/");
+                if (!Files.exists(logDir)) {
+                    Files.createDirectories(logDir);
+                }
+
+                // ログを出力するファイルの FileHandler を作成
+                FileHandler fileHandler = new FileHandler(logDir.resolve("System_" + dateString + ".log").toString(), true);
+                fileHandler.setFormatter(new SimpleFormatter()); // ログのフォーマットを設定
+
+                // Logger に FileHandler を追加
+                logger.addHandler(fileHandler);
+            } catch (IOException e) {
+                logger.log(Level.SEVERE, "File logger not working.", e);
+                throw new RuntimeException(e);
+            }
+        }
+        public static class out {
+
+            public static void logInfo(String message) {
+                logger.info(message); // INFO レベルのログを出力
+            }
+
+            public static void logError(String message, Exception e) {
+                logger.log(Level.SEVERE, message, e); // ERROR レベルのログを出力
+            }
+
+            public static void println(String message) {
+                System.out.println(message); // コンソールに出力
+                logInfo(message); // ログファイルに出力
+            }
+
+        }
+    }
 }
+

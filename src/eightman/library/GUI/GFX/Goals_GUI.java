@@ -1,5 +1,6 @@
 package eightman.library.GUI.GFX;
 
+import eightman.library.GUI.System.MT_core;
 import eightman.library.GUI.language;
 
 import javax.swing.*;
@@ -195,7 +196,7 @@ public class Goals_GUI extends JFrame implements ActionListener {
                 FileOutputStream fos = new FileOutputStream(
                         "/" + file_path + "/" + fnm.getText() + ".gfx"
                 );
-                System.out.println("/" + file_path + "/" + fnm.getText() + ".gfx");
+                MT_core.MT_System.out.println("/" + file_path + "/" + fnm.getText() + ".gfx");
                 OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
                 osw.write(temp);
                 osw.close();

@@ -23,5 +23,6 @@
   "Loc_Pref": "言語設定",
   "SAVE_SETTINGS": "設定を保存",
   "FONT": "フォント",
-  "MODULE": "モジュール作成"
+  "MODULE": "モジュール作成",
+  "NAME" : "名前"
 }

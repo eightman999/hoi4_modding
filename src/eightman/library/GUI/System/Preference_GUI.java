@@ -1,39 +1,42 @@
 package eightman.library.GUI.System;
 
 
+import com.google.gson.Gson;
 import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.language;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import com.google.gson.Gson;
 
 import static eightman.library.GUI.Main_GUI.*;
-
 import static eightman.library.GUI.language.*;
 
 public class Preference_GUI extends JFrame {
+    public static JComboBox<String> languageComboBox;
     private CardLayout cardLayout = new CardLayout();
     private JPanel cardPanel = new JPanel(cardLayout);
-    public static JComboBox<String> languageComboBox;
 
     public Preference_GUI() {
-        super(PREF); // タイトルを設定
+        super(PREF);
         setLayout(new BorderLayout());
         setupLayout();
         setLocationRelativeTo(null);
         setVisible(true);
+        setDefaultLanguage();
+    }
 
-        // L_modeに基づいてlanguageComboBoxのデフォルト値を設定
+    public static void setLanguage(String language) {
+        languageComboBox.setSelectedItem(language);
+    }
+
+    private void setDefaultLanguage() {
         if (Main_GUI.L_mode == 1) {
             languageComboBox.setSelectedItem(language.ENGLISH);
         } else if (Main_GUI.L_mode == 0) {
@@ -45,6 +48,11 @@ public class Preference_GUI extends JFrame {
         setSize(600, 350);
         // レイアウトの設定、ボタンの追加、設定項目の追加などのコード
         // 設定項目選択のボタン群
+        setupPanel();
+    }
+
+    private void setupPanel() {
+        // ボタンパネルの設定
         JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
         JButton modPathButton = new JButton("Mod Path");
         JButton languageButton = new JButton(Loc_Pref);
@@ -138,7 +146,6 @@ public class Preference_GUI extends JFrame {
         add(buttonPanel, BorderLayout.WEST);
         add(cardPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
-
     }
 
     private void saveModPathSettings() {
@@ -161,10 +168,6 @@ public class Preference_GUI extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void setLanguage(String language) {
-        languageComboBox.setSelectedItem(language);
     }
 
 

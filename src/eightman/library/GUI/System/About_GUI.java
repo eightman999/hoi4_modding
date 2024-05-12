@@ -16,7 +16,7 @@ public class About_GUI extends JFrame {
         setResizable(false);
 
         setLayout(new BorderLayout());
-        setSize(300, 400);
+        setSize(300, 450);
 
         // アイコンのサイズを変更
         Image scaledIcon = Main_GUI.icon.getScaledInstance(100, 100, Image.SCALE_DEFAULT);

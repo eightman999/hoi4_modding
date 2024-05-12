@@ -23,5 +23,6 @@
   "Loc_Pref": "Localization Preferences",
   "SAVE_SETTINGS": "Save Settings",
   "FONT": "Font",
-  "MODULE": "Module"
+  "MODULE": "Module",
+  "NAME": "Name"
 }

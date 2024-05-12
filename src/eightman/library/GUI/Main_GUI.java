@@ -1,6 +1,6 @@
 package eightman.library.GUI;
 
-import eightman.library.GUI.ATRM_MODULE.module_maker_GUI;
+import eightman.library.GUI.MODULE.*;
 import eightman.library.GUI.GFX.GFX_GUI;
 import eightman.library.GUI.GFX.Goals_GUI;
 import eightman.library.GUI.GFX.SHIP_GFX_GUI;
@@ -20,8 +20,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Objects;
 
-import static eightman.library.GUI.System.MT_core.load_config;
-import static eightman.library.GUI.System.MT_core.run_counter;
+import static eightman.library.GUI.System.MT_core.*;
 import static eightman.library.GUI.System.Mac_OS.*;
 import static eightman.library.GUI.language.Title;
 import static javax.swing.UIManager.setLookAndFeel;
@@ -34,6 +33,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static int L_mode;
     public static String Version = "0.7.0";
     public static Image icon;
+    public static Image icon2;
     public static int run;
     public static String Version_beta = "5";
     public static Boolean Beta = true;
@@ -56,8 +56,11 @@ public class Main_GUI extends JFrame implements Runnable {
     public static JMenuItem shlItem = new JMenuItem(language.SHL);
     public static JMenuItem countryItem = new JMenuItem(language.COUNTRY);
     public static JMenuItem moduleItem = new JMenuItem(language.MODULE);
+    public static JMenuItem NameItem = new JMenuItem(language.NAME);
 
     public static void main(String[] args) throws Exception {
+        MT_System.setupLogger();
+        MT_System.out.logInfo("Application started.");
         load_config();
         if (isMac()) {
             mac_system();
@@ -78,57 +81,82 @@ public class Main_GUI extends JFrame implements Runnable {
         } else {
             setupMenuItems();
         }
+        setupActionListener(localizeItem, () -> new Localize_GUI().localize_GUI());
+        setupMain_GUI();
         setJMenuBar(menuBar);
         setBounds(100, 100, 600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(new ImageIcon("./images/icon.png").getImage());
     }
 
+    private void setupMain_GUI(){
+        // ロゴとソフト名を表示
+        JLabel logoLabel = new JLabel();
+        logoLabel.setHorizontalAlignment(JLabel.CENTER);
+        logoLabel.setVerticalAlignment(JLabel.CENTER);
+        ImageIcon logoIcon = new ImageIcon(icon); // ロゴのパスを指定
+        Image image = logoIcon.getImage(); // ImageIconからImageを取得
+        Image newimg = image.getScaledInstance(80, 80,  java.awt.Image.SCALE_SMOOTH); // スケーリング
+        logoIcon = new ImageIcon(newimg);  // スケーリング後のImageをImageIconに再変換
+        logoLabel.setIcon(logoIcon);
+        logoLabel.setText(Title);
+        add(logoLabel, BorderLayout.NORTH);
+
+        // モード一覧をボタンで作成
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 4)); // 横にボタンを配置するためのパネル
+        String[] groupNames = {"外観", "言語", "技術", "国家"};
+        JMenuItem[][] modes = {
+                {goalItem, gfxItem}, // 外観グループ
+                {localizeItem, NameItem}, // 言語グループ
+                {shlItem, moduleItem}, // 技術グループ
+                {countryItem} // 国家グループ
+        };
+        for (int i = 0; i < modes.length; i++) {
+            JPanel groupPanel = new JPanel();
+            groupPanel.setLayout(new BoxLayout(groupPanel, BoxLayout.Y_AXIS));
+            JLabel groupName = new JLabel(groupNames[i]);
+            groupName.setHorizontalAlignment(JLabel.CENTER); // グループ名を中央寄せに設定
+            groupPanel.add(groupName);
+            for (JMenuItem mode : modes[i]) {
+                JButton modeButton = new JButton(mode.getText());
+                modeButton.setMaximumSize(new Dimension(100, modeButton.getPreferredSize().height));
+                if (mode == localizeItem) {
+                    modeButton.addActionListener(e -> new Localize_GUI().localize_GUI());
+                } else if (mode == goalItem) {
+                    modeButton.addActionListener(e -> new Goals_GUI().goals_GUI());
+                } else if (mode == gfxItem) {
+                    modeButton.addActionListener(e -> new GFX_GUI().gfx_GUI());
+                } else if (mode == shlItem) {
+                    modeButton.addActionListener(e -> new SHIP_GFX_GUI().gfx_GUI());
+                } else if (mode == countryItem) {
+                    // countryItemのアクションを設定
+                } else if (mode == moduleItem) {
+                    modeButton.addActionListener(e -> new module_maker_GUI().module_maker_GUI());
+                }
+                groupPanel.add(modeButton);
+            }
+            buttonPanel.add(groupPanel);
+        }
+        add(buttonPanel, BorderLayout.CENTER);
+
+        pack();
+    }
     private void setupMenuItems() {
-        aboutItem.addActionListener(e -> onAbout());
-        prefsItem.addActionListener(e -> onPreference());
-        surveyItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Survey " + Title));
-        quitItem.addActionListener(e -> quit());
         main_Menu.add(aboutItem);
         main_Menu.add(prefsItem);
         main_Menu.add(surveyItem);
         main_Menu.add(quitItem);
-
-
-        localizeItem.addActionListener(e -> new Localize_GUI().localize_GUI());
-        goalItem.addActionListener(e -> new Goals_GUI().goals_GUI());
-        gfxItem.addActionListener(e -> new GFX_GUI().gfx_GUI());
-        shlItem.addActionListener(e -> new SHIP_GFX_GUI().gfx_GUI());
-        moduleItem.addActionListener(e -> new module_maker_GUI().module_maker_GUI());
-        modeMenu.add(localizeItem);
-        modeMenu.add(goalItem);
-        modeMenu.add(gfxItem);
-        modeMenu.add(shlItem);
-        modeMenu.add(countryItem);
-        modeMenu.add(moduleItem);
-
         menuBar.add(main_Menu);
-        menuBar.add(modeMenu);
     }
 
-    private void setupMenuItems_mac_os() {
+    private void setupActionListener(JMenuItem item, Runnable action) {
         aboutItem.addActionListener(e -> onAbout());
         prefsItem.addActionListener(e -> onPreference());
         surveyItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Survey " + Title));
         quitItem.addActionListener(e -> quit());
-
-
-        localizeItem.addActionListener(e -> new Localize_GUI().localize_GUI());
-        goalItem.addActionListener(e -> new Goals_GUI().goals_GUI());
-        gfxItem.addActionListener(e -> new GFX_GUI().gfx_GUI());
-        shlItem.addActionListener(e -> new SHIP_GFX_GUI().gfx_GUI());
-        modeMenu.add(localizeItem);
-        modeMenu.add(goalItem);
-        modeMenu.add(gfxItem);
-        modeMenu.add(shlItem);
-        modeMenu.add(countryItem);
-
-        menuBar.add(modeMenu);
+    }
+    private void setupMenuItems_mac_os() {
+        MT_System.out.println("MacOS");
     }
 
     public static void repainting() {
@@ -141,6 +169,7 @@ public class Main_GUI extends JFrame implements Runnable {
         gfxItem.setText(language.GFX);
         shlItem.setText(language.SHL);
         countryItem.setText(language.COUNTRY);
+        NameItem.setText(language.NAME);
 
         // メニューバーの変更を反映
         menuBar.repaint();
@@ -160,6 +189,11 @@ public class Main_GUI extends JFrame implements Runnable {
 
     public static void loadIcon() {
         try {
+            icon2 = ImageIO.read(Objects.requireNonNull(Main_GUI.class.getResource("images/icon2.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
             icon = ImageIO.read(Objects.requireNonNull(Main_GUI.class.getResource("images/icon.png")));
         } catch (IOException e) {
             e.printStackTrace();
@@ -169,6 +203,11 @@ public class Main_GUI extends JFrame implements Runnable {
     public static void loadIcon_onMac() {
         try {
             icon = ImageIO.read(Objects.requireNonNull(Main_GUI.class.getResource("images/icon.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            icon2 = ImageIO.read(Objects.requireNonNull(Main_GUI.class.getResource("images/icon2.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -200,6 +239,7 @@ public class Main_GUI extends JFrame implements Runnable {
 
     public void quit() {
         JOptionPane.showMessageDialog(this, "終了します.");
+        MT_System.out.println("Application closed.");
         System.exit(0);
     }
 

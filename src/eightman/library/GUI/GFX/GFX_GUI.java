@@ -1,6 +1,7 @@
 package eightman.library.GUI.GFX;
 
 import eightman.library.GUI.language;
+import eightman.library.GUI.System.MT_core.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -103,9 +104,9 @@ public class GFX_GUI extends JFrame implements ActionListener {
             File[] list = dir.listFiles();
             for (int i = 0; i < list.length; i++) {
                 if (list[i].isFile()) { //ファイルの場合
-                    System.out.println(list[i].getName());
+                    MT_System.out.println(list[i].getName());
                     String fileName = list[i].getName();
-                    System.out.println(fileName);
+                    MT_System.out.println(fileName);
                     int index = fileName.lastIndexOf(".");
                     temp =
                             temp +
@@ -129,7 +130,7 @@ public class GFX_GUI extends JFrame implements ActionListener {
                 FileOutputStream fos = new FileOutputStream(
                         "/" + file_path + "/" + fnm.getText() + ".gfx"
                 );
-                System.out.println("/" + file_path + "/" + fnm.getText() + ".gfx");
+                MT_System.out.println("/" + file_path + "/" + fnm.getText() + ".gfx");
                 OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
                 osw.write(temp);
                 osw.close();

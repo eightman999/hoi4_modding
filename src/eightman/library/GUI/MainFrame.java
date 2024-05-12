@@ -18,16 +18,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.Iterator;
 
 import static eightman.library.GUI.System.Mac_OS.isMac;
-
-//import eightman.library.GUI.Main_GUI.quit;
 
 public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -243,17 +239,6 @@ public class MainFrame extends JFrame {
         JOptionPane.showMessageDialog(this, "終了します.");
         System.exit(0);
     }
-//    protected void onPreference() {
-//
-////        JTextArea textArea = new JTextArea();
-////        textArea.setText(getSystemProperties(System.getProperty("line.separator")));
-////
-////        JScrollPane scr = new JScrollPane(textArea);
-////        scr.setPreferredSize(new Dimension(400, 300));
-////
-////        JOptionPane.showMessageDialog(this, scr);
-//    }
-
     // システムプロパティをダンプする
     private String getSystemProperties() {
         ArrayList keys = new ArrayList();

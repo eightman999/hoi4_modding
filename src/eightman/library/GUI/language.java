@@ -33,6 +33,7 @@ public class language {
     public static String SAVE_SETTINGS = "設定保存";
     public static String FONT = "Font";
     public static String MODULE = "Module";
+    public static String NAME = "Name";
 
     public static void C_languages() {
         String languageFile;
@@ -75,6 +76,7 @@ public class language {
         SAVE_SETTINGS = langJson.getString("SAVE_SETTINGS");
         FONT = langJson.getString("FONT");
         MODULE = langJson.getString("MODULE");
+        NAME = langJson.getString("NAME");
     }
 
     private static String readFile(String filename) {

@@ -94,8 +94,11 @@ public class module_maker_GUI extends JFrame {
 //            MT_System.out.println("Loaded " + files.size() + " files...");
             for (File file : files) {
                 String content = readFileContent(file.getPath());
-                ModuleProcessor processor = new ModuleProcessor(modpath, modName);
-                processor.processModules();
+
+                //TODO: ファイルの内容を解析してModuleオブジェクトを生成する!!!
+                
+//                ModuleProcessor processor = new ModuleProcessor(modpath, modName);
+//                processor.processModules();
                 // cacheModulesAsJson(modules); // キャッシュ生成のコードを削除
 //                MT_System.out.println("Loaded " + files.size() + " files...");
 

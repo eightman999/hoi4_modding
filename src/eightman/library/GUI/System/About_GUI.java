@@ -7,12 +7,13 @@ import eightman.library.GUI.language;
 import javax.swing.*;
 import java.awt.*;
 
+import static eightman.library.GUI.language.ABOUT;
 import static eightman.library.GUI.language.Title;
 
 public class About_GUI extends JFrame {
     private JLabel versionLabel = new JLabel();
     public About_GUI() {
-        super(Title + " について");
+        super(Title + ABOUT);
         setResizable(false);
 
         setLayout(new BorderLayout());

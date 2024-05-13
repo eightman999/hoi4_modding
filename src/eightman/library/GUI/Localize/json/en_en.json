@@ -24,5 +24,12 @@
   "SAVE_SETTINGS": "Save Settings",
   "FONT": "Font",
   "MODULE": "Module",
-  "NAME": "Name"
+  "NAME": "Name",
+  "DESC" : "Description",
+  "TAG" : "Tag",
+  "COLOR" : "Color",
+  "ICON" : "Icon",
+  "ABOUT": "About",
+  "LOAD": "Load",
+  "MAKER": "Maker"
 }

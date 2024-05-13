@@ -22,7 +22,7 @@ import java.util.Objects;
 
 import static eightman.library.GUI.System.MT_core.*;
 import static eightman.library.GUI.System.Mac_OS.*;
-import static eightman.library.GUI.language.Title;
+import static eightman.library.GUI.language.*;
 import static javax.swing.UIManager.setLookAndFeel;
 
 public class Main_GUI extends JFrame implements Runnable {
@@ -31,19 +31,20 @@ public class Main_GUI extends JFrame implements Runnable {
     public static DefaultListModel<String> modPathListModel = new DefaultListModel<>();
     public static JList<String> modPathList = new JList<>(modPathListModel);
     public static int L_mode;
-    public static String Version = "0.7.0";
+    public static String Version = "0.7.1";
     public static Image icon;
     public static Image icon2;
+    public static Image loading;
     public static int run;
     public static String Version_beta = "5";
     public static Boolean Beta = true;
-    public static String Version_date_2 = "2024/05/09";
+    public static String Version_date_2 = "2024/05/13";
     public static String file_name;
     public static String temp;
     public static JMenuBar menuBar = new JMenuBar();
     public JMenu main_Menu = new JMenu(Title);
-    public JMenuItem aboutItem = new JMenuItem("About" + Title);
-    public JMenuItem prefsItem = new JMenuItem("Preferences" + Title);
+    public JMenuItem aboutItem = new JMenuItem(ABOUT + Title);
+    public JMenuItem prefsItem = new JMenuItem(PREF + Title);
     public JMenuItem surveyItem = new JMenuItem("Survey" + Title);
     public JMenuItem quitItem = new JMenuItem("Quit" + Title);
     public static JMenu languageMenu = new JMenu(language.LG_SELECT);
@@ -198,6 +199,11 @@ public class Main_GUI extends JFrame implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            loading = ImageIO.read(Objects.requireNonNull(Main_GUI.class.getResource("images/Glass_lines.gif\"")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void loadIcon_onMac() {
@@ -208,6 +214,11 @@ public class Main_GUI extends JFrame implements Runnable {
         }
         try {
             icon2 = ImageIO.read(Objects.requireNonNull(Main_GUI.class.getResource("images/icon2.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            loading = ImageIO.read(Objects.requireNonNull(Main_GUI.class.getResource("images/Glass_lines.gif")));
         } catch (IOException e) {
             e.printStackTrace();
         }

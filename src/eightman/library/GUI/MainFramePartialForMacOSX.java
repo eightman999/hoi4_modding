@@ -41,15 +41,6 @@ public class MainFramePartialForMacOSX {
 //            // サポートされていない場合は単に無視する.
 //        }
     }
-    public static void setDockIcon() {
-        if (Taskbar.isTaskbarSupported()) {
-            Taskbar taskbar = Taskbar.getTaskbar();
-            try {
-                Image img = ImageIO.read(new File("./images/icon.png"));
-                taskbar.setIconImage(img);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+
+
 }

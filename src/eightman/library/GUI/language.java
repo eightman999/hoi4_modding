@@ -34,6 +34,13 @@ public class language {
     public static String FONT = "Font";
     public static String MODULE = "Module";
     public static String NAME = "Name";
+    public static String ABOUT = "About";
+    public static String TAG = "Tag";
+    public static String DESC = "Description";
+    public static String COLOR = "Color";
+    public static String ICON = "Icon";
+    public static String LOAD= "Load";
+    public static String MAKER = "Maker";
 
     public static void C_languages() {
         String languageFile;
@@ -46,7 +53,7 @@ public class language {
         } else {
             languageFile = "default.json"; // L_modeが0, 1, 2以外の場合のデフォルト値
         }
-        System.out.println("Selected language: " + (Main_GUI.L_mode == 0 ? "Japanese" : "English"));
+        System.out.println("Selected language: " + (Main_GUI.L_mode == 0 ? JAPANESE : ENGLISH));
         JSONObject langJson = new JSONObject(readFile(languageFile));
         if (langJson.has("DONE")) {
             DONE = langJson.getString("DONE");
@@ -77,6 +84,13 @@ public class language {
         FONT = langJson.getString("FONT");
         MODULE = langJson.getString("MODULE");
         NAME = langJson.getString("NAME");
+        ABOUT = langJson.getString("ABOUT");
+        TAG = langJson.getString("TAG");
+        DESC = langJson.getString("DESC");
+        COLOR = langJson.getString("COLOR");
+        ICON = langJson.getString("ICON");
+        LOAD = langJson.getString("LOAD");
+        MAKER = langJson.getString("MAKER");
     }
 
     private static String readFile(String filename) {

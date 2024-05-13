@@ -24,5 +24,12 @@
   "SAVE_SETTINGS": "設定を保存",
   "FONT": "フォント",
   "MODULE": "モジュール作成",
-  "NAME" : "名前"
+  "NAME" : "名前",
+  "DESC" : "説明",
+  "TAG" : "タグ",
+  "COLOR" : "色",
+  "ICON" : "アイコン",
+  "ABOUT": "について",
+  "LOAD": "ロード",
+  "MAKER": "製作"
 }

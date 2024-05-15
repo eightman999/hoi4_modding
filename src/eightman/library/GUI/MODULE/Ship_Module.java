@@ -23,12 +23,12 @@ public class Ship_Module extends Equipment_Module{
     private String[] can_convert_from_module_categorie;
     private double[] convert_cost_ic;
 
-    public Ship_Module(String id, String content, String category , double lend_lease_cost, double build_cost_ic, int manpower, boolean can_license, boolean is_convertable,double xp_cost,
+    public Ship_Module(String id,String name, String content, String category , double lend_lease_cost, double build_cost_ic, int manpower, boolean can_license, boolean is_convertable,double xp_cost,
                        double naval_speed, double fire_range, double lg_armor_piercing, double lg_attack, double hg_armor_piercing, double hg_attack,
                        double anti_air_attack, double shore_bombardment, double evasion, double surface_detection, double sub_attack, double sub_detection,
                        double surface_visibility, double sub_visibility, double naval_range, double port_capacity_usage, double search_and_destroy_coordination,
                        double convoy_raiding_coordination, String[] critical_parts, String[] can_convert_from_module_categorie, double[] convert_cost_ic) {
-        super(id, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable,xp_cost);
+        super(id,name, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable,xp_cost);
         this.naval_speed = naval_speed;
         this.fire_range = fire_range;
         this.lg_armor_piercing = lg_armor_piercing;

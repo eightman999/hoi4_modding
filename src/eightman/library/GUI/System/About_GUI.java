@@ -26,8 +26,8 @@ public class About_GUI extends JFrame {
         JLabel titleLabel = new JLabel(Title, SwingConstants.CENTER);
         titleLabel.setFont(new Font("Serif", Font.BOLD, 14));
         if(Main_GUI.Beta = true) {
-            titleLabel.setText(titleLabel.getText() + " Beta " + Main_GUI.Version_beta+ "." +Main_GUI.run);
-            versionLabel = new JLabel("Version : " + Main_GUI.Version + " β." + Main_GUI.Version_beta + "." + Main_GUI.run , SwingConstants.CENTER);
+            titleLabel.setText(titleLabel.getText() + " Beta " + Main_GUI.Version_beta+"." +Main_GUI.runtime_h +"." +Main_GUI.run);
+            versionLabel = new JLabel("Version : " + Main_GUI.Version + " β." + Main_GUI.Version_beta +"."+Main_GUI.runtime_h+ "." + Main_GUI.run , SwingConstants.CENTER);
         }else{
             titleLabel.setText(titleLabel.getText() + " " + Main_GUI.Version);
             versionLabel = new JLabel("Version : " + Main_GUI.Version, SwingConstants.CENTER);

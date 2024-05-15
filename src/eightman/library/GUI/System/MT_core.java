@@ -67,19 +67,28 @@ public class MT_core {
                 Map<String, Object> settings = gson.fromJson(reader, type);
 
                 // 実行回数を取得し、1増やす
+                Number runCountNumber_h = (Number) settings.get("runCount_h");
+                Integer runCount_h = (runCountNumber_h != null) ? runCountNumber_h.intValue() : 0;
                 Number runCountNumber = (Number) settings.get("runCount");
                 Integer runCount = (runCountNumber != null) ? runCountNumber.intValue() : 0;
                 runCount++;
                 Main_GUI.run = runCount;
+                if (Main_GUI.run == 100) {
+                    MT_core.MT_System.out.println("Thank you for 100 using Hoi4 Modding Tool!");
+                    runCount_h++;
+                    Main_GUI.runtime_h++;
+                }
+
                 // 実行回数を設定に追加
                 settings.put("runCount", runCount);
+                settings.put("runCount_h", runCount_h);
 
                 // 設定をファイルに保存
                 String json = gson.toJson(settings);
                 try (FileWriter writer = new FileWriter(configPath.toString())) {
                     writer.write(json);
                 }
-                MT_System.out.println("実行回数: " + runCount);
+                MT_System.out.println("実行回数: " +runCount_h+ runCount);
             } catch (IOException e) {
                 e.printStackTrace();
             }

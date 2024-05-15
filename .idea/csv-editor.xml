@@ -3,7 +3,21 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="/output.csv">
+        <entry key="/Hoi4_modding_Tool/database/SSW_SHG.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Hoi4_modding_Tool/database/empty_SHG.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Hoi4_modding_Tool/database/null_SHG.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

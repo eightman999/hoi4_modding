@@ -16,11 +16,11 @@ public class Air_Module extends Equipment_Module {
     private String[] can_convert_from_module_categorie;
     private double[] convert_cost_ic;
 
-    public Air_Module(String id, String content,String category, double lend_lease_cost, double build_cost_ic, int manpower, boolean can_license, boolean is_convertable,double xp_cost,
+    public Air_Module(String id,String name, String content,String category, double lend_lease_cost, double build_cost_ic, int manpower, boolean can_license, boolean is_convertable,double xp_cost,
                       double air_attack, double air_defence, double air_range, double air_agility, double air_ground_attack, double air_bombing,
                       double air_superiority, double naval_strike_attack, double naval_strike_targetting, double carrier_size,
                       double default_carrier_composition_weight, boolean carrier_capable, String[] can_convert_from_module_categorie, double[] convert_cost_ic) {
-        super(id, content, category,lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable,xp_cost);
+        super(id, name, content, category,lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable,xp_cost);
         this.air_attack = air_attack;
         this.air_defence = air_defence;
         this.air_range = air_range;

@@ -122,6 +122,7 @@ public class ModuleProcessor {
 
         String content = stats.getOrDefault("content", "N/A");
         String category = stats.getOrDefault("category", "N/A");
+        String name = stats.getOrDefault("name", "N/A");
         double lend_lease_cost = Double.parseDouble(stats.getOrDefault("lend_lease_cost", "0.0"));
         double build_cost_ic = Double.parseDouble(stats.getOrDefault("build_cost_ic", "0.0"));
         int manpower = Integer.parseInt(stats.getOrDefault("manpower", "0"));
@@ -151,7 +152,7 @@ public class ModuleProcessor {
         String[] can_convert_from_module_categorie = stats.getOrDefault("can_convert_from_module_categorie", "N/A").split(" ");
         double[] convert_cost_ic = Arrays.stream(stats.getOrDefault("convert_cost_ic", "0.0").split(" ")).mapToDouble(Double::parseDouble).toArray();
 
-        return new Ship_Module(moduleID, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
+        return new Ship_Module(moduleID,name, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
                 naval_speed, fire_range, lg_armor_piercing, lg_attack, hg_armor_piercing, hg_attack, anti_air_attack, shore_bombardment, evasion, surface_detection, sub_attack, sub_detection,
                 surface_visibility, sub_visibility, naval_range, port_capacity_usage, search_and_destroy_coordination, convoy_raiding_coordination, critical_parts, can_convert_from_module_categorie, convert_cost_ic);
     }
@@ -166,6 +167,7 @@ public class ModuleProcessor {
         }
 
         String content = stats.getOrDefault("content", "N/A");
+        String name = stats.getOrDefault("name", "N/A");
         String category = stats.getOrDefault("category", "N/A");
         double lend_lease_cost = Double.parseDouble(stats.getOrDefault("lend_lease_cost", "0.0"));
         double build_cost_ic = Double.parseDouble(stats.getOrDefault("build_cost_ic", "0.0"));
@@ -189,7 +191,7 @@ public class ModuleProcessor {
         String[] can_convert_from_module_categorie = stats.getOrDefault("can_convert_from_module_categorie", "N/A").split(" ");
         double[] convert_cost_ic = Arrays.stream(stats.getOrDefault("convert_cost_ic", "0.0").split(" ")).mapToDouble(Double::parseDouble).toArray();
 
-        return new Air_Module(moduleID, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
+        return new Air_Module(moduleID,name, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
                 air_attack, air_defence, air_range, air_agility, air_ground_attack, air_bombing, air_superiority, naval_strike_attack, naval_strike_targetting, carrier_size,
                 default_carrier_composition_weight, carrier_capable, can_convert_from_module_categorie, convert_cost_ic);
     }
@@ -205,6 +207,7 @@ public class ModuleProcessor {
 
         String content = stats.getOrDefault("content", "N/A");
         String category = stats.getOrDefault("category", "N/A");
+        String name = stats.getOrDefault("name", "N/A");
         double lend_lease_cost = Double.parseDouble(stats.getOrDefault("lend_lease_cost", "0.0"));
         double build_cost_ic = Double.parseDouble(stats.getOrDefault("build_cost_ic", "0.0"));
         int manpower = Integer.parseInt(stats.getOrDefault("manpower", "0"));
@@ -229,7 +232,7 @@ public class ModuleProcessor {
         String[] can_convert_from_module_categorie = stats.getOrDefault("can_convert_from_module_categorie", "N/A").split(" ");
         double[] convert_cost_ic = Arrays.stream(stats.getOrDefault("convert_cost_ic", "0.0").split(" ")).mapToDouble(Double::parseDouble).toArray();
 
-        return new Tank_Module(moduleID, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
+        return new Tank_Module(moduleID,name, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
                 reliability, maximum_speed, soft_attack, hard_attack, air_attack, ap_attack, breakthrough, defense, max_strength, armor_value, hardness, entrenchment, recon, forbid_equipment_type, can_convert_from_module_categorie, convert_cost_ic);
     }
     private String determineCategory(File file) {

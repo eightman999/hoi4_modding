@@ -2,6 +2,7 @@ package eightman.library.GUI.MODULE;
 
 public class Equipment_Module {
     private String id;
+    private String name;
     private String content;
     private String category;
     private double lend_lease_cost;
@@ -11,8 +12,9 @@ public class Equipment_Module {
     private boolean is_convertable;
     private double xp_cost;
 
-    public Equipment_Module(String id, String content, String category, double lend_lease_cost, double build_cost_ic, int manpower, boolean can_license, boolean is_convertable, double xp_cost) {
+    public Equipment_Module(String id,String name, String content, String category, double lend_lease_cost, double build_cost_ic, int manpower, boolean can_license, boolean is_convertable, double xp_cost) {
         this.id = id;
+        this.name = name;
         this.content = content;
         this.category = category;
         this.lend_lease_cost = lend_lease_cost;
@@ -26,6 +28,10 @@ public class Equipment_Module {
 
     public String getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getContent() {

@@ -36,6 +36,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static Image icon2;
     public static Image loading;
     public static int run;
+    public static int runtime_h;
     public static String Version_beta = "5";
     public static Boolean Beta = true;
     public static String Version_date_2 = "2024/05/13";
@@ -126,7 +127,10 @@ public class Main_GUI extends JFrame implements Runnable {
                 } else if (mode == goalItem) {
                     modeButton.addActionListener(e -> new Goals_GUI().goals_GUI());
                 } else if (mode == gfxItem) {
-                    modeButton.addActionListener(e -> new GFX_GUI().gfx_GUI());
+                    modeButton.addActionListener(e -> {
+                        GFX_GUI gfxGui = new GFX_GUI();
+                        gfxGui.setVisible(true);
+                    });
                 } else if (mode == shlItem) {
                     modeButton.addActionListener(e -> new SHIP_GFX_GUI().gfx_GUI());
                 } else if (mode == countryItem) {

@@ -18,10 +18,10 @@ public class Tank_Module extends Equipment_Module {
     private String[] can_convert_from_module_categorie;
     private double[] convert_cost_ic;
 
-    public Tank_Module(String id, String content,String category, double lend_lease_cost, double build_cost_ic, int manpower, boolean can_license, boolean is_convertable,double xp_cost,
+    public Tank_Module(String id,String name ,String content,String category, double lend_lease_cost, double build_cost_ic, int manpower, boolean can_license, boolean is_convertable,double xp_cost,
                        double reliability, double maximum_speed, double soft_attack, double hard_attack, double air_attack, double ap_attack,
                        double breakthrough, double defense, double max_strength, double armor_value, double hardness, double entrenchment, double recon, String forbid_equipment_type, String[] can_convert_from_module_categorie, double[] convert_cost_ic) {
-        super(id, content, category,lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable,xp_cost);
+        super(id,name, content, category,lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable,xp_cost);
         this.reliability = reliability;
         this.maximum_speed = maximum_speed;
         this.soft_attack = soft_attack;

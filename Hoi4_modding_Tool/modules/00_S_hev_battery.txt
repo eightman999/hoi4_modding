@@ -1,0 +1,477 @@
+equipment_modules = {
+	SM_HS_245_L40 = {#24.5cm/40単装砲
+		category = SM_HS
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 3.46
+			build_cost_ic = 31.88
+		}
+		multiply_stats = {
+			naval_speed = -0.401
+		}
+		add_average_stats = {
+			hg_armor_piercing = 24.65
+		}
+		build_cost_resources = {
+			steel = 2
+		}
+		can_convert_from = {
+			module_category = SM_HS
+			convert_cost_ic = 21.36
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HS_238_L35 = {#23.8cm/35単装砲
+		category = SM_HS
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 1.68
+			build_cost_ic = 32.36
+		}
+		multiply_stats = {
+			naval_speed = -0.361
+		}
+		add_average_stats = {
+			hg_armor_piercing = 12.99
+		}
+		build_cost_resources = {
+			steel = 2
+		}
+		can_convert_from = {
+			module_category = SM_HS
+			convert_cost_ic = 21.68
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HS_240_L40 = {#"12""/45 Elswick Pattern L 連装砲"
+		category = SM_HS
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 4.59
+			build_cost_ic = 87.73
+		}
+		multiply_stats = {
+			naval_speed = -0.969
+		}
+		add_average_stats = {
+			hg_armor_piercing = 21.63
+		}
+		build_cost_resources = {
+			steel = 3
+		}
+		can_convert_from = {
+			module_category = SM_HS
+			convert_cost_ic = 58.78
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HS_305_L52 = {#"12""/52 単装砲"
+		category = SM_HS
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 45.93
+			build_cost_ic = 1268.24
+		}
+		multiply_stats = {
+			naval_speed = -6.9112
+		}
+		add_average_stats = {
+			hg_armor_piercing = 51.62
+		}
+		build_cost_resources = {
+			steel = 5
+		}
+		can_convert_from = {
+			module_category = SM_HS
+			convert_cost_ic = 849.72
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_245_L40 = {#24.5cm/40連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 6.92
+			build_cost_ic = 81.5
+		}
+		multiply_stats = {
+			naval_speed = -0.5226
+		}
+		add_average_stats = {
+			hg_armor_piercing = 24.65
+		}
+		build_cost_resources = {
+			steel = 3
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 54.61
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_381_L45 = {#38.1 cm/45連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 51.39
+			build_cost_ic = 774.7
+		}
+		multiply_stats = {
+			naval_speed = -1.785
+		}
+		add_average_stats = {
+			hg_armor_piercing = 49.94
+		}
+		build_cost_resources = {
+			steel = 4
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 519.05
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_305_L45 = {#12"/45 Elswick Pattern L 連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 15.06
+			build_cost_ic = 484.84
+		}
+		multiply_stats = {
+			naval_speed = -3.681
+		}
+		add_average_stats = {
+			hg_armor_piercing = 42.6
+		}
+		build_cost_resources = {
+			steel = 4
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 324.84
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_356_L45 = {#14"/45 Mk I/III 連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 39.01
+			build_cost_ic = 1191.3
+		}
+		multiply_stats = {
+			naval_speed = -5.281
+		}
+		add_average_stats = {
+			hg_armor_piercing = 46.48
+		}
+		build_cost_resources = {
+			steel = 5
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 798.17
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_240_L45 = {#24 cm G.L/45 連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 10.32
+			build_cost_ic = 276.36
+		}
+		multiply_stats = {
+			naval_speed = -1.881
+		}
+		add_average_stats = {
+			hg_armor_piercing = 33.7
+		}
+		build_cost_resources = {
+			steel = 4
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 185.16
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_240_L40 = {#24 cm L/40 K97 連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 8.85
+			build_cost_ic = 157.23
+		}
+		multiply_stats = {
+			naval_speed = -1.0706
+		}
+		add_average_stats = {
+			hg_armor_piercing = 27.8
+		}
+		build_cost_resources = {
+			steel = 3
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 105.34
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_240_L40_0 = {#24 cm L/40 C94 連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 10.6
+			build_cost_ic = 282.49
+		}
+		multiply_stats = {
+			naval_speed = -1.5914
+		}
+		add_average_stats = {
+			hg_armor_piercing = 21.63
+		}
+		build_cost_resources = {
+			steel = 4
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 189.27
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_305_L45_0 = {#30.5 cm/45 Škoda 連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 23.06
+			build_cost_ic = 642.82
+		}
+		multiply_stats = {
+			naval_speed = -3.457
+		}
+		add_average_stats = {
+			hg_armor_piercing = 43.68
+		}
+		build_cost_resources = {
+			steel = 4
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 430.69
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_305_L50 = {#"12""/50 (30.5 cm) Bethlehem 連装砲"
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 29.55
+			build_cost_ic = 608.84
+		}
+		multiply_stats = {
+			naval_speed = -3.929
+		}
+		add_average_stats = {
+			hg_armor_piercing = 49.3
+		}
+		build_cost_resources = {
+			steel = 4
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 407.92
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_254_L45 = {#25.4cm/45連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 12.63
+			build_cost_ic = 466.2
+		}
+		multiply_stats = {
+			naval_speed = -2.269
+		}
+		add_average_stats = {
+			hg_armor_piercing = 35.55
+		}
+		build_cost_resources = {
+			steel = 4
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 312.35
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_240_L50 = {#24cm/50 連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 14.14
+			build_cost_ic = 229.32
+		}
+		multiply_stats = {
+			naval_speed = -2.081
+		}
+		add_average_stats = {
+			hg_armor_piercing = 36.52
+		}
+		build_cost_resources = {
+			steel = 3
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 153.64
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_800_L40 = {#正80cm/40連装砲
+		category = SM_HD
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 27.99
+			build_cost_ic = 1475.83
+		}
+		multiply_stats = {
+			naval_speed = -15.401
+		}
+		add_average_stats = {
+			hg_armor_piercing = 67.08
+		}
+		build_cost_resources = {
+			steel = 5
+		}
+		can_convert_from = {
+			module_category = SM_HD
+			convert_cost_ic = 988.81
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HT_305_L45 = {#30.5 cm/45 Škoda 3連装砲
+		category = SM_HT
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 34.59
+			build_cost_ic = 1060.84
+		}
+		multiply_stats = {
+			naval_speed = -6.022
+		}
+		add_average_stats = {
+			hg_armor_piercing = 43.68
+		}
+		build_cost_resources = {
+			steel = 5
+		}
+		can_convert_from = {
+			module_category = SM_HT
+			convert_cost_ic = 710.76
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HT_305_L52 = {#"12""/52 (30.5 cm) Pattern 1907三連装砲"
+		category = SM_HT
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 36.74
+			build_cost_ic = 1417.73
+		}
+		multiply_stats = {
+			naval_speed = -7.7257
+		}
+		add_average_stats = {
+			hg_armor_piercing = 51.62
+		}
+		build_cost_resources = {
+			steel = 5
+		}
+		can_convert_from = {
+			module_category = SM_HT
+			convert_cost_ic = 949.88
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+	SM_HD_460_L45 = {#46cm/45連装砲
+		category = SM_HT
+		sfx = sfx_ui_sd_module_turret
+		add_equipment_type = capital_ship
+		add_stats = {
+			hg_attack = 141.44
+			build_cost_ic = 1581.24
+		}
+		multiply_stats = {
+			naval_speed = -19.1124
+		}
+		add_average_stats = {
+			hg_armor_piercing = 59.23
+		}
+		build_cost_resources = {
+			steel = 5
+		}
+		can_convert_from = {
+			module_category = SM_HT
+			convert_cost_ic = 1059.43
+		}
+		critical_parts = {
+			damaged_heavy_guns
+		}
+	}
+}

@@ -1,24 +1,15 @@
 package eightman.library.GUI.MODULE;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.System.MT_core.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static eightman.library.GUI.Main_GUI.loading;
@@ -26,38 +17,27 @@ import static eightman.library.GUI.Main_GUI.modPathMap;
 import static eightman.library.GUI.language.*;
 
 public class module_maker_GUI extends JFrame {
-    private Main_GUI mainGui;
     private JComboBox<String> modNameDropdown;
     private JLabel modPathLabel;
     private JLabel loadingLabel;
-    private List<Module> modules = new ArrayList<>();
     private String modpath;
-    private String modName;
-    private JList<String> moduleList;
+    private String modName = "empty";
     private JScrollPane listScrollPane;
     private JTextField csvFilePathField;
     private JButton loadCsvButton;
+    private HashSet<String> existingIds = new HashSet<>();
+    private HashMap<String, Integer> idCounts = new HashMap<>();
+    private DefaultListModel<String> listModel = new DefaultListModel<>();
+    private JList<String> moduleList = new JList<>(listModel);
 
-    public void module_maker_GUI(Main_GUI mainGui) {
-        this.mainGui = mainGui;
+
+    public void module_maker_GUI() {
+//        this.mainGui = mainGui;
         setTitle(MODULE + " " +MAKER);
         setupFrame();
         setupgui();
         setupAnimationLabel();
         setVisible(true);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-                // Close the Main_GUI when this window is opened
-                mainGui.setVisible(false);
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                // Open the Main_GUI when this window is closing
-                mainGui.setVisible(true);
-            }
-        });
     }
 
     private void setupFrame() {
@@ -109,8 +89,165 @@ public class module_maker_GUI extends JFrame {
 
     private void loadCsvFile() {
         String csvFilePath = csvFilePathField.getText();
-        // Implement the logic to load the CSV file
+        File csvFile = new File(csvFilePath);
+        String fileName = csvFile.getName();
+
+        if (!fileName.startsWith("SM_")) {
+            JOptionPane.showMessageDialog(this, "Warning: The file name should start with 'SM_'", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String[] validTypes = {"heavy", "medium", "light", "secondary", "anti_air", "anti_sub", "mine", "elect", "torpedo", "aircraft", "rocket", "special", "role", "hull", "material"};
+        String fileType = fileName.substring(3, fileName.indexOf('.'));
+
+        if (!Arrays.asList(validTypes).contains(fileType)) {
+            JOptionPane.showMessageDialog(this, "Warning: The file name should be in the format 'SM_<type>.csv' where <type> is one of the valid types", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String directoryPath = "Hoi4_modding_Tool/modules/";
+        String outputFileName = "00_S_hev_battery.txt";
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        File outputFile = new File(directoryPath + outputFileName);
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
+
+            writer.write("equipment_modules = {\n");
+
+            String line = br.readLine(); // Skip the header line
+            while ((line = br.readLine()) != null) {
+                Ship_Module module = createHeavyShipModuleFromCsvLine(line);
+                if (module != null) {
+                    writeSHGToFile(writer, module);
+                }
+            }
+
+            writer.write("}\n");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        removeBracketsFromFile(outputFile.getPath());
+        String ymlDirectoryPath = "Hoi4_modding_Tool/localization/japanese/";
+        String ymlFileName = modName + "_S_hev_battery_l_japanese.yml";
+        File ymlDirectory = new File(ymlDirectoryPath);
+        if (!ymlDirectory.exists()) {
+            ymlDirectory.mkdirs();
+        }
+        File ymlFile = new File(ymlDirectoryPath + ymlFileName);
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath));
+             BufferedWriter ymlWriter = new BufferedWriter(new FileWriter(ymlFile))) {
+            ymlWriter.write("l_japanese:\n");
+
+            String line = br.readLine(); // Skip the header line
+            while ((line = br.readLine()) != null) {
+                Ship_Module module = createHeavyShipModuleFromCsvLine(line);
+                if (module != null) {
+                    // Write to the YML file
+                    String escapedModuleName = module.getName().replace("\"", "\\\"");
+                    String tmp = "Hoi4_modding_Tool/database/" + modName + "_SHG.csv";
+                    CsvFileCreator.writeModuleToFile(tmp);
+                    ymlWriter.write("  " + module.getId() + ":0 \"" + escapedModuleName + "\"\n");
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        MT_System.out.println("Loaded CSV file: " + csvFilePath);
     }
+
+    private Ship_Module createHeavyShipModuleFromCsvLine(String line) {
+        String[] values = line.split(",");
+        String name = values[0];
+        String category = values[1];
+        String originalId = values[2];
+        String id = originalId;
+
+        if (existingIds.contains(originalId)) {
+            int count = idCounts.getOrDefault(originalId, 0);
+            id = originalId + "_" + count;
+            idCounts.put(originalId, count + 1);
+        }
+
+        existingIds.add(id);
+        double build_cost_ic = Double.parseDouble(values[3]);
+        double convert_cost_ic = Double.parseDouble(values[4]);
+        double hg_attack = Double.parseDouble(values[5]);
+        MT_System.out.println("hg_attack: " + hg_attack);
+        double hg_armor_piercing = Double.parseDouble(values[6]);
+        double naval_speed = Double.parseDouble(values[7]);
+        int manpower = Integer.parseInt(values[8]);
+        double xp_cost = Math.log(build_cost_ic) / Math.log(2);
+        String[] can_convert_from_module_categorie = {category};
+        String[] critical_parts = {"damaged_heavy_guns"};
+        boolean can_license = true;
+        boolean is_convertable = true;
+        return new Ship_Module(id, name, "", category, 0.0, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
+                naval_speed, 0.0, 0.0, 0.0, hg_armor_piercing, hg_attack, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, critical_parts, can_convert_from_module_categorie, new double[]{convert_cost_ic});
+    }
+
+    private void writeSHGToFile(BufferedWriter writer, Ship_Module module) throws IOException {
+
+        writer.write("\t" + module.getId() + " = {#" + module.getName() +  "\n");
+        writer.write("\t\tcategory = " + module.getCategory() + "\n");
+        writer.write("\t\tsfx = sfx_ui_sd_module_turret\n");
+        writer.write("\t\tadd_equipment_type = capital_ship\n");
+        writer.write("\t\tadd_stats = {\n");
+        writer.write("\t\t\thg_attack = " + module.getHgAttack() + "\n");
+        writer.write("\t\t\tbuild_cost_ic = " + module.getBuildCostIc() + "\n");
+        writer.write("\t\t}\n");
+        writer.write("\t\tmultiply_stats = {\n");
+        writer.write("\t\t\tnaval_speed = " + module.getNavalSpeed() + "\n");
+        writer.write("\t\t}\n");
+        writer.write("\t\tadd_average_stats = {\n");
+        writer.write("\t\t\thg_armor_piercing = " + module.getHgArmorPiercing() + "\n");
+        writer.write("\t\t}\n");
+        writer.write("\t\tbuild_cost_resources = {\n");
+        writer.write("\t\t\tsteel = " + (int)Math.floor((Math.log(module.getBuildCostIc()) / Math.log(2)) / 2) + "\n");
+        writer.write("\t\t}\n");
+        writer.write("\t\tcan_convert_from = {\n");
+        writer.write("\t\t\tmodule_category = " + Arrays.toString(module.getCanConvertFromModuleCategorie()) + "\n");
+        writer.write("\t\t\tconvert_cost_ic = " + Arrays.toString(module.getConvertCostIc()) + "\n");
+        writer.write("\t\t}\n");
+        writer.write("\t\tcritical_parts = {\n");
+        writer.write("\t\t\t" + Arrays.toString(module.getCriticalParts()) + "\n");
+        writer.write("\t\t}\n");
+        writer.write("\t}\n");
+        MT_System.out.println("Loaded " + module.getId() + ", " + module.getName() + ", " + "" + ", " + module.getCategory() + ", " + 0.0 + ", " + module.getBuildCostIc() + ", " + module.getManpower() + ", " + module.isCanLicense() + ", " + module.isIsConvertable() + ", " + module.getXpCost() +
+                ", " + module.getNavalSpeed() + ", " + 0.0 + ", " + module.getHgArmorPiercing()  + ", " + module.getHgAttack() + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 +
+                ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + Arrays.toString(module.getCriticalParts()) + ", " + Arrays.toString(module.getCanConvertFromModuleCategorie()) + ", ");
+        listModel.addElement("ID: " + module.getId() + ", Name: " + module.getName() + ", Category: " + module.getCategory() + ", Build Cost: " + module.getBuildCostIc() + ", Manpower: " + module.getManpower());
+
+        moduleList.setModel(listModel);
+    }
+
+    private void removeBracketsFromFile(String filePath) {
+        String outputFilePath = filePath + "_temp";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.replace("[", "").replace("]", "");
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Rename the new file to the original file
+        new File(filePath).delete();
+        new File(outputFilePath).renameTo(new File(filePath));
+    }
+
     private void updateModPathLabel() {
         String selectedModName = (String) modNameDropdown.getSelectedItem();
         modName = selectedModName;
@@ -157,36 +294,5 @@ public class module_maker_GUI extends JFrame {
         // ロード処理が完了したらアニメーションを非表示にする
         loadingLabel.setVisible(false);
     }
-
-
-    private List<File> loadFilesInDirectory(String directoryPath) throws IOException {
-        Path path = Path.of(directoryPath);
-        if (!Files.exists(path)) {
-            Files.createDirectories(path);
-        }
-        List<File> files = Files.walk(path)
-                .filter(Files::isRegularFile)
-                .filter(p -> p.toString().endsWith(".txt"))
-                .map(Path::toFile)
-                .sorted()
-                .collect(Collectors.toList());
-
-        for (File file : files) {
-            MT_System.out.println("Finished loading file: " + file.getPath());
-        }
-
-        if (files.isEmpty()) {
-            MT_System.out.println("No files loaded from directory: " + directoryPath);
-        }
-
-        return files;
-    }
-
-    private String readFileContent(String filePath) throws IOException {
-        return Files.readString(Path.of(filePath));
-    }
-
-
-
-
+    
 }

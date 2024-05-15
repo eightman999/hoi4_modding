@@ -30,5 +30,6 @@
   "COLOR" : "Color",
   "ICON" : "Icon",
   "ABOUT": "About",
-  "LOAD": "Load"
+  "LOAD": "Load",
+  "MAKER": "Maker"
 }

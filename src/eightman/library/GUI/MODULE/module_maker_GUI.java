@@ -1,6 +1,5 @@
 package eightman.library.GUI.MODULE;
 
-import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.System.MT_core.*;
 
 import javax.swing.*;
@@ -9,8 +8,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static eightman.library.GUI.Main_GUI.loading;
 import static eightman.library.GUI.Main_GUI.modPathMap;
@@ -29,7 +26,7 @@ public class module_maker_GUI extends JFrame {
     private HashMap<String, Integer> idCounts = new HashMap<>();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
     private JList<String> moduleList = new JList<>(listModel);
-
+    private String EQMs = "equipment_modules = {\n";
 
     public void module_maker_GUI() {
 //        this.mainGui = mainGui;
@@ -93,7 +90,7 @@ public class module_maker_GUI extends JFrame {
         String fileName = csvFile.getName();
 
         if (!fileName.startsWith("SM_")) {
-            JOptionPane.showMessageDialog(this, "Warning: The file name should start with 'SM_'", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Warn_M, "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -101,37 +98,84 @@ public class module_maker_GUI extends JFrame {
         String fileType = fileName.substring(3, fileName.indexOf('.'));
 
         if (!Arrays.asList(validTypes).contains(fileType)) {
-            JOptionPane.showMessageDialog(this, "Warning: The file name should be in the format 'SM_<type>.csv' where <type> is one of the valid types", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Warn_M2, "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
+        EquipmentModulesWriter(fileType);
+        ymlwriter(fileType);
+
+        MT_System.out.println("Loaded CSV file: " + csvFilePath);
+    }
+
+    private void EquipmentModulesWriter(String fileType){
+        String csvFilePath = csvFilePathField.getText();
         String directoryPath = "Hoi4_modding_Tool/modules/";
-        String outputFileName = "00_S_hev_battery.txt";
-        File directory = new File(directoryPath);
-        if (!directory.exists()) {
-            directory.mkdirs();
-        }
-        File outputFile = new File(directoryPath + outputFileName);
-
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
-
-            writer.write("equipment_modules = {\n");
-
-            String line = br.readLine(); // Skip the header line
-            while ((line = br.readLine()) != null) {
-                Ship_Module module = createHeavyShipModuleFromCsvLine(line);
-                if (module != null) {
-                    writeSHGToFile(writer, module);
+        switch (fileType){
+            case "heavy": ;
+                String outputFileName = "00_S_hev_battery.txt";
+                File directory = new File(directoryPath);
+                if (!directory.exists()) {
+                    directory.mkdirs();
                 }
-            }
+                File outputFile = new File(directoryPath + outputFileName);
 
-            writer.write("}\n");
+                try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath));
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
 
-        } catch (IOException e) {
-            e.printStackTrace();
+                    writer.write(EQMs);
+
+                    String line = br.readLine(); // Skip the header line
+                    while ((line = br.readLine()) != null) {
+                        Ship_Module module = createHeavyShipModuleFromCsvLine(line);
+                        if (module != null) {
+                            writeSHGToFile(writer, module);
+                        }
+                    }
+
+                    writer.write("}\n");
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                removeBracketsFromFile(outputFile.getPath());
+                break;
+            case "medium":
+                 outputFileName = "00_S_med_battery.txt";
+                 directory = new File(directoryPath);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+                outputFile = new File(directoryPath + outputFileName);
+
+                try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath));
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
+
+                    writer.write(EQMs);
+
+                    String line = br.readLine(); // Skip the header line
+                    while ((line = br.readLine()) != null) {
+                        Ship_Module module = createMediumShipModuleFromCsvLine(line);
+                        if (module != null) {
+                            writeSHGToFile(writer, module);
+                        }
+                    }
+
+                    writer.write("}\n");
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                removeBracketsFromFile(outputFile.getPath());
+                break;
+
+            default:
+                break;
         }
-        removeBracketsFromFile(outputFile.getPath());
+    }
+
+    private void ymlwriter(String fileType){
+        String csvFilePath = csvFilePathField.getText();
         String ymlDirectoryPath = "Hoi4_modding_Tool/localization/japanese/";
         String ymlFileName = modName + "_S_hev_battery_l_japanese.yml";
         File ymlDirectory = new File(ymlDirectoryPath);
@@ -141,27 +185,38 @@ public class module_maker_GUI extends JFrame {
         File ymlFile = new File(ymlDirectoryPath + ymlFileName);
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath));
-             BufferedWriter ymlWriter = new BufferedWriter(new FileWriter(ymlFile))) {
+            BufferedWriter ymlWriter = new BufferedWriter(new FileWriter(ymlFile))) {
             ymlWriter.write("l_japanese:\n");
-
             String line = br.readLine(); // Skip the header line
             while ((line = br.readLine()) != null) {
                 Ship_Module module = createHeavyShipModuleFromCsvLine(line);
                 if (module != null) {
-                    // Write to the YML file
-                    String escapedModuleName = module.getName().replace("\"", "\\\"");
-                    String tmp = "Hoi4_modding_Tool/database/" + modName + "_SHG.csv";
-                    CsvFileCreator.writeModuleToFile(tmp);
-                    ymlWriter.write("  " + module.getId() + ":0 \"" + escapedModuleName + "\"\n");
+                    switch (fileType){
+                        case "heavy":
+                            String escapedModuleName = module.getName().replace("\"", "\\\"");
+                            String tmp = "Hoi4_modding_Tool/database/" + modName + "_SHG.csv";
+                            CsvFileCreator.writeModuleToFile(tmp);
+                            ymlWriter.write("  " + module.getId() + ":0 \"" + escapedModuleName + "\"\n");
+                            break;
+                        case "medium":
+                            escapedModuleName = module.getName().replace("\"", "\\\"");
+                            tmp = "Hoi4_modding_Tool/database/" + modName + "_SMG.csv";
+                            CsvFileCreator.writeModuleToFile(tmp);
+                            ymlWriter.write("  " + module.getId() + ":0 \"" + escapedModuleName + "\"\n");
+                            break;
+                        default:
+                            break;
+                    }// Write to the YML file
                 }
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        MT_System.out.println("Loaded CSV file: " + csvFilePath);
     }
+
+
+
 
     private Ship_Module createHeavyShipModuleFromCsvLine(String line) {
         String[] values = line.split(",");
@@ -190,8 +245,48 @@ public class module_maker_GUI extends JFrame {
         boolean can_license = true;
         boolean is_convertable = true;
         return new Ship_Module(id, name, "", category, 0.0, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
-                naval_speed, 0.0, 0.0, 0.0, hg_armor_piercing, hg_attack, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, critical_parts, can_convert_from_module_categorie, new double[]{convert_cost_ic});
+                naval_speed, 0.0,
+                0.0, 0.0, hg_armor_piercing,
+                hg_attack, 0.0, 0.0,
+                0.0, 0.0, 0.0, 0.0,
+                0.0, 0.0, 0.0,
+                0.0, 0.0, 0.0,
+                critical_parts, can_convert_from_module_categorie, new double[]{convert_cost_ic});
+    }
+
+    private Ship_Module createMediumShipModuleFromCsvLine(String line){
+        String[] data = line.split(",");
+        String originalId = data[2];
+        String id = originalId;
+
+        if (existingIds.contains(originalId)) {
+            int count = idCounts.getOrDefault(originalId, 0);
+            id = originalId + "_" + count;
+            idCounts.put(originalId, count + 1);
+        }
+
+        String name = data[0];
+        String category = data[1];
+        double build_cost_ic = Double.parseDouble(data[3]);
+        double convert_cost_ic = Double.parseDouble(data[4]);
+        double lg_attack = Double.parseDouble(data[5]);
+        double lg_armor_piercing = Double.parseDouble(data[6]);
+        double anti_air_attack = Double.parseDouble(data[7]);
+        double hg_attack = Double.parseDouble(data[8]);
+        double hg_armor_piercing = Double.parseDouble(data[9]);
+        int manpower = Integer.parseInt(data[10]);
+        double naval_speed = Double.parseDouble(data[11]);
+        double xp_cost = Math.log(build_cost_ic) / Math.log(2); // log2(build_cost_ic)を計算
+        String[] can_convert_from_module_categorie = {category}; // この例ではカテゴリーをそのまま使用
+        String[] critical_parts = {"damaged_medium_guns"}; // 仮の値
+
+        // Ship_Moduleのインスタンスを生成して返す
+        return new Ship_Module(id, name, "", category, 0.0, build_cost_ic, manpower, true, true, xp_cost,
+                naval_speed, 0.0, lg_armor_piercing, lg_attack, hg_armor_piercing, hg_attack,
+                anti_air_attack, 0.0, 0.0, 0.0, 0.0,
+                0.0, 0.0, 0.0, 0.0, 0.0,
+                0.0,0.0,critical_parts
+            , can_convert_from_module_categorie, new double[]{convert_cost_ic});
     }
 
     private void writeSHGToFile(BufferedWriter writer, Ship_Module module) throws IOException {
@@ -207,6 +302,7 @@ public class module_maker_GUI extends JFrame {
         writer.write("\t\tmultiply_stats = {\n");
         writer.write("\t\t\tnaval_speed = " + module.getNavalSpeed() + "\n");
         writer.write("\t\t}\n");
+        writer.write("\t\tmanpower = "+ module.getManpower() + "\n");
         writer.write("\t\tadd_average_stats = {\n");
         writer.write("\t\t\thg_armor_piercing = " + module.getHgArmorPiercing() + "\n");
         writer.write("\t\t}\n");
@@ -225,8 +321,17 @@ public class module_maker_GUI extends JFrame {
                 ", " + module.getNavalSpeed() + ", " + 0.0 + ", " + module.getHgArmorPiercing()  + ", " + module.getHgAttack() + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 +
                 ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + Arrays.toString(module.getCriticalParts()) + ", " + Arrays.toString(module.getCanConvertFromModuleCategorie()) + ", ");
         listModel.addElement("ID: " + module.getId() + ", Name: " + module.getName() + ", Category: " + module.getCategory() + ", Build Cost: " + module.getBuildCostIc() + ", Manpower: " + module.getManpower());
-
+        copyFileToDatabase(modName, csvFilePathField.getText());
         moduleList.setModel(listModel);
+    }
+
+    private void copyFileToDatabase(String modName, String sourceFilePath) throws IOException {
+        Path sourcePath = Path.of(sourceFilePath);
+        String destinationFileName = modName + "_SHG.csv";
+        Path destinationPath = Path.of("Hoi4_modding_Tool/database", destinationFileName);
+
+        // 元のファイルを新しい場所にコピーする
+        Files.copy(sourcePath, destinationPath, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
     }
 
     private void removeBracketsFromFile(String filePath) {
@@ -269,27 +374,7 @@ public class module_maker_GUI extends JFrame {
         // アニメーションを表示
         loadingLabel.setVisible(true);
 
-//        try {
-//            // ファイルの読み込みと解析
-//            MT_System.out.println(modpath+"/common/units/equipment/modules");
-//
-////            List<File> files = loadFilesInDirectory(modpath+"/common/units/equipment/modules");
-////            MT_System.out.println("Loaded " + files.size() + " files...");
-////            for (File file : files) {
-////                String content = readFileContent(file.getPath());
-////
-////                //TODO: ファイルの内容を解析してModuleオブジェクトを生成する!!!
-//////                ModuleProcessor processor = new ModuleProcessor(modpath, modName);
-//////                processor.processModules();
-////
-////
-//////                MT_System.out.println("Loaded " + files.size() + " files...");
-////
-////
-////            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
 
         // ロード処理が完了したらアニメーションを非表示にする
         loadingLabel.setVisible(false);

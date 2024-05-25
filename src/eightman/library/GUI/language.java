@@ -41,6 +41,8 @@ public class language {
     public static String ICON = "Icon";
     public static String LOAD= "Load";
     public static String MAKER = "Maker";
+    public static String Warn_M = "Warning: This will overwrite the current file.";
+    public static String Warn_M2 = "Warning: This will overwrite the current file.";
 
     public static void C_languages() {
         String languageFile;
@@ -91,6 +93,8 @@ public class language {
         ICON = langJson.getString("ICON");
         LOAD = langJson.getString("LOAD");
         MAKER = langJson.getString("MAKER");
+        Warn_M = langJson.getString("Warn_M");
+        Warn_M2 = langJson.getString("Warn_M2");
     }
 
     private static String readFile(String filename) {

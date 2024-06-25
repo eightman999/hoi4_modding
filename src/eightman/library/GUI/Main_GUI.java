@@ -1,5 +1,6 @@
 package eightman.library.GUI;
 
+import eightman.library.GUI.GUI_tool.Naval_hull_designer;
 import eightman.library.GUI.MODULE.*;
 import eightman.library.GUI.GFX.GFX_GUI;
 import eightman.library.GUI.GFX.Goals_GUI;
@@ -31,15 +32,15 @@ public class Main_GUI extends JFrame implements Runnable {
     public static DefaultListModel<String> modPathListModel = new DefaultListModel<>();
     public static JList<String> modPathList = new JList<>(modPathListModel);
     public static int L_mode;
-    public static String Version = "0.7.1";
+    public static String Version = "0.7.2";
     public static Image icon;
     public static Image icon2;
     public static Image loading;
     public static int run;
     public static int runtime_h;
-    public static String Version_beta = "5";
+    public static String Version_beta = "0";
     public static Boolean Beta = true;
-    public static String Version_date_2 = "2024/05/13";
+    public static String Version_date_2 = "2024/06/24";
     public static String file_name;
     public static String temp;
     public static JMenuBar menuBar = new JMenuBar();
@@ -55,6 +56,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static JMenuItem localizeItem = new JMenuItem(language.LOCALIZE);
     public static JMenuItem goalItem = new JMenuItem(language.GOAL);
     public static JMenuItem gfxItem = new JMenuItem(language.GFX);
+    public static JMenuItem sdItem = new JMenuItem(language.SDI);
     public static JMenuItem shlItem = new JMenuItem(language.SHL);
     public static JMenuItem countryItem = new JMenuItem(language.COUNTRY);
     public static JMenuItem moduleItem = new JMenuItem(language.MODULE);
@@ -108,7 +110,7 @@ public class Main_GUI extends JFrame implements Runnable {
         JPanel buttonPanel = new JPanel(new GridLayout(1, 4)); // 横にボタンを配置するためのパネル
         String[] groupNames = {"外観", "言語", "技術", "国家"};
         JMenuItem[][] modes = {
-                {goalItem, gfxItem}, // 外観グループ
+                {goalItem, gfxItem, sdItem}, // 外観グループ
                 {localizeItem, NameItem}, // 言語グループ
                 {shlItem, moduleItem}, // 技術グループ
                 {countryItem} // 国家グループ
@@ -131,6 +133,8 @@ public class Main_GUI extends JFrame implements Runnable {
                         GFX_GUI gfxGui = new GFX_GUI();
                         gfxGui.setVisible(true);
                     });
+                } else if (mode == sdItem) {
+                    modeButton.addActionListener((e -> new Naval_hull_designer().setVisible(true)));
                 } else if (mode == shlItem) {
                     modeButton.addActionListener(e -> new SHIP_GFX_GUI().gfx_GUI());
                 } else if (mode == countryItem) {

@@ -33,5 +33,6 @@
   "LOAD": "Load",
   "MAKER": "Maker",
   "Warn_M": "Warning: The file name should start with 'SM_'",
-    "Warn_M2": "Warning: The file name should be in the format 'SM_<type>.csv' where <type> is one of the valid types",
+  "Warn_M2": "Warning: The file name should be in the format 'SM_<type>.csv' where <type> is one of the valid types",
+  "SDI": "Ship Design Interface"
 }

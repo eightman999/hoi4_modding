@@ -43,6 +43,7 @@ public class language {
     public static String MAKER = "Maker";
     public static String Warn_M = "Warning: This will overwrite the current file.";
     public static String Warn_M2 = "Warning: This will overwrite the current file.";
+    public static String SDI = "Ship Design Interface";
 
     public static void C_languages() {
         String languageFile;
@@ -95,6 +96,7 @@ public class language {
         MAKER = langJson.getString("MAKER");
         Warn_M = langJson.getString("Warn_M");
         Warn_M2 = langJson.getString("Warn_M2");
+        SDI = langJson.getString("SDI");
     }
 
     private static String readFile(String filename) {

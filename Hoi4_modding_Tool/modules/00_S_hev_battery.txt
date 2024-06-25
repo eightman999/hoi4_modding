@@ -472,7 +472,7 @@ equipment_modules = {
 		sfx = sfx_ui_sd_module_turret
 		add_equipment_type = capital_ship
 		add_stats = {
-			hg_attack = 141.44
+		    hg_attack = 141.44
 			build_cost_ic = 1581.24
 		}
 		multiply_stats = {

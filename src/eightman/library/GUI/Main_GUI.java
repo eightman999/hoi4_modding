@@ -1,5 +1,7 @@
 package eightman.library.GUI;
 
+import eightman.library.GUI.GUI_tool.Convert_GUI;
+import eightman.library.GUI.GUI_tool.Name_GUI;
 import eightman.library.GUI.GUI_tool.Naval_hull_designer;
 import eightman.library.GUI.MODULE.*;
 import eightman.library.GUI.GFX.GFX_GUI;
@@ -47,20 +49,21 @@ public class Main_GUI extends JFrame implements Runnable {
     public JMenu main_Menu = new JMenu(Title);
     public JMenuItem aboutItem = new JMenuItem(ABOUT + Title);
     public JMenuItem prefsItem = new JMenuItem(PREF + Title);
-    public JMenuItem surveyItem = new JMenuItem("Survey" + Title);
-    public JMenuItem quitItem = new JMenuItem("Quit" + Title);
-    public static JMenu languageMenu = new JMenu(language.LG_SELECT);
-    public static JMenuItem englishItem = new JMenuItem(language.ENGLISH);
-    public static JMenuItem japaneseItem = new JMenuItem(language.JAPANESE);
-    public static JMenu modeMenu = new JMenu(language.MODE_SELECT);
-    public static JMenuItem localizeItem = new JMenuItem(language.LOCALIZE);
-    public static JMenuItem goalItem = new JMenuItem(language.GOAL);
-    public static JMenuItem gfxItem = new JMenuItem(language.GFX);
-    public static JMenuItem sdItem = new JMenuItem(language.SDI);
-    public static JMenuItem shlItem = new JMenuItem(language.SHL);
-    public static JMenuItem countryItem = new JMenuItem(language.COUNTRY);
-    public static JMenuItem moduleItem = new JMenuItem(language.MODULE);
-    public static JMenuItem NameItem = new JMenuItem(language.NAME);
+    public JMenuItem surveyItem = new JMenuItem(Survey + Title);
+    public JMenuItem quitItem = new JMenuItem(Quit + Title);
+    public static JMenu languageMenu = new JMenu(LG_SELECT);
+    public static JMenuItem englishItem = new JMenuItem(ENGLISH);
+    public static JMenuItem japaneseItem = new JMenuItem(JAPANESE);
+    public static JMenu modeMenu = new JMenu(MODE_SELECT);
+    public static JMenuItem localizeItem = new JMenuItem(LOCALIZE);
+    public static JMenuItem convertItem = new JMenuItem(CVRT);
+    public static JMenuItem goalItem = new JMenuItem(GOAL);
+    public static JMenuItem gfxItem = new JMenuItem(GFX);
+    public static JMenuItem sdItem = new JMenuItem(SDI);
+    public static JMenuItem shlItem = new JMenuItem(SHL);
+    public static JMenuItem countryItem = new JMenuItem(COUNTRY);
+    public static JMenuItem moduleItem = new JMenuItem(MODULE);
+    public static JMenuItem NameItem = new JMenuItem(NAME);
 
     public static void main(String[] args) throws Exception {
         MT_System.setupLogger();
@@ -100,20 +103,21 @@ public class Main_GUI extends JFrame implements Runnable {
         logoLabel.setVerticalAlignment(JLabel.CENTER);
         ImageIcon logoIcon = new ImageIcon(icon); // ロゴのパスを指定
         Image image = logoIcon.getImage(); // ImageIconからImageを取得
-        Image newimg = image.getScaledInstance(80, 80,  java.awt.Image.SCALE_SMOOTH); // スケーリング
+        Image newimg = image.getScaledInstance(80, 80,  Image.SCALE_SMOOTH); // スケーリング
         logoIcon = new ImageIcon(newimg);  // スケーリング後のImageをImageIconに再変換
         logoLabel.setIcon(logoIcon);
         logoLabel.setText(Title);
         add(logoLabel, BorderLayout.NORTH);
 
         // モード一覧をボタンで作成
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 4)); // 横にボタンを配置するためのパネル
-        String[] groupNames = {"外観", "言語", "技術", "国家"};
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 4)); // 横にボタンを配置するためのパネル
+        String[] groupNames = {VIW, LNG, TEC, CTR, "GFX"};
         JMenuItem[][] modes = {
                 {goalItem, gfxItem, sdItem}, // 外観グループ
                 {localizeItem, NameItem}, // 言語グループ
                 {shlItem, moduleItem}, // 技術グループ
-                {countryItem} // 国家グループ
+                {countryItem}, // 国家グループ
+                {convertItem} // 変換グループ
         };
         for (int i = 0; i < modes.length; i++) {
             JPanel groupPanel = new JPanel();
@@ -141,6 +145,10 @@ public class Main_GUI extends JFrame implements Runnable {
                     // countryItemのアクションを設定
                 } else if (mode == moduleItem) {
                     modeButton.addActionListener(e -> new module_maker_GUI().module_maker_GUI());
+                } else if (mode == NameItem) {
+                    modeButton.addActionListener(e -> new Name_GUI().name_GUI());
+                } else if (mode == convertItem) {
+                    modeButton.addActionListener(e -> new Convert_GUI().initializeUI());
                 }
                 groupPanel.add(modeButton);
             }
@@ -169,16 +177,17 @@ public class Main_GUI extends JFrame implements Runnable {
     }
 
     public static void repainting() {
-        languageMenu.setText(language.LG_SELECT);
-        englishItem.setText(language.ENGLISH);
-        japaneseItem.setText(language.JAPANESE);
-        modeMenu.setText(language.MODE_SELECT);
-        localizeItem.setText(language.LOCALIZE);
-        goalItem.setText(language.GOAL);
-        gfxItem.setText(language.GFX);
-        shlItem.setText(language.SHL);
-        countryItem.setText(language.COUNTRY);
-        NameItem.setText(language.NAME);
+        languageMenu.setText(LG_SELECT);
+        englishItem.setText(ENGLISH);
+        japaneseItem.setText(JAPANESE);
+        modeMenu.setText(MODE_SELECT);
+        localizeItem.setText(LOCALIZE);
+        goalItem.setText(GOAL);
+        gfxItem.setText(GFX);
+        shlItem.setText(SHL);
+        countryItem.setText(COUNTRY);
+        NameItem.setText(NAME);
+        convertItem.setText(CVRT);
 
         // メニューバーの変更を反映
         menuBar.repaint();
@@ -248,7 +257,7 @@ public class Main_GUI extends JFrame implements Runnable {
         if(isMac()){
             mac_title();
         }else {
-            language.C_languages();
+            C_languages();
         }
     }
 
@@ -257,7 +266,7 @@ public class Main_GUI extends JFrame implements Runnable {
     }
 
     public void quit() {
-        JOptionPane.showMessageDialog(this, "終了します.");
+        JOptionPane.showMessageDialog(this, FIN);
         MT_System.out.println("Application closed.");
         System.exit(0);
     }

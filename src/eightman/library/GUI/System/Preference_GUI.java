@@ -60,7 +60,7 @@ public class Preference_GUI extends JFrame {
         JButton otherButton = new JButton("その他");
 
         // ボタンのサイズを縦30pxに設定
-        Dimension buttonSize = new Dimension(100, 20);
+        Dimension buttonSize = new Dimension(120, 20);
         languageButton.setPreferredSize(buttonSize);
         fontButton.setPreferredSize(buttonSize);
         otherButton.setPreferredSize(buttonSize);

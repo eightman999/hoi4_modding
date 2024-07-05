@@ -34,5 +34,13 @@
   "MAKER": "Maker",
   "Warn_M": "Warning: The file name should start with 'SM_'",
   "Warn_M2": "Warning: The file name should be in the format 'SM_<type>.csv' where <type> is one of the valid types",
-  "SDI": "Ship Design Interface"
+  "SDI": "Ship Design Interface",
+  "FIN": "Finished",
+  "CTR": "Country",
+  "TEC": "Technology",
+  "LNG": "Language",
+  "VIW": "View",
+  "Survey": "Survey",
+  "Quit": "Quit",
+  "CVRT": "Convert"
 }

@@ -44,6 +44,14 @@ public class language {
     public static String Warn_M = "Warning: This will overwrite the current file.";
     public static String Warn_M2 = "Warning: This will overwrite the current file.";
     public static String SDI = "Ship Design Interface";
+    public static String FIN = "";
+    public static String CTR = "";
+    public static String TEC = "";
+    public static String LNG = "";
+    public static String VIW = "";
+    public static String Survey = "";
+    public static String Quit = "";
+    public static String CVRT = "";
 
     public static void C_languages() {
         String languageFile;
@@ -97,6 +105,14 @@ public class language {
         Warn_M = langJson.getString("Warn_M");
         Warn_M2 = langJson.getString("Warn_M2");
         SDI = langJson.getString("SDI");
+        FIN = langJson.getString("FIN");
+        CTR = langJson.getString("CTR");
+        TEC = langJson.getString("TEC");
+        LNG = langJson.getString("LNG");
+        VIW = langJson.getString("VIW");
+        Survey = langJson.getString("Survey");
+        Quit = langJson.getString("Quit");
+        CVRT = langJson.getString("CVRT");
     }
 
     private static String readFile(String filename) {

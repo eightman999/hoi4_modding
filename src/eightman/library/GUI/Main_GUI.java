@@ -34,7 +34,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static DefaultListModel<String> modPathListModel = new DefaultListModel<>();
     public static JList<String> modPathList = new JList<>(modPathListModel);
     public static int L_mode;
-    public static String Version = "0.7.2";
+    public static String Version = "0.7.3";
     public static Image icon;
     public static Image icon2;
     public static Image loading;
@@ -42,7 +42,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static int runtime_h;
     public static String Version_beta = "0";
     public static Boolean Beta = true;
-    public static String Version_date_2 = "2024/06/24";
+    public static String Version_date_2 = "2024/09/18";
     public static String file_name;
     public static String temp;
     public static JMenuBar menuBar = new JMenuBar();

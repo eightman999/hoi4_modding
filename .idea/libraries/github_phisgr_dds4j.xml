@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="github.phisgr.dds4j" type="repository">
+    <properties maven-id="com.github.phisgr:dds4j:0.1.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/com/github/phisgr/dds4j/0.1.0/dds4j-0.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.9.23/kotlin-stdlib-1.9.23.jar!/" />
+      <root url="jar://$USER_HOME$/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

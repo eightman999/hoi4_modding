@@ -1,8 +1,5 @@
 package eightman.library.GUI.GUI_tool;
 
-import de.matthiasmann.dds4j.DDSImage;
-import de.matthiasmann.dds4j.DDSWriter;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -13,8 +10,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 import static eightman.library.GUI.language.CVRT;
 
@@ -54,10 +54,22 @@ public class Convert_GUI extends JFrame {
     }
 
     private void convertToDDS(File inputFile, File outputFile) throws IOException {
-        try (FileInputStream fis = new FileInputStream(inputFile);
-             FileOutputStream fos = new FileOutputStream(outputFile)) {
-            BufferedImage image = ImageIO.read(fis);
-            DDSWriter.write(fos, image, DDSImage.CompressionType.DXT5);
+        BufferedImage image = ImageIO.read(inputFile);
+        ByteBuffer buffer = ByteBuffer.allocate(image.getWidth() * image.getHeight() * 4);
+
+        for (int y = 0; y < image.getHeight(); y++) {
+            for (int x = 0; x < image.getWidth(); x++) {
+                int argb = image.getRGB(x, y);
+                buffer.put((byte) ((argb >> 16) & 0xFF)); // Red
+                buffer.put((byte) ((argb >> 8) & 0xFF));  // Green
+                buffer.put((byte) (argb & 0xFF));         // Blue
+                buffer.put((byte) ((argb >> 24) & 0xFF)); // Alpha
+            }
+        }
+
+        buffer.flip();
+        try (FileChannel channel = FileChannel.open(outputFile.toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE)) {
+            channel.write(buffer);
         }
     }
 

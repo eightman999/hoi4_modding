@@ -2,6 +2,7 @@ package eightman.library.GUI.System;
 
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.language;
 
@@ -77,8 +78,34 @@ public class Preference_GUI extends JFrame {
         languageComboBox = new JComboBox<>(languages);
         languagePanel.add(languageComboBox);
 
-        JPanel fontPanel = new JPanel();
-        // フォント設定のコードをここに追加
+        JPanel fontPanel = new JPanel(new BorderLayout());
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fontNames = ge.getAvailableFontFamilyNames();
+        JComboBox<String> fontComboBox = new JComboBox<>(fontNames);
+        JLabel sampleText = new JLabel("Sample Text");
+        JButton applyButton = new JButton("適用");
+
+        fontComboBox.addActionListener(e -> {
+            String selectedFont = (String) fontComboBox.getSelectedItem();
+            sampleText.setFont(new Font(selectedFont, Font.PLAIN, 16));
+        });
+
+        applyButton.addActionListener(e -> {
+            String selectedFont = (String) fontComboBox.getSelectedItem();
+            sampleText.setFont(new Font(selectedFont, Font.PLAIN, 16));
+
+            // フォント設定を保存
+            saveSetting(selectedFont);
+
+            // 全てのGUIにフォントを適用
+            applyFontToAllGUI(selectedFont);
+
+            JOptionPane.showMessageDialog(this, "フォントが適用されました: " + selectedFont);
+        });
+
+        fontPanel.add(fontComboBox, BorderLayout.NORTH);
+        fontPanel.add(sampleText, BorderLayout.CENTER);
+        fontPanel.add(applyButton, BorderLayout.SOUTH);
 
         JPanel otherPanel = new JPanel();
         // modのpath指定の設定項目
@@ -126,7 +153,6 @@ public class Preference_GUI extends JFrame {
         saveSettingsButton.addActionListener(e -> {
             // 言語設定を保存
             String selectedLanguage = (String) languageComboBox.getSelectedItem();
-
             if (language.ENGLISH.equals(selectedLanguage)) {
                 Main_GUI.L_mode = 1;
                 set_language();
@@ -135,8 +161,14 @@ public class Preference_GUI extends JFrame {
                 set_language();
             }
 
+            // フォント設定を保存
+            String selectedFont = (String) fontComboBox.getSelectedItem();
+            saveSetting(selectedFont);
+
+            // 全てのGUIにフォントを適用
+            applyFontToAllGUI(selectedFont);
+
             Main_GUI.repainting();
-            saveModPathSettings();
         });
 
         JPanel bottomPanel = new JPanel(new BorderLayout());
@@ -148,20 +180,22 @@ public class Preference_GUI extends JFrame {
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    private void saveModPathSettings() {
+    private void saveSetting(String font) {
         Map<String, Object> settings = new HashMap<>();
         if (modPathMap != null) {
             settings.put("modPathMap", modPathMap);
         }
-        // 言語設定を取得して保存
         String selectedLanguage = (String) languageComboBox.getSelectedItem();
         settings.put("lang", selectedLanguage);
+        settings.put("font", font);
+        settings.put("runCount_h", runtime_h); // runtime_hを追加
+        settings.put("runCount", run); // runtimeを追加
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(settings);
         Path configPath = Paths.get("Hoi4_modding_Tool", "config", "setting.config");
         try {
-            Files.createDirectories(configPath.getParent()); // ディレクトリが存在しない場合は作成
+            Files.createDirectories(configPath.getParent());
             try (FileWriter writer = new FileWriter(configPath.toString())) {
                 writer.write(json);
             }
@@ -170,5 +204,15 @@ public class Preference_GUI extends JFrame {
         }
     }
 
+    private void applyFontToAllGUI(String font) {
+        Font newFont = new Font(font, Font.PLAIN, 12);
+        UIManager.put("Label.font", newFont);
+        UIManager.put("Button.font", newFont);
+        UIManager.put("ComboBox.font", newFont);
+        UIManager.put("TextField.font", newFont);
+        UIManager.put("TextArea.font", newFont);
+        UIManager.put("Panel.font", newFont);
+        SwingUtilities.updateComponentTreeUI(this);
+    }
 
 }

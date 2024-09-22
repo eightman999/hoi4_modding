@@ -3,6 +3,7 @@ package eightman.library.GUI.System;
 import eightman.library.GUI.language;
 
 public class Mac_OS {
+
     public static boolean isMac() {
         // MacOSXで動作しているか?
         String lcOSName = java.lang.System.getProperty("os.name").toLowerCase();

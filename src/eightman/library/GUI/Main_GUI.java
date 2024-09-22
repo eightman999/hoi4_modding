@@ -29,7 +29,7 @@ import static eightman.library.GUI.language.*;
 import static javax.swing.UIManager.setLookAndFeel;
 
 public class Main_GUI extends JFrame implements Runnable {
-
+    private static Main_GUI instance;
     public static Map<String, String> modPathMap = new HashMap<>();
     public static DefaultListModel<String> modPathListModel = new DefaultListModel<>();
     public static JList<String> modPathList = new JList<>(modPathListModel);
@@ -81,7 +81,7 @@ public class Main_GUI extends JFrame implements Runnable {
         System.out.println(run_date);
     }
 
-    Main_GUI(String title) throws ParseException {
+    public Main_GUI(String title) throws ParseException {
         setTitle(Title); // タイトルを設定
         if (isMac()) {
             setupMenuItems_mac_os();
@@ -129,27 +129,47 @@ public class Main_GUI extends JFrame implements Runnable {
                 JButton modeButton = new JButton(mode.getText());
                 modeButton.setMaximumSize(new Dimension(100, modeButton.getPreferredSize().height));
                 if (mode == localizeItem) {
-                    modeButton.addActionListener(e -> new Localize_GUI().localize_GUI());
+                    modeButton.addActionListener(e -> {
+                        new Localize_GUI().localize_GUI();
+                        this.setVisible(false);
+                    });
                 } else if (mode == goalItem) {
-                    modeButton.addActionListener(e -> new Goals_GUI().goals_GUI());
+                    modeButton.addActionListener(e -> {
+                        new Goals_GUI().goals_GUI();
+                        this.setVisible(false);
+                    });
                 } else if (mode == gfxItem) {
                     modeButton.addActionListener(e -> {
                         GFX_GUI gfxGui = new GFX_GUI();
                         gfxGui.setVisible(true);
+                        this.setVisible(false);
                     });
                 } else if (mode == sdItem) {
-                    modeButton.addActionListener((e -> new Naval_hull_designer().setVisible(true)));
+                    modeButton.addActionListener(e -> {
+                        new Naval_hull_designer().setVisible(true);
+                        this.setVisible(false);
+                    });
                 } else if (mode == shlItem) {
-                    modeButton.addActionListener(e -> new SHIP_GFX_GUI().gfx_GUI());
+                    modeButton.addActionListener(e -> {
+                        new SHIP_GFX_GUI().gfx_GUI();
+                        this.setVisible(false); // Main_GUIを一旦閉じる
+                    });
                 } else if (mode == countryItem) {
                     // countryItemのアクションを設定
                 } else if (mode == moduleItem) {
-                    modeButton.addActionListener(e -> new module_maker_GUI().module_maker_GUI());
+                    modeButton.addActionListener(e -> {
+                        new module_maker_GUI().module_maker_GUI();
+                        this.setVisible(false); // Main_GUIを一旦閉じる
+                    });
                 } else if (mode == NameItem) {
-                    modeButton.addActionListener(e -> new Name_GUI().name_GUI());
-                } else if (mode == convertItem) {
-                    modeButton.addActionListener(e -> new Convert_GUI().initializeUI());
+                    modeButton.addActionListener(e -> {
+                        new Name_GUI().name_GUI();
+                        this.setVisible(false);
+                    });
                 }
+//                else if (mode == convertItem) {
+//                    modeButton.addActionListener(e -> new Convert_GUI().initializeUI());
+//                }
                 groupPanel.add(modeButton);
             }
             buttonPanel.add(groupPanel);
@@ -158,6 +178,7 @@ public class Main_GUI extends JFrame implements Runnable {
 
         pack();
     }
+
     private void setupMenuItems() {
         main_Menu.add(aboutItem);
         main_Menu.add(prefsItem);
@@ -172,6 +193,7 @@ public class Main_GUI extends JFrame implements Runnable {
         surveyItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Survey " + Title));
         quitItem.addActionListener(e -> quit());
     }
+
     private void setupMenuItems_mac_os() {
         MT_System.out.println("MacOS");
     }
@@ -269,6 +291,17 @@ public class Main_GUI extends JFrame implements Runnable {
         JOptionPane.showMessageDialog(this, FIN);
         MT_System.out.println("Application closed.");
         System.exit(0);
+    }
+
+    public static Main_GUI getInstance() {
+        if (instance == null) {
+            try {
+                instance = new Main_GUI(Title);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return instance;
     }
 
     @Override

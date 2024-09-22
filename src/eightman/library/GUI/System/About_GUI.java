@@ -1,17 +1,20 @@
 package eightman.library.GUI.System;
 
-import eightman.library.GUI.MainFrame;
 import eightman.library.GUI.Main_GUI;
-import eightman.library.GUI.language;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.ParseException;
 
 import static eightman.library.GUI.language.ABOUT;
 import static eightman.library.GUI.language.Title;
 
 public class About_GUI extends JFrame {
+
     private JLabel versionLabel = new JLabel();
+
     public About_GUI() {
         super(Title + ABOUT);
         setResizable(false);
@@ -47,5 +50,16 @@ public class About_GUI extends JFrame {
 
         setLocationRelativeTo(null);
         setVisible(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    new Main_GUI(Title).setVisible(true);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
+
 }

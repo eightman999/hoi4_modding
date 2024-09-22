@@ -1,5 +1,6 @@
 package eightman.library.GUI.GFX;
 
+import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.System.MT_core;
 import eightman.library.GUI.language;
 
@@ -7,11 +8,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.ParseException;
 
+import static eightman.library.GUI.language.Title;
 import static java.awt.event.KeyEvent.VK_CONTROL;
 
 public class Goals_GUI extends JFrame implements ActionListener {
@@ -96,6 +101,16 @@ public class Goals_GUI extends JFrame implements ActionListener {
         p1.add(texturefile_path);
         done.addActionListener(new DoneActionListener());
         load.addActionListener(new LoadActionListener());
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    new Main_GUI(Title).setVisible(true);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     @Override

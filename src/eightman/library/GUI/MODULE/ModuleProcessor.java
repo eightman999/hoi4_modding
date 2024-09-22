@@ -235,6 +235,7 @@ public class ModuleProcessor {
         return new Tank_Module(moduleID,name, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
                 reliability, maximum_speed, soft_attack, hard_attack, air_attack, ap_attack, breakthrough, defense, max_strength, armor_value, hardness, entrenchment, recon, forbid_equipment_type, can_convert_from_module_categorie, convert_cost_ic);
     }
+
     private String determineCategory(File file) {
         String fileName = file.getName();
         if (fileName.startsWith("00_plane") || fileName.startsWith("00_P")) {

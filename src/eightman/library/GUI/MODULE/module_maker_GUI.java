@@ -1,12 +1,16 @@
 package eightman.library.GUI.MODULE;
 
+import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.System.MT_core.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.ParseException;
 import java.util.*;
 
 import static eightman.library.GUI.Main_GUI.loading;
@@ -35,6 +39,16 @@ public class module_maker_GUI extends JFrame {
         setupgui();
         setupAnimationLabel();
         setVisible(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    new Main_GUI(Title).setVisible(true);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     private void setupFrame() {

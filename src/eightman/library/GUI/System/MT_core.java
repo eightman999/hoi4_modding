@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import eightman.library.GUI.Main_GUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -52,6 +53,12 @@ public class MT_core {
                             Main_GUI.L_mode = 0;
                         }
                     }
+
+                    // フォント設定を反映
+                    String font = (String) settings.get("font");
+                    if (font != null) {
+                        applyFontToAllGUI(font);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -77,6 +84,7 @@ public class MT_core {
                     MT_core.MT_System.out.println("Thank you for 100 using Hoi4 Modding Tool!");
                     runCount_h++;
                     Main_GUI.runtime_h++;
+                    Main_GUI.run = 0;
                 }
 
                 // 実行回数を設定に追加
@@ -88,13 +96,23 @@ public class MT_core {
                 try (FileWriter writer = new FileWriter(configPath.toString())) {
                     writer.write(json);
                 }
-                MT_System.out.println("実行回数: " +runCount_h+ runCount);
+                int sum = runCount_h*100+ runCount;
+                MT_System.out.println("実行回数: "+sum);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
+    private static void applyFontToAllGUI(String font) {
+        Font newFont = new Font(font, Font.PLAIN, 12);
+        UIManager.put("Label.font", newFont);
+        UIManager.put("Button.font", newFont);
+        UIManager.put("ComboBox.font", newFont);
+        UIManager.put("TextField.font", newFont);
+        UIManager.put("TextArea.font", newFont);
+        UIManager.put("Panel.font", newFont);
+        SwingUtilities.updateComponentTreeUI(Main_GUI.getInstance());
+    }
     public static class MT_System {
         private static final Logger logger = Logger.getLogger(MT_System.class.getName());
         public static void setupLogger() {
@@ -141,6 +159,7 @@ public class MT_core {
             }
 
         }
+
     }
 }
 

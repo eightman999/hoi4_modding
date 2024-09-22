@@ -61,6 +61,7 @@ public class Equipment_Module {
     public boolean isIsConvertable() {
         return is_convertable;
     }
+
     public double getXpCost() {
         return xp_cost;
     }

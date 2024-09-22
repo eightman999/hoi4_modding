@@ -1,10 +1,14 @@
 package eightman.library.GUI.GUI_tool;
 
+import eightman.library.GUI.Main_GUI;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.dnd.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,8 +19,10 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.text.ParseException;
 
 import static eightman.library.GUI.language.CVRT;
+import static eightman.library.GUI.language.Title;
 
 public class Convert_GUI extends JFrame {
     private JPanel upperArea;
@@ -27,6 +33,16 @@ public class Convert_GUI extends JFrame {
         initializeUI();
         setupDragAndDrop();
         setupConvertButtonAction();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    new Main_GUI(Title).setVisible(true);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     private void setupConvertButtonAction() {
@@ -112,7 +128,4 @@ public class Convert_GUI extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(Convert_GUI::new);
-    }
 }

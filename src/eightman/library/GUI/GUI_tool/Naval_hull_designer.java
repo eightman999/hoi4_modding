@@ -1,12 +1,19 @@
 package eightman.library.GUI.GUI_tool;
 
+import eightman.library.GUI.Main_GUI;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import static eightman.library.GUI.Main_GUI.modPathMap;
+import static eightman.library.GUI.language.Title;
 
 public class Naval_hull_designer extends JFrame {
+
     public Naval_hull_designer() {
         setTitle("Naval Hull Designer");
         setSize(650, 700);
@@ -67,5 +74,16 @@ public class Naval_hull_designer extends JFrame {
         add(upperElementNumber);
         add(new JLabel("Lower Element Number:"));
         add(lowerElementNumber);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    new Main_GUI(Title).setVisible(true);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
+
 }

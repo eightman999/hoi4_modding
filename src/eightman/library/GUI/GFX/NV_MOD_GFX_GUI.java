@@ -1,11 +1,17 @@
 package eightman.library.GUI.GFX;
 
+import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.language;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.ParseException;
+
+import static eightman.library.GUI.language.Title;
 
 public class NV_MOD_GFX_GUI extends JFrame implements ActionListener {
 
@@ -81,6 +87,16 @@ public class NV_MOD_GFX_GUI extends JFrame implements ActionListener {
         p1.add(fnm);
         done.addActionListener(new NV_MOD_GFX_GUI.DoneActionListener());
         load.addActionListener(new NV_MOD_GFX_GUI.LoadActionListener());
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    new Main_GUI(Title).setVisible(true);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     @Override

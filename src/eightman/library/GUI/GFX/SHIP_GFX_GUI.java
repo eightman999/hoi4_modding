@@ -1,5 +1,6 @@
 package eightman.library.GUI.GFX;
 
+import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.language;
 
 import javax.imageio.ImageIO;
@@ -8,11 +9,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.ParseException;
+
+import static eightman.library.GUI.language.Title;
 
 public class SHIP_GFX_GUI extends JFrame implements ActionListener {
 
@@ -164,6 +170,16 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
         mid_3_custom_slot.addActionListener(new mid_3_custom_slot_l());
         rear_1_custom_slot.addActionListener(new rear_1_custom_slot_l());
         rear_2_custom_slot.addActionListener(new rear_2_custom_slot_l());
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    new Main_GUI(Title).setVisible(true);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     /*画像読み込み*/

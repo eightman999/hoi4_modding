@@ -1,10 +1,5 @@
 package eightman.library.GUI;
 
-// MacOSX 10.3(Panther)はJ2SE1.4どまりなので、あえて1.4で記述している.
-// 10.5(Leopard)以降を対象にするならば、JavaSE6でよし.
-
-import eightman.library.GUI.System.Mac_OS;
-
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -26,13 +21,10 @@ import java.util.Enumeration;
 import static eightman.library.GUI.System.Mac_OS.isMac;
 
 public class MainFrame extends JFrame {
+
     private static final long serialVersionUID = 1L;
-
-    // JFrameおよびDockのアイコン
-
     // パネル
     protected FileDialogTypePanel fileDlgTypePanel;
-
     // コンストラクタ
     public MainFrame() throws Exception {
         super();
@@ -172,6 +164,7 @@ public class MainFrame extends JFrame {
             return r1.isSelected();
         }
     }
+
     protected void onSaveAs() {
         File outFile;
         if (fileDlgTypePanel.isAWT()) {
@@ -234,12 +227,12 @@ public class MainFrame extends JFrame {
         }
     }
 
-
     protected void quit() {
         JOptionPane.showMessageDialog(this, "終了します.");
         System.exit(0);
     }
     // システムプロパティをダンプする
+
     private String getSystemProperties() {
         ArrayList keys = new ArrayList();
         StringBuilder buf = new StringBuilder();

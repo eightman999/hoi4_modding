@@ -26,10 +26,12 @@ import java.util.Objects;
 import static eightman.library.GUI.System.MT_core.*;
 import static eightman.library.GUI.System.Mac_OS.*;
 import static eightman.library.GUI.language.*;
+import static eightman.library.GUI.language.C_languages;
 import static javax.swing.UIManager.setLookAndFeel;
 
 public class Main_GUI extends JFrame implements Runnable {
     private static Main_GUI instance;
+    private static final String MF_CLASS_NAME = "eightman.library.GUI.MainFramePartialForMacOSX";
     public static Map<String, String> modPathMap = new HashMap<>();
     public static DefaultListModel<String> modPathListModel = new DefaultListModel<>();
     public static JList<String> modPathList = new JList<>(modPathListModel);
@@ -66,6 +68,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static JMenuItem moduleItem = new JMenuItem(MODULE);
     public static JMenuItem NameItem = new JMenuItem(NAME);
 
+
     public static void main(String[] args) throws Exception {
         MT_System.setupLogger();
         MT_System.out.logInfo("Application started.");
@@ -79,10 +82,11 @@ public class Main_GUI extends JFrame implements Runnable {
         run_counter();
         os_Preference();
         Date run_date = new Date();
+        set_language();
         System.out.println(run_date);
     }
 
-    public Main_GUI(String title) throws ParseException {
+    public Main_GUI(String Title) throws ParseException {
         setTitle(Title); // タイトルを設定
         if (isMac()) {
             setupMenuItems_mac_os();
@@ -115,11 +119,11 @@ public class Main_GUI extends JFrame implements Runnable {
         JPanel buttonPanel = new JPanel(new GridLayout(2, 4)); // 横にボタンを配置するためのパネル
         String[] groupNames = {VIW, LNG, TEC, CTR, "GFX"};
         JMenuItem[][] modes = {
-                {goalItem, gfxItem, sdItem}, // 外観グループ
+                {goalItem, gfxItem}, // 外観グループ
                 {localizeItem, NameItem}, // 言語グループ
                 {shlItem, moduleItem}, // 技術グループ
                 {countryItem}, // 国家グループ
-                {convertItem} // 変換グループ
+//                {convertItem} // 変換グループ
         };
         for (int i = 0; i < modes.length; i++) {
             JPanel groupPanel = new JPanel();
@@ -146,11 +150,11 @@ public class Main_GUI extends JFrame implements Runnable {
                         gfxGui.setVisible(true);
                         this.setVisible(false);
                     });
-                } else if (mode == sdItem) {
-                    modeButton.addActionListener(e -> {
-                        new Naval_hull_designer().setVisible(true);
-                        this.setVisible(false);
-                    });
+//                } else if (mode == sdItem) {
+//                    modeButton.addActionListener(e -> {
+//                        new Naval_hull_designer().setVisible(true);
+//                        this.setVisible(false);
+//                    });
                 } else if (mode == shlItem) {
                     modeButton.addActionListener(e -> {
                         new SHIP_GFX_GUI().gfx_GUI();
@@ -226,7 +230,7 @@ public class Main_GUI extends JFrame implements Runnable {
         // システムのデフォルトのコマンド修飾キーを取得する.
         // WindowsならCTRL_MASK, OSXならばMETA_MASKになる.
         Toolkit tk = Toolkit.getDefaultToolkit();
-        int shotcutKey = tk.getMenuShortcutKeyMask();
+        int shortcutKey = tk.getMenuShortcutKeyMask();
     }
 
     public static void loadIcon() {
@@ -328,7 +332,7 @@ public class Main_GUI extends JFrame implements Runnable {
             // メインフレーム構築
             final Main_GUI mainFrame = new Main_GUI(Title);
             if (isMac()) {
-                Class<?> clz = Class.forName("eightman.library.GUI.MainFramePartialForMacOSX");
+                Class<?> clz = Class.forName(MF_CLASS_NAME);
                 Method mtd = clz.getMethod("setupScreenMenu", new Class[] {MainFrame.class});
                 MainFrame mainFrameInstance = new MainFrame();
                 mtd.invoke(null, new Object[] {mainFrameInstance});

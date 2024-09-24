@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.language;
-
+import static eightman.library.GUI.System.MT_core.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -18,15 +18,17 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static eightman.library.GUI.Main_GUI.*;
 import static eightman.library.GUI.language.*;
 
 public class Preference_GUI extends JFrame {
     public static JComboBox<String> languageComboBox;
-    private CardLayout cardLayout = new CardLayout();
-    private JPanel cardPanel = new JPanel(cardLayout);
-
+    private final CardLayout cardLayout = new CardLayout();
+    private final JPanel cardPanel = new JPanel(cardLayout);
+    private static final Logger logger = Logger.getLogger(Preference_GUI.class.getName());
     public Preference_GUI() {
         super(PREF);
         setLayout(new BorderLayout());
@@ -34,12 +36,14 @@ public class Preference_GUI extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultLanguage();
+
+        Main_GUI mainGUI = Main_GUI.getInstance();
+        mainGUI.dispose();
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
-                    Main_GUI mainGUI = Main_GUI.getInstance();
-                    mainGUI.dispose();
                     new Main_GUI(Title).setVisible(true);
                 } catch (ParseException ex) {
                     throw new RuntimeException(ex);
@@ -195,6 +199,14 @@ public class Preference_GUI extends JFrame {
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    private void set_language() {
+        if (Main_GUI.L_mode == 1) {
+            languageComboBox.setSelectedItem(language.ENGLISH);
+        } else if (Main_GUI.L_mode == 0) {
+            languageComboBox.setSelectedItem(language.JAPANESE);
+        }
+    }
+
     private void saveSetting(String font) {
         Map<String, Object> settings = new HashMap<>();
         if (modPathMap != null) {
@@ -215,7 +227,8 @@ public class Preference_GUI extends JFrame {
                 writer.write(json);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            MT_System.out.println("設定の保存に失敗しました。");
+            logger.log(Level.SEVERE, "設定の保存に失敗しました。", e);
         }
     }
 

@@ -46,6 +46,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static String file_name;
     public static String temp;
     public static JMenuBar menuBar = new JMenuBar();
+    public static String use_font = "Arial";
     public JMenu main_Menu = new JMenu(Title);
     public JMenuItem aboutItem = new JMenuItem(ABOUT + Title);
     public JMenuItem prefsItem = new JMenuItem(PREF + Title);
@@ -94,6 +95,7 @@ public class Main_GUI extends JFrame implements Runnable {
         setBounds(100, 100, 600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(new ImageIcon("./images/icon.png").getImage());
+        applyFontToAllGUI(use_font);
     }
 
     private void setupMain_GUI(){
@@ -127,7 +129,7 @@ public class Main_GUI extends JFrame implements Runnable {
             groupPanel.add(groupName);
             for (JMenuItem mode : modes[i]) {
                 JButton modeButton = new JButton(mode.getText());
-                modeButton.setMaximumSize(new Dimension(100, modeButton.getPreferredSize().height));
+                modeButton.setMaximumSize(new Dimension(130, modeButton.getPreferredSize().height));
                 if (mode == localizeItem) {
                     modeButton.addActionListener(e -> {
                         new Localize_GUI().localize_GUI();
@@ -290,7 +292,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public void quit() {
         JOptionPane.showMessageDialog(this, FIN);
         MT_System.out.println("Application closed.");
-        System.exit(0);
+        MT_System.BREAK();
     }
 
     public static Main_GUI getInstance() {
@@ -302,6 +304,17 @@ public class Main_GUI extends JFrame implements Runnable {
             }
         }
         return instance;
+    }
+
+    private void applyFontToAllGUI(String font) {
+        Font newFont = new Font(font, Font.PLAIN, 12);
+        UIManager.put("Label.font", newFont);
+        UIManager.put("Button.font", newFont);
+        UIManager.put("ComboBox.font", newFont);
+        UIManager.put("TextField.font", newFont);
+        UIManager.put("TextArea.font", newFont);
+        UIManager.put("Panel.font", newFont);
+        SwingUtilities.updateComponentTreeUI(this);
     }
 
     @Override

@@ -8,11 +8,14 @@ import eightman.library.GUI.language;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +34,18 @@ public class Preference_GUI extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultLanguage();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    Main_GUI mainGUI = Main_GUI.getInstance();
+                    mainGUI.dispose();
+                    new Main_GUI(Title).setVisible(true);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     public static void setLanguage(String language) {

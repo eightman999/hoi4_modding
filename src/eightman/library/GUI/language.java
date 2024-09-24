@@ -43,7 +43,7 @@ public class language {
     public static String MAKER = "Maker";
     public static String Warn_M = "Warning: This will overwrite the current file.";
     public static String Warn_M2 = "Warning: This will overwrite the current file.";
-    public static String SDI = "Ship Design Interface";
+    public static String SDI = "";
     public static String FIN = "";
     public static String CTR = "";
     public static String TEC = "";

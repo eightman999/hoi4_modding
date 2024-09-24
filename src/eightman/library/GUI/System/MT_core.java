@@ -1,6 +1,7 @@
 package eightman.library.GUI.System;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import eightman.library.GUI.Main_GUI;
 
@@ -55,10 +56,7 @@ public class MT_core {
                     }
 
                     // フォント設定を反映
-                    String font = (String) settings.get("font");
-                    if (font != null) {
-                        applyFontToAllGUI(font);
-                    }
+                    Main_GUI.use_font = (String) settings.get("font");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -69,7 +67,7 @@ public class MT_core {
         Path configPath = Paths.get("Hoi4_modding_Tool", "config", "setting.config");
         if (Files.exists(configPath)) {
             try (FileReader reader = new FileReader(configPath.toString())) {
-                Gson gson = new Gson();
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 Type type = new TypeToken<Map<String, Object>>(){}.getType();
                 Map<String, Object> settings = gson.fromJson(reader, type);
 
@@ -94,6 +92,7 @@ public class MT_core {
                 // 設定をファイルに保存
                 String json = gson.toJson(settings);
                 try (FileWriter writer = new FileWriter(configPath.toString())) {
+
                     writer.write(json);
                 }
                 int sum = runCount_h*100+ runCount;
@@ -103,16 +102,7 @@ public class MT_core {
             }
         }
     }
-    private static void applyFontToAllGUI(String font) {
-        Font newFont = new Font(font, Font.PLAIN, 12);
-        UIManager.put("Label.font", newFont);
-        UIManager.put("Button.font", newFont);
-        UIManager.put("ComboBox.font", newFont);
-        UIManager.put("TextField.font", newFont);
-        UIManager.put("TextArea.font", newFont);
-        UIManager.put("Panel.font", newFont);
-        SwingUtilities.updateComponentTreeUI(Main_GUI.getInstance());
-    }
+
     public static class MT_System {
         private static final Logger logger = Logger.getLogger(MT_System.class.getName());
         public static void setupLogger() {
@@ -159,7 +149,13 @@ public class MT_core {
             }
 
         }
-
+        public static void ERROR(){
+            System.out.println("予期せぬエラーが発生しました。ソフトを終了します。");
+            System.exit(0);
+        }
+        public static void BREAK(){
+            System.out.println("ソフトを終了します。");
+        }
     }
 }
 

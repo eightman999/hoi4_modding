@@ -1,6 +1,7 @@
 package eightman.library.GUI;
 
 import eightman.library.GUI.GUI_tool.Convert_GUI;
+import eightman.library.GUI.GUI_tool.FleetDesigner_GUI;
 import eightman.library.GUI.GUI_tool.Name_GUI;
 import eightman.library.GUI.GUI_tool.Naval_hull_designer;
 import eightman.library.GUI.MODULE.*;
@@ -48,6 +49,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static String file_name;
     public static String temp;
     public static JMenuBar menuBar = new JMenuBar();
+    public static String naval_path;
     public static String use_font = "Arial";
     public JMenu main_Menu = new JMenu(Title);
     public JMenuItem aboutItem = new JMenuItem(ABOUT + Title);
@@ -63,6 +65,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static JMenuItem goalItem = new JMenuItem(GOAL);
     public static JMenuItem gfxItem = new JMenuItem(GFX);
 //    public static JMenuItem sdItem = new JMenuItem(SDI);
+    public static JMenuItem fdItem = new JMenuItem(FDI);
     public static JMenuItem shlItem = new JMenuItem(SHL);
     public static JMenuItem countryItem = new JMenuItem(COUNTRY);
     public static JMenuItem moduleItem = new JMenuItem(MODULE);
@@ -121,7 +124,7 @@ public class Main_GUI extends JFrame implements Runnable {
         JMenuItem[][] modes = {
                 {goalItem, gfxItem}, // 外観グループ
                 {localizeItem, NameItem}, // 言語グループ
-                {shlItem, moduleItem}, // 技術グループ
+                {shlItem, moduleItem, fdItem}, // 技術グループ
                 {countryItem}, // 国家グループ
 //                {convertItem} // 変換グループ
         };
@@ -155,6 +158,13 @@ public class Main_GUI extends JFrame implements Runnable {
 //                        new Naval_hull_designer().setVisible(true);
 //                        this.setVisible(false);
 //                    });
+
+                } else if (mode == fdItem) {
+                    modeButton.addActionListener(e -> {
+                        FleetDesigner_GUI fleetDesigner = new FleetDesigner_GUI();
+                        fleetDesigner.showGUI();
+                        this.setVisible(false);
+                    });
                 } else if (mode == shlItem) {
                     modeButton.addActionListener(e -> {
                         new SHIP_GFX_GUI().gfx_GUI();

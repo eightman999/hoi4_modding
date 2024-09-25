@@ -52,6 +52,7 @@ public class language {
     public static String Survey = "";
     public static String Quit = "";
     public static String CVRT = "";
+    public static String FDI = "";
 
     public static void C_languages() {
         String languageFile;
@@ -105,6 +106,7 @@ public class language {
         Warn_M = langJson.getString("Warn_M");
         Warn_M2 = langJson.getString("Warn_M2");
         SDI = langJson.getString("SDI");
+        FDI = langJson.getString("FDI");
         FIN = langJson.getString("FIN");
         CTR = langJson.getString("CTR");
         TEC = langJson.getString("TEC");

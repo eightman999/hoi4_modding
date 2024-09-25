@@ -7,6 +7,7 @@ import eightman.library.GUI.Main_GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +16,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;
 import java.util.logging.FileHandler;
@@ -22,46 +25,52 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import static eightman.library.GUI.Main_GUI.modPathListModel;
-import static eightman.library.GUI.Main_GUI.modPathMap;
+import static eightman.library.GUI.Main_GUI.*;
 import static eightman.library.GUI.language.ENGLISH;
 import static eightman.library.GUI.language.JAPANESE;
 
 public class MT_core {
+
     public static void load_config() {
+        Path configPath = Paths.get("Hoi4_modding_Tool", "config", "setting.config");
+        if (Files.exists(configPath)) {
+            try (FileReader reader = new FileReader(configPath.toString())) {
+                Gson gson = new Gson();
+                Type type = new TypeToken<Map<String, Object>>(){}.getType();
+                Map<String, Object> settings = gson.fromJson(reader, type);
 
-            Path configPath = Paths.get("Hoi4_modding_Tool", "config", "setting.config");
-            if (Files.exists(configPath)) {
-                try (FileReader reader = new FileReader(configPath.toString())) {
-                    Gson gson = new Gson();
-                    Type type = new TypeToken<Map<String, Object>>(){}.getType();
-                    Map<String, Object> settings = gson.fromJson(reader, type);
-
-                    // modPathMapの設定を反映
-                    modPathMap = (Map<String, String>) settings.get("modPathMap");
-                    if (modPathMap != null) {
-                        for (Map.Entry<String, String> entry : modPathMap.entrySet()) {
-                            modPathListModel.addElement(entry.getKey() + ": " + entry.getValue());
-                        }
+                // modPathMapの設定を反映
+                Map<String, String> modPathMap = (Map<String, String>) settings.get("modPathMap");
+                if (modPathMap != null && !modPathMap.isEmpty()) {
+                    String firstModPath = modPathMap.values().iterator().next();
+                    File unitDir = new File(firstModPath, "history/units");
+                    File[] navalFiles = unitDir.listFiles((dir, name) -> name.endsWith("naval_mtg.txt"));
+                    System.out.println("navalFiles=" + navalFiles);
+                    if (navalFiles != null && navalFiles.length > 0) {
+                        Arrays.sort(navalFiles, Comparator.comparing(File::getName));
+                        naval_path = navalFiles[0].getAbsolutePath();
                     }
-
-                    // 言語設定を反映
-                    String language = (String) settings.get("lang");
-                    if (language != null) {
-                        if (language.equals(ENGLISH)) {
-                            Main_GUI.L_mode = 1;
-                        } else if (language.equals(JAPANESE)) {
-                            Main_GUI.L_mode = 0;
-                        }
-                    }
-
-                    // フォント設定を反映
-                    Main_GUI.use_font = (String) settings.get("font");
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
+
+                // その他の設定を反映
+                String language = (String) settings.get("lang");
+                if (language != null) {
+                    if (language.equals("ENGLISH")) {
+                        Main_GUI.L_mode = 1;
+                    } else if (language.equals("JAPANESE")) {
+                        Main_GUI.L_mode = 0;
+                    }
+                }
+
+                Main_GUI.use_font = (String) settings.get("font");
+                System.out.println("Npath=" + naval_path);
+                System.out.println("Config loaded.");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+        }
     }
+
 
     public static void run_counter() {
         Path configPath = Paths.get("Hoi4_modding_Tool", "config", "setting.config");

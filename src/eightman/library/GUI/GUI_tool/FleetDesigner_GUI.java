@@ -1,9 +1,7 @@
 package eightman.library.GUI.GUI_tool;
 
-import eightman.library.GUI.System.Fleet;
 import eightman.library.GUI.System.NavalParser;
-import eightman.library.GUI.System.Ship;
-import eightman.library.GUI.System.TaskForce;
+import eightman.library.GUI.System.NavalParser.FS_DBList;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -29,27 +27,17 @@ public class FleetDesigner_GUI {
 
         try {
             NavalParser parser = new NavalParser();
-            List<Fleet> fleets = parser.parseNavalData();
+            List<FS_DBList> fsDbList = parser.parseNavalData();
 
-            for (Fleet fleet : fleets) {
-                DefaultMutableTreeNode fleetNode = new DefaultMutableTreeNode("Fleet: " + fleet.name);
-                root.add(fleetNode);
+            for (FS_DBList entry : fsDbList) {
+                DefaultMutableTreeNode fleetNode = findOrCreateNode(root, "Fleet: " + entry.fleetName);
+                DefaultMutableTreeNode taskForceNode = findOrCreateNode(fleetNode, "Task Force: " + entry.taskForceName);
+                DefaultMutableTreeNode shipNode = new DefaultMutableTreeNode("Ship: " + entry.shipName);
+                taskForceNode.add(shipNode);
 
-                for (TaskForce taskForce : fleet.taskForces) {
-                    DefaultMutableTreeNode taskForceNode = new DefaultMutableTreeNode("Task Force: " + taskForce.name);
-                    fleetNode.add(taskForceNode);
-
-                    for (Ship ship : taskForce.ships) {
-                        DefaultMutableTreeNode shipNode = new DefaultMutableTreeNode("Ship: " + ship.name);
-                        taskForceNode.add(shipNode);
-
-                        DefaultMutableTreeNode definitionNode = new DefaultMutableTreeNode("definition: " + ship.definition);
-                        shipNode.add(definitionNode);
-
-                        DefaultMutableTreeNode versionNode = new DefaultMutableTreeNode("version: " + ship.versionName);
-                        shipNode.add(versionNode);
-                    }
-                }
+                shipNode.add(new DefaultMutableTreeNode("Definition: " + entry.shipDefinition));
+                shipNode.add(new DefaultMutableTreeNode("Owner: " + entry.shipOwner));
+                shipNode.add(new DefaultMutableTreeNode("Version: " + entry.shipVersionName));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,6 +70,18 @@ public class FleetDesigner_GUI {
 
         // メインフレームに追加
         frame.getContentPane().add(splitPane);
+    }
+
+    private DefaultMutableTreeNode findOrCreateNode(DefaultMutableTreeNode parent, String nodeName) {
+        for (int i = 0; i < parent.getChildCount(); i++) {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) parent.getChildAt(i);
+            if (node.getUserObject().toString().equals(nodeName)) {
+                return node;
+            }
+        }
+        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(nodeName);
+        parent.add(newNode);
+        return newNode;
     }
 
     public void showGUI() {

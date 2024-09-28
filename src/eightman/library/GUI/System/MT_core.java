@@ -51,6 +51,7 @@ public class MT_core {
                         naval_path = navalFiles[0].getAbsolutePath();
                     }
                 }
+                naval_path = "src/eightman/library/GUI/System/Test_mtg_naval.txt";
 
                 // その他の設定を反映
                 String language = (String) settings.get("lang");

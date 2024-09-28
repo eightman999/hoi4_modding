@@ -10,25 +10,64 @@ import static eightman.library.GUI.Main_GUI.naval_path;
 
 public class NavalParser {
 
-    public List<Fleet> parseNavalData() throws IOException {
+    public static class FS_DBList {
+        public String fleetName;
+        public String navalBase;
+        public String taskForceName;
+        public String taskForceLocation;
+        public String shipName;
+        public String shipDefinition;
+        public String shipOwner;
+        public String shipVersionName;
+
+        @Override
+        public String toString() {
+            return "FS_DBList{" +
+                    "fleetName='" + fleetName + '\'' +
+                    ", navalBase='" + navalBase + '\'' +
+                    ", taskForceName='" + taskForceName + '\'' +
+                    ", taskForceLocation='" + taskForceLocation + '\'' +
+                    ", shipName='" + shipName + '\'' +
+                    ", shipDefinition='" + shipDefinition + '\'' +
+                    ", shipOwner='" + shipOwner + '\'' +
+                    ", shipVersionName='" + shipVersionName + '\'' +
+                    '}';
+        }
+    }
+
+    public List<FS_DBList> parseNavalData() throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(naval_path)));
-        List<Fleet> fleets = new ArrayList<>();
+        List<FS_DBList> fsDbList = new ArrayList<>();
         int[] index = {0};
 
         while (index[0] < content.length()) {
             if (content.startsWith("fleet", index[0])) {
-                fleets.add(parseFleet(content, index));
+                Fleet fleet = parseFleet(content, index);
+                for (TaskForce taskForce : fleet.taskForces) {
+                    for (Ship ship : taskForce.ships) {
+                        FS_DBList entry = new FS_DBList();
+                        entry.fleetName = fleet.name;
+                        entry.navalBase = fleet.navalBase;
+                        entry.taskForceName = taskForce.name;
+                        entry.taskForceLocation = taskForce.location;
+                        entry.shipName = ship.name;
+                        entry.shipDefinition = ship.definition;
+                        entry.shipOwner = ship.owner;
+                        entry.shipVersionName = ship.versionName;
+                        fsDbList.add(entry);
+                    }
+                }
             } else {
                 index[0]++;
             }
         }
 
-        // ツリー構造をコンソールに表示
-        for (Fleet fleet : fleets) {
-            printFleet(fleet, 0);
+        // Print the first 10 entries to the console
+        for (int i = 0; i < Math.min(10, fsDbList.size()); i++) {
+            System.out.println(fsDbList.get(i));
         }
 
-        return fleets;
+        return fsDbList;
     }
 
     private Fleet parseFleet(String content, int[] index) {
@@ -47,7 +86,7 @@ public class NavalParser {
                 index[0]++;
             }
         }
-        index[0]++;
+        index[0] = content.indexOf("}", index[0]) + 1;
         return fleet;
     }
 
@@ -67,7 +106,7 @@ public class NavalParser {
                 index[0]++;
             }
         }
-        index[0]++;
+        index[0] = content.indexOf("}", index[0]) + 1;
         return taskForce;
     }
 
@@ -88,41 +127,27 @@ public class NavalParser {
                 index[0]++;
             }
         }
-        index[0]++;
+        index[0] = content.indexOf("}", index[0]) + 1;
         return ship;
     }
 
     private String extractValue(String content, int[] index) {
         int start = content.indexOf("=", index[0]) + 1;
-        int end = content.indexOf("\n", start);
-        index[0] = end;
-        return content.substring(start, end).trim().replace("\"", "");
-    }
-
-    private void printFleet(Fleet fleet, int indent) {
-        printIndented("Fleet: " + fleet.name + "(" + fleet.navalBase + ")", indent);
-        for (TaskForce taskForce : fleet.taskForces) {
-            printTaskForce(taskForce, indent + 2);
+        while (start < content.length() && (content.charAt(start) == ' ' || content.charAt(start) == '\n' || content.charAt(start) == '\t')) {
+            start++;
         }
-    }
-
-    private void printTaskForce(TaskForce taskForce, int indent) {
-        printIndented("Task Force: " + taskForce.name + "(" + taskForce.location + ")", indent);
-        for (Ship ship : taskForce.ships) {
-            printShip(ship, indent + 2);
+        int end;
+        if (content.charAt(start) == '"') {
+            start++;
+            end = content.indexOf("\"", start);
+        } else {
+            end = content.indexOf("\n", start);
+            if (end == -1) {
+                end = content.length();
+            }
         }
+        index[0] = end + 1;
+        return content.substring(start, end).trim();
     }
 
-    private void printShip(Ship ship, int indent) {
-        printIndented("Ship: " + ship.name, indent);
-        printIndented("Definition: " + ship.definition, indent + 2);
-        printIndented("Version: " + ship.versionName, indent + 2);
-    }
-
-    private void printIndented(String text, int indent) {
-        for (int i = 0; i < indent; i++) {
-            System.out.print(" ");
-        }
-        System.out.println(text);
-    }
 }

@@ -1,123 +1,95 @@
 package eightman.library.GUI.System;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Lexer {
+    private static final Pattern TOKEN_PATTERN = Pattern.compile(
+            "\\bnaval_base\\b|\\btask_force\\b|\\bunits\\b|\\bfleet\\b|\\bship\\b|\\bname\\b|\\bdefinition\\b|\\bowner\\b|\\bversion_name\\b|\\bstart_experience_factor\\b|\\bship_hull_[a-z]+_\\d+\\b|=|\\{|\\}|\\d+\\.\\d+|\\d+|\"[^\"]*\"|\\w+|#.*"
+    );
 
-    /** input string. */
+    private Matcher matcher;
     private String input;
-
-
-
-    /** current position in input (points to current char). */
-    private int position;
-
-    /** current reading position in input (after current char). */
-    private int readPosition;
-
-    /** current char under examination. */
-    private char ch;
 
     public Lexer(String input) {
         this.input = input;
-        this.readPosition = 0;
-        readChar();
+        this.matcher = TOKEN_PATTERN.matcher(input);
     }
 
     public Token nextToken() {
-        skipWhitespace();
-        Token token;
+        if (!matcher.find()) {
+            return new Token(Token.TokenType.EOF, "");
+        }
 
-        switch (ch) {
-            case '=':
-                token = new Token(TokenType.ASSIGNMENT, "=");
+        String tokenValue = matcher.group();
+        Token.TokenType type;
+
+        switch (tokenValue) {
+            case "naval_base":
+                type = Token.TokenType.NAVAL_BASE;
                 break;
-            case '{':
-                token = new Token(TokenType.OPEN_BRACE, "{");
+            case "task_force":
+                type = Token.TokenType.TASKFORCE;
                 break;
-            case '}':
-                token = new Token(TokenType.CLOSE_BRACE, "}");
+            case "units":
+                type = Token.TokenType.UNITS;
                 break;
-            case ' ':
-                token = new Token(TokenType.SPACE, " ");
+            case "fleet":
+                type = Token.TokenType.FLEET;
                 break;
-            case '"':
-                token = new Token(TokenType.KAKKO, "\"");
+            case "ship":
+                type = Token.TokenType.SHIP;
                 break;
-            case '#':
-                token = new Token(TokenType.CMMENTOUT, "#");
+            case "name":
+                type = Token.TokenType.NAME;
                 break;
-            case '\0':
-                token = new Token(TokenType.EOF, "");
+            case "definition":
+                type = Token.TokenType.DEFINITION;
+                break;
+            case "owner":
+                type = Token.TokenType.OWNER;
+                break;
+            case "version_name":
+                type = Token.TokenType.VERSION_NAME;
+                break;
+            case "start_experience_factor":
+                type = Token.TokenType.STARTEXP;
+                break;
+            case "=":
+                type = Token.TokenType.ASSIGNMENT;
+                break;
+            case "{":
+                type = Token.TokenType.OPEN_BRACE;
+                break;
+            case "}":
+                type = Token.TokenType.CLOSE_BRACE;
+                break;
+            case "location":
+                type = Token.TokenType.LOCATION;
+                break;
+            case "equipment":
+                type = Token.TokenType.EQUIPMENT;
+                break;
+            case "amount":
+                type = Token.TokenType.AMOUNT;
                 break;
             default:
-                if (Character.isLetter(ch)) {
-                    String literal = readIdentifier();
-                    TokenType type = lookupTokenType(literal);
-                    return new Token(type, literal);
+                if (tokenValue.matches("#.*")) {
+                    type = Token.TokenType.CMMENTOUT;
+                } else if (tokenValue.matches("\\d+\\.\\d+")) {
+                    type = Token.TokenType.NUMBER;
+                } else if (tokenValue.matches("\\d+")) {
+                    type = Token.TokenType.NUMBER;
+                } else if (tokenValue.matches("\"[^\"]*\"")) {
+                    type = Token.TokenType.STRING;
+                } else if (tokenValue.matches("ship_hull_[a-z]+_\\d+")) {
+                    type = Token.TokenType.SHIP_HULL;
                 } else {
-                    token = new Token(TokenType.ILLEGAL, String.valueOf(ch));
+                    type = Token.TokenType.IDENT;
                 }
                 break;
         }
-        readChar();
-        return token;
-    }
 
-    private void readChar() {
-        if (readPosition >= input.length()) {
-            ch = '\0';
-        } else {
-            ch = input.charAt(readPosition);
-        }
-        position = readPosition;
-        readPosition += 1;
-    }
-
-    private String readIdentifier() {
-        int startPosition = position;
-        while (Character.isLetter(ch) || ch == '_') {
-            readChar();
-        }
-        return input.substring(startPosition, position);
-    }
-
-    private void skipWhitespace() {
-        while (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r') {
-            readChar();
-        }
-    }
-
-    private TokenType lookupTokenType(String literal) {
-        switch (literal) {
-            case "units":
-                return TokenType.UNITS;
-            case "fleet":
-                return TokenType.FLEET;
-            case "task_force":
-                return TokenType.TASKFORCE;
-            case "ship":
-                return TokenType.SHIP;
-            case "name":
-                return TokenType.NAME;
-            case "naval_base":
-                return TokenType.NAVAL_BASE;
-            case "location":
-                return TokenType.LOCATION;
-            case "definition":
-                return TokenType.DEFINITION;
-            case "owner":
-                return TokenType.OWNER;
-            case "version_name":
-                return TokenType.VERSION_NAME;
-            case "start_experience_factor":
-                return TokenType.STARTEXP;
-            case "equipment":
-                return TokenType.EQUIPMENT;
-            case "ship_hull":
-                return TokenType.SHIPHULL;
-            case "amount":
-                return TokenType.AMOUNT;
-            default:
-                return TokenType.IDENT;
-        }
+        return new Token(type, tokenValue);
     }
 }

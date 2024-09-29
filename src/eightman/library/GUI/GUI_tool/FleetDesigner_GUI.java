@@ -1,7 +1,7 @@
+// FleetDesigner_GUI.java
 package eightman.library.GUI.GUI_tool;
 
-import eightman.library.GUI.System.NavalParser;
-import eightman.library.GUI.System.NavalParser.FS_DBList;
+import eightman.library.GUI.System.*;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -9,7 +9,11 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+
+import static eightman.library.GUI.Main_GUI.naval_path;
 
 public class FleetDesigner_GUI {
 
@@ -22,60 +26,54 @@ public class FleetDesigner_GUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
 
-        // ツリー構造の作成
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Navy");
 
         try {
-            NavalParser parser = new NavalParser();
-            List<FS_DBList> fsDbList = parser.parseNavalData();
+            String content = new String(Files.readAllBytes(Paths.get(naval_path)));
+            Lexer lexer = new Lexer(content);
+            NavalParser parser = new NavalParser(lexer);
+            List<Fleet> fleets = parser.parse();
 
-            for (FS_DBList entry : fsDbList) {
-                DefaultMutableTreeNode fleetNode = findOrCreateNode(root, "Fleet: " + entry.fleetName);
-                DefaultMutableTreeNode taskForceNode = findOrCreateNode(fleetNode, "Task Force: " + entry.taskForceName);
-                DefaultMutableTreeNode shipNode = new DefaultMutableTreeNode("Ship: " + entry.shipName);
-                taskForceNode.add(shipNode);
-
-                shipNode.add(new DefaultMutableTreeNode("Definition: " + entry.shipDefinition));
-                shipNode.add(new DefaultMutableTreeNode("Owner: " + entry.shipOwner));
-                shipNode.add(new DefaultMutableTreeNode("Version: " + entry.shipVersionName));
+            for (Fleet fleet : fleets) {
+                DefaultMutableTreeNode fleetNode = findOrCreateNode(root, "Fleet: " + fleet.getName());
+                for (TaskForce taskForce : fleet.getTaskForces()) {
+                    DefaultMutableTreeNode taskForceNode = findOrCreateNode(fleetNode, "Task Force: " + taskForce.getName());
+                    for (Ship ship : taskForce.getShips()) {
+                        findOrCreateNode(taskForceNode, "Ship: " + ship.getName());
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // JTreeの作成
         tree = new JTree(root);
         JScrollPane treeScrollPane = new JScrollPane(tree);
 
-        // 詳細表示用のパネル
         detailsPanel = new JPanel();
         detailsPanel.setLayout(new BorderLayout());
         JLabel detailsLabel = new JLabel("Select a node to see details");
         detailsPanel.add(detailsLabel, BorderLayout.CENTER);
 
-        // ツリーの選択イベントリスナー
         tree.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent e) {
-                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-                if (selectedNode != null) {
-                    detailsLabel.setText("Selected: " + selectedNode.getUserObject().toString());
-                }
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+                if (node == null) return;
+                detailsLabel.setText(node.toString());
             }
         });
 
-        // 左にツリー、右に詳細表示を配置するスプリットペイン
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treeScrollPane, detailsPanel);
         splitPane.setDividerLocation(300);
 
-        // メインフレームに追加
         frame.getContentPane().add(splitPane);
     }
 
     private DefaultMutableTreeNode findOrCreateNode(DefaultMutableTreeNode parent, String nodeName) {
         for (int i = 0; i < parent.getChildCount(); i++) {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) parent.getChildAt(i);
-            if (node.getUserObject().toString().equals(nodeName)) {
+            if (node.getUserObject().equals(nodeName)) {
                 return node;
             }
         }
@@ -86,5 +84,12 @@ public class FleetDesigner_GUI {
 
     public void showGUI() {
         frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            FleetDesigner_GUI gui = new FleetDesigner_GUI();
+            gui.showGUI();
+        });
     }
 }

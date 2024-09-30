@@ -19,7 +19,7 @@ public class NavalParser {
 
     public List<Fleet> parse() {
         List<Fleet> fleets = new ArrayList<>();
-        while (!isEOF()) {
+//        while (!isEOF()) {
             if (check(Token.TokenType.CMMENTOUT)) {
                 skipComment();
             } else if (check(Token.TokenType.UNITS)) {
@@ -30,7 +30,7 @@ public class NavalParser {
             } else {
                 throw new RuntimeException("Unexpected token: " + currentToken().getValue());
             }
-        }
+//        }
         return fleets;
     }
 

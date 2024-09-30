@@ -26,7 +26,9 @@ public class FleetDesigner_GUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
 
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Navy");
+        // ファイル名をルートノードの名前として設定
+        String fileName = Paths.get(naval_path).getFileName().toString();
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(fileName);
 
         try {
             String content = new String(Files.readAllBytes(Paths.get(naval_path)));
@@ -35,9 +37,9 @@ public class FleetDesigner_GUI {
             List<Fleet> fleets = parser.parse();
 
             for (Fleet fleet : fleets) {
-                DefaultMutableTreeNode fleetNode = findOrCreateNode(root, "Fleet: " + fleet.getName());
+                DefaultMutableTreeNode fleetNode = findOrCreateNode(root, fleet.getName());
                 for (TaskForce taskForce : fleet.getTaskForces()) {
-                    DefaultMutableTreeNode taskForceNode = findOrCreateNode(fleetNode, "Task Force: " + taskForce.getName());
+                    DefaultMutableTreeNode taskForceNode = findOrCreateNode(fleetNode,  taskForce.getName());
                     for (Ship ship : taskForce.getShips()) {
                         findOrCreateNode(taskForceNode, "Ship: " + ship.getName());
                     }

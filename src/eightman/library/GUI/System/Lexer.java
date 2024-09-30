@@ -73,6 +73,27 @@ public class Lexer {
             case "amount":
                 type = Token.TokenType.AMOUNT;
                 break;
+            case "name_group":
+                type = Token.TokenType.NAME_GROUP;
+                break;
+            case "upgrades":
+                type = Token.TokenType.UPGRADES;
+                break;
+            case "modules":
+                type = Token.TokenType.N_MODULES;
+                break;
+            case "create_equipment_variant":
+                type = Token.TokenType.CREATE_EQUIPMENT_VARIANT;
+                break;
+            case "SpriteType":
+                type = Token.TokenType.SPRITE_TYPE;
+                break;
+            case "SpriteTypes":
+                type = Token.TokenType.SPRITE_TYPES;
+                break;
+            case "texturefile":
+                type = Token.TokenType.TEXTURE_FILE;
+                break;
             default:
                 if (tokenValue.matches("#.*")) {
                     type = Token.TokenType.CMMENTOUT;

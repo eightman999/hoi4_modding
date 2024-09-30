@@ -1,38 +1,14 @@
 units = {
 	fleet = {
-		name = "Principal Flota"
-		naval_base = 12790
+		name = "地球連邦宇宙海軍 遣イ艦隊"
+		naval_base = 0
 		task_force = {
-			name = "Escuadrón 1"
-			location = 12790
-			ship = {name = "ARC Antioquia" definition = destroyer start_experience_factor = 0.25 equipment = { ship_hull_light_0 = { amount = 1 owner = COL version_name = "Antioquia Class" } }}
-			ship = {name = "ARC Caldas" definition = destroyer start_experience_factor = 0.25 equipment = { ship_hull_light_0 = { amount = 1 owner = COL version_name = "Antioquia Class" } }}
-			#Frigates
-			ship = {name = "ARC Almirante Padilla" definition = frigate start_experience_factor = 0.25 equipment = { ship_hull_frigate_2 = { amount = 1 owner = COL version_name = "Almirante Padilla Class" } }}
-			ship = {name = "ARC Almirante Tono" definition = frigate start_experience_factor = 0.25 equipment = { ship_hull_frigate_2 = { amount = 1 owner = COL version_name = "Almirante Padilla Class" } }}
-			ship = {name = "ARC Almirante Brión" definition = frigate start_experience_factor = 0.25 equipment = { ship_hull_frigate_2 = { amount = 1 owner = COL version_name = "Almirante Padilla Class" } }}
+			name = "第65護衛隊"
+			location = 0
+			ship = {name = "BBY-01 ヤマト" definition = space_battleship start_experience_factor = 1 equipment = { ship_hull_sbb_1 = { amount = 1 owner = COL version_name = "ヤマト型" } }}
+			ship = {name = "DAOE-01 アスカ" definition = space_supply_base start_experience_factor = 0.25 equipment = { ship_hull_sd_1 = { amount = 1 owner = COL version_name = "アスカ級" } }}
+            ship = {name = "DCV-01 アスカ" definition = light_battle_carrier start_experience_factor = 0.25 equipment = { ship_hull_sd_1 = { amount = 1 owner = COL version_name = "ヒュウガ級" } }}
 		}
-		task_force = {
-			name = "Escuadrón 2"
-			location = 8056
-			ship = {
-			    name = "ARC Mariscal Sucre"
-			    definition = frigate
-			    start_experience_factor = 0.25
-			    equipment = {
-			        ship_hull_micro_2 = {
-			            amount = 1
-			            owner = COL
-			            version_name = "Mariscal Sucre Class"
-			        }
-			    }
-			}
-			#Corvettes
-			ship = {name = "ARC Bogotá" definition = frigate start_experience_factor = 0.25 equipment = { ship_hull_micro_4 = { amount = 1 owner = COL version_name = "Bogotá Class" } }}
-			#Corvettes
-			ship = {name = "ARC Carabobo" definition = frigate start_experience_factor = 0.25 equipment = { ship_hull_micro_2 = { amount = 1 owner = COL version_name = "Carabobo Class" } }}
-			ship = {name = "ARC Boyacá" definition = frigate start_experience_factor = 0.25 equipment = { ship_hull_micro_2 = { amount = 1 owner = COL version_name = "Carabobo Class" } }}
-			ship = {name = "ARC Pichincha" definition = frigate start_experience_factor = 0.25 equipment = { ship_hull_micro_2 = { amount = 1 owner = COL version_name = "Carabobo Class" } }}
-		}
+
 	}
 }

@@ -8,7 +8,6 @@ units = {
 			ship = {name = "BBY-01 ヤマト" definition = space_battleship start_experience_factor = 1 equipment = { ship_hull_sbb_1 = { amount = 1 owner = COL version_name = "ヤマト型" } }}
 			ship = {name = "DAOE-01 アスカ" definition = space_supply_base start_experience_factor = 0.25 equipment = { ship_hull_sd_1 = { amount = 1 owner = COL version_name = "アスカ級" } }}
             ship = {name = "DCV-01 アスカ" definition = light_battle_carrier start_experience_factor = 0.25 equipment = { ship_hull_sd_1 = { amount = 1 owner = COL version_name = "ヒュウガ級" } }}
-
 		}
 
 	}

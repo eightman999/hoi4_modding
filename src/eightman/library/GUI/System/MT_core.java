@@ -5,8 +5,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import eightman.library.GUI.Main_GUI;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,21 +14,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import static eightman.library.GUI.Main_GUI.*;
-import static eightman.library.GUI.language.ENGLISH;
-import static eightman.library.GUI.language.JAPANESE;
 
 public class MT_core {
 
+    // MT_core.java
     public static void load_config() {
         Path configPath = Paths.get("Hoi4_modding_Tool", "config", "setting.config");
         if (Files.exists(configPath)) {
@@ -41,16 +35,9 @@ public class MT_core {
 
                 // modPathMapの設定を反映
                 Map<String, String> modPathMap = (Map<String, String>) settings.get("modPathMap");
-                if (modPathMap != null && !modPathMap.isEmpty()) {
-                    String firstModPath = modPathMap.values().iterator().next();
-                    File unitDir = new File(firstModPath, "history/units");
-                    File[] navalFiles = unitDir.listFiles((dir, name) -> name.endsWith("naval_mtg.txt"));
-                    System.out.println("navalFiles=" + navalFiles);
-                    if (navalFiles != null && navalFiles.length > 0) {
-                        Arrays.sort(navalFiles, Comparator.comparing(File::getName));
-                        naval_path = navalFiles[0].getAbsolutePath();
-                    }
-                }
+                System.out.println("modPathMap=" + modPathMap);
+
+
                 naval_path = "src/eightman/library/GUI/System/Test_mtg_naval.txt";
 
                 // その他の設定を反映
@@ -64,9 +51,15 @@ public class MT_core {
                 }
 
                 Main_GUI.use_font = (String) settings.get("font");
+
+                // mod名をmodListに設定
+                modList = new ArrayList<>(modPathMap.keySet());
+                Main_GUI.setModList(modList);
+
                 System.out.println("Npath=" + naval_path);
                 System.out.println("Config loaded.");
             } catch (IOException e) {
+                MT_System.out.logError("Failed to load config.", e);
                 e.printStackTrace();
             }
         }

@@ -1,9 +1,7 @@
 package eightman.library.GUI;
 
-import eightman.library.GUI.GUI_tool.Convert_GUI;
 import eightman.library.GUI.GUI_tool.FleetDesigner_GUI;
 import eightman.library.GUI.GUI_tool.Name_GUI;
-import eightman.library.GUI.GUI_tool.Naval_hull_designer;
 import eightman.library.GUI.MODULE.*;
 import eightman.library.GUI.GFX.GFX_GUI;
 import eightman.library.GUI.GFX.Goals_GUI;
@@ -15,6 +13,7 @@ import eightman.library.GUI.System.Preference_GUI;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -51,6 +50,7 @@ public class Main_GUI extends JFrame implements Runnable {
     public static JMenuBar menuBar = new JMenuBar();
     public static String naval_path;
     public static String use_font = "Arial";
+    public static List<String> modList;
     public JMenu main_Menu = new JMenu(Title);
     public JMenuItem aboutItem = new JMenuItem(ABOUT + Title);
     public JMenuItem prefsItem = new JMenuItem(PREF + Title);
@@ -174,7 +174,7 @@ public class Main_GUI extends JFrame implements Runnable {
                     // countryItemのアクションを設定
                 } else if (mode == moduleItem) {
                     modeButton.addActionListener(e -> {
-                        new module_maker_GUI().module_maker_GUI();
+                        new module_maker_GUI().moduleMakerGUI();
                         this.setVisible(false); // Main_GUIを一旦閉じる
                     });
                 } else if (mode == NameItem) {
@@ -223,6 +223,8 @@ public class Main_GUI extends JFrame implements Runnable {
         goalItem.setText(GOAL);
         gfxItem.setText(GFX);
         shlItem.setText(SHL);
+        moduleItem.setText(MODULE);
+        fdItem.setText(FDI);
         countryItem.setText(COUNTRY);
         NameItem.setText(NAME);
         convertItem.setText(CVRT);
@@ -354,5 +356,9 @@ public class Main_GUI extends JFrame implements Runnable {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    public static void setModList(List<String> modList) {
+        Main_GUI.modList = modList;
     }
 }

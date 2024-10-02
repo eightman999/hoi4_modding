@@ -219,7 +219,7 @@ public class MainFrame extends JFrame {
             try (Writer wr = new OutputStreamWriter(new FileOutputStream(outFile),
                     StandardCharsets.UTF_8)) {
                 // ファイル名を記録
-                wr.write(outFile.toString() + "\n"); // Macの場合 Option+\ で入力
+                wr.write(outFile + "\n"); // Macの場合 Option+\ で入力
                 wr.write(getSystemProperties());
                 wr.flush();
             }

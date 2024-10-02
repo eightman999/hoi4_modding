@@ -27,7 +27,9 @@ public class NavalParser {
             } else if (check(Token.TokenType.CLOSE_BRACE)) {
                 // Handle unexpected close brace
                 advance();
-            } else {
+            }else if (check(Token.TokenType.INSTANT_EFFECT)) {
+
+            }else {
                 throw new RuntimeException("Unexpected token: " + currentToken().getValue());
             }
 //        }
@@ -63,13 +65,13 @@ public class NavalParser {
                 consume(Token.TokenType.NAME);
                 consume(Token.TokenType.ASSIGNMENT);
                 String temp_f_name = consume(Token.TokenType.STRING).getValue();
-                System.out.println("Fleet name: " + temp_f_name);
+//                System.out.println("Fleet name: " + temp_f_name);
                 fleet.setName(temp_f_name);
             } else if (check(Token.TokenType.NAVAL_BASE)) {
                 consume(Token.TokenType.NAVAL_BASE);
                 consume(Token.TokenType.ASSIGNMENT);
                 int temp_f_naval_base = Integer.parseInt(consume(Token.TokenType.NUMBER).getValue());
-                System.out.println("Naval base: " + temp_f_naval_base);
+//                System.out.println("Naval base: " + temp_f_naval_base);
                 fleet.setNavalBase(temp_f_naval_base);
             } else if (check(Token.TokenType.TASKFORCE)) {
                 System.out.println("Task force added");
@@ -97,13 +99,13 @@ public class NavalParser {
                 consume(Token.TokenType.NAME);
                 consume(Token.TokenType.ASSIGNMENT);
                 String temp_tf_name = consume(Token.TokenType.STRING).getValue();
-                System.out.println("Task force name: " + temp_tf_name);
+//                System.out.println("Task force name: " + temp_tf_name);
                 taskForce.setName(temp_tf_name);
             } else if (check(Token.TokenType.LOCATION)) {
                 consume(Token.TokenType.LOCATION);
                 consume(Token.TokenType.ASSIGNMENT);
                 int temp_tf_location = Integer.parseInt(consume(Token.TokenType.NUMBER).getValue());
-                System.out.println("Location: " + temp_tf_location);
+//                System.out.println("Location: " + temp_tf_location);
                 taskForce.setLocation(temp_tf_location);
             } else if (check(Token.TokenType.SHIP)) {
                 System.out.println("Ship added");
@@ -128,19 +130,19 @@ public class NavalParser {
                 consume(Token.TokenType.NAME);
                 consume(Token.TokenType.ASSIGNMENT);
                 String temp_s_name = consume(Token.TokenType.STRING).getValue();
-                System.out.println("Ship name: " + temp_s_name);
+//                System.out.println("Ship name: " + temp_s_name);
                 ship.setName(temp_s_name);
             } else if (check(Token.TokenType.DEFINITION)) {
                 consume(Token.TokenType.DEFINITION);
                 consume(Token.TokenType.ASSIGNMENT);
                 String temp_s_definition = consume(Token.TokenType.IDENT).getValue();
-                System.out.println("Ship definition: " + temp_s_definition);
+//                System.out.println("Ship definition: " + temp_s_definition);
                 ship.setDefinition(temp_s_definition);
             } else if (check(Token.TokenType.STARTEXP)) {
                 consume(Token.TokenType.STARTEXP);
                 consume(Token.TokenType.ASSIGNMENT);
                 Double temp_s_startexp = Double.valueOf(consume(Token.TokenType.NUMBER).getValue());
-                System.out.println("EXP: " + temp_s_startexp);
+//                System.out.println("EXP: " + temp_s_startexp);
                 ship.setStartExperienceFactor(temp_s_startexp);
             } else if (check(Token.TokenType.EQUIPMENT)) {
                 consume(Token.TokenType.EQUIPMENT);
@@ -153,25 +155,25 @@ public class NavalParser {
                         String temp_equip = consume(Token.TokenType.SHIP_HULL).getValue();
                         consume(Token.TokenType.ASSIGNMENT);
                         consume(Token.TokenType.OPEN_BRACE);
-                        System.out.println("Equipment: " + temp_equip);
+//                        System.out.println("Equipment: " + temp_equip);
                         ship.addEquipment(temp_equip);
                     } else if (check(Token.TokenType.AMOUNT)) {
                         consume(Token.TokenType.AMOUNT);
                         consume(Token.TokenType.ASSIGNMENT);
                         int amount = Integer.parseInt(consume(Token.TokenType.NUMBER).getValue());
-                        System.out.println("Amount: " + amount);
+//                        System.out.println("Amount: " + amount);
                         ship.setAmount(amount);
                     } else if (check(Token.TokenType.OWNER)) {
                         consume(Token.TokenType.OWNER);
                         consume(Token.TokenType.ASSIGNMENT);
                         String owner = consume(Token.TokenType.IDENT).getValue();
-                        System.out.println("Owner: " + owner);
+//                        System.out.println("Owner: " + owner);
                         ship.setOwner(owner);
                     } else if (check(Token.TokenType.VERSION_NAME)) {
                         consume(Token.TokenType.VERSION_NAME);
                         consume(Token.TokenType.ASSIGNMENT);
                         String versionName = consume(Token.TokenType.STRING).getValue();
-                        System.out.println("Version name: " + versionName);
+//                        System.out.println("Version name: " + versionName);
                         ship.setVersionName(versionName);
                     } else {
                         throw new RuntimeException("Unexpected token in equipment: " + currentToken().getValue());
@@ -186,6 +188,24 @@ public class NavalParser {
         consume(Token.TokenType.CLOSE_BRACE);
         return ship;
     }
+
+    private void parseInstanceEffect(List<production_ships> production_ships) {
+        consume(Token.TokenType.INSTANT_EFFECT);
+        consume(Token.TokenType.ASSIGNMENT);
+        consume(Token.TokenType.OPEN_BRACE);
+        while (!check(Token.TokenType.CLOSE_BRACE)) {
+            if (check(Token.TokenType.CMMENTOUT)) {
+                skipComment();
+            } else if (check(Token.TokenType.ADD_EQUIPMENT_PRODUCTION)) {
+                production_ships.add(parseProductionShips());
+            } else {
+                throw new RuntimeException("Unexpected token in instant effect: " + currentToken().getValue());
+            }
+        }
+        consume(Token.TokenType.CLOSE_BRACE);
+    }
+
+    private
 
     private void skipComment() {
         while (!isEOF() && currentToken().getType() != Token.TokenType.CMMENTOUT) {

@@ -1,5 +1,5 @@
 package eightman.library.CUI;
-import eightman.library.GUI.System.MT_core;
+import eightman.library.Core;
 
 import java.io.*;
 
@@ -48,7 +48,7 @@ public class localize {
             fos.close();
 
         } catch (IOException e) {
-            MT_core.MT_System.out.logError("Failed to load config.", e);
+            Core.out.logError("Failed to load config.", e);
         }
 
     }

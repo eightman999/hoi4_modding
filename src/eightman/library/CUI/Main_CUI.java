@@ -1,7 +1,8 @@
 package eightman.library.CUI;
 
-import eightman.library.CUI.System.Log_System;
-import eightman.library.CUI.System.ROOT;
+import eightman.library.Core.*;
+
+import static eightman.library.Core.ERROR;
 
 public class Main_CUI {
 
@@ -35,7 +36,7 @@ public class Main_CUI {
     } else if (mode == 5) { //翻訳
       root.country_name();
     } else {
-      Log_System.ERROR();
+      ERROR();
     }
   }
 }

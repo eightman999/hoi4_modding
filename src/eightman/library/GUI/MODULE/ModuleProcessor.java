@@ -1,9 +1,8 @@
 package eightman.library.GUI.MODULE;
 
-import eightman.library.GUI.System.MT_core.*;
+import eightman.library.Core;
 
 import java.io.*;
-import java.nio.file.*;
 import java.util.*;
 import java.util.regex.*;
 
@@ -38,7 +37,7 @@ public class ModuleProcessor {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            MT_System.out.println("Processing " + file.getName());
+            Core.out.println("Processing " + file.getName());
             for (String line : temp_lage) {
                 Matcher moduleMatcher = modulePattern.matcher(line);
                 while (moduleMatcher.find()) {

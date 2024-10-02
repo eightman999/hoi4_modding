@@ -1,5 +1,7 @@
 package eightman.library.GUI;
 
+import eightman.library.Core;
+
 import eightman.library.GUI.GUI_tool.FleetDesigner_GUI;
 import eightman.library.GUI.GUI_tool.Name_GUI;
 import eightman.library.GUI.MODULE.*;
@@ -23,8 +25,9 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Objects;
 
-import static eightman.library.GUI.System.MT_core.*;
-import static eightman.library.GUI.System.Mac_OS.*;
+import static eightman.library.Core.*;
+import static eightman.library.GUI.System.Mac_OS.isMac;
+import static eightman.library.GUI.System.Mac_OS.mac_system;
 import static eightman.library.GUI.language.*;
 import static eightman.library.GUI.language.C_languages;
 import static javax.swing.UIManager.setLookAndFeel;
@@ -73,8 +76,8 @@ public class Main_GUI extends JFrame implements Runnable {
 
 
     public static void main(String[] args) throws Exception {
-        MT_System.setupLogger();
-        MT_System.out.logInfo("Application started.");
+        setupLogger();
+        Core.out.logInfo("Application started.");
         load_config();
         if (isMac()) {
             mac_system();
@@ -86,6 +89,7 @@ public class Main_GUI extends JFrame implements Runnable {
         os_Preference();
         Date run_date = new Date();
         set_language();
+        load_config();
         System.out.println(run_date);
     }
 
@@ -208,7 +212,7 @@ public class Main_GUI extends JFrame implements Runnable {
     }
 
     private void setupMenuItems_mac_os() {
-        MT_System.out.println("MacOS");
+        Core.out.println("MacOS");
     }
 
     public static void repainting() {
@@ -304,8 +308,8 @@ public class Main_GUI extends JFrame implements Runnable {
 
     public void quit() {
         JOptionPane.showMessageDialog(this, FIN);
-        MT_System.out.println("Application closed.");
-        MT_System.BREAK();
+        Core.out.println("Application closed.");
+        Core.BREAK();
     }
 
     public static Main_GUI getInstance() {

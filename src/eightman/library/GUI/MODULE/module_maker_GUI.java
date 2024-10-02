@@ -1,7 +1,7 @@
 package eightman.library.GUI.MODULE;
 
+import eightman.library.Core;
 import eightman.library.GUI.Main_GUI;
-import eightman.library.GUI.System.MT_core.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -118,14 +118,14 @@ public class module_maker_GUI extends JFrame {
         EquipmentModulesWriter(fileType);
         ymlwriter(fileType);
 
-        MT_System.out.println("Loaded CSV file: " + csvFilePath);
+        Core.out.println("Loaded CSV file: " + csvFilePath);
     }
 
     private void EquipmentModulesWriter(String fileType){
         String csvFilePath = csvFilePathField.getText();
         String directoryPath = "Hoi4_modding_Tool/modules/";
         switch (fileType){
-            case "heavy": ;
+            case "heavy":
                 String outputFileName = "00_S_hev_battery.txt";
                 File directory = new File(directoryPath);
                 if (!directory.exists()) {
@@ -248,7 +248,7 @@ public class module_maker_GUI extends JFrame {
         double build_cost_ic = Double.parseDouble(values[3]);
         double convert_cost_ic = Double.parseDouble(values[4]);
         double hg_attack = Double.parseDouble(values[5]);
-        MT_System.out.println("hg_attack: " + hg_attack);
+        Core.out.println("hg_attack: " + hg_attack);
         double hg_armor_piercing = Double.parseDouble(values[6]);
         double naval_speed = Double.parseDouble(values[7]);
         int manpower = Integer.parseInt(values[8]);
@@ -330,7 +330,7 @@ public class module_maker_GUI extends JFrame {
         writer.write("\t\t\t" + Arrays.toString(module.getCriticalParts()) + "\n");
         writer.write("\t\t}\n");
         writer.write("\t}\n");
-        MT_System.out.println("Loaded " + module.getId() + ", " + module.getName() + ", " + "" + ", " + module.getCategory() + ", " + 0.0 + ", " + module.getBuildCostIc() + ", " + module.getManpower() + ", " + module.isCanLicense() + ", " + module.isIsConvertable() + ", " + module.getXpCost() +
+        Core.out.println("Loaded " + module.getId() + ", " + module.getName() + ", " + "" + ", " + module.getCategory() + ", " + 0.0 + ", " + module.getBuildCostIc() + ", " + module.getManpower() + ", " + module.isCanLicense() + ", " + module.isIsConvertable() + ", " + module.getXpCost() +
                 ", " + module.getNavalSpeed() + ", " + 0.0 + ", " + module.getHgArmorPiercing()  + ", " + module.getHgAttack() + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 +
                 ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + Arrays.toString(module.getCriticalParts()) + ", " + Arrays.toString(module.getCanConvertFromModuleCategorie()) + ", ");
         listModel.addElement("ID: " + module.getId() + ", Name: " + module.getName() + ", Category: " + module.getCategory() + ", Build Cost: " + module.getBuildCostIc() + ", Manpower: " + module.getManpower());

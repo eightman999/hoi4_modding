@@ -1,13 +1,14 @@
 package eightman.library.CUI;
 
-import eightman.library.CUI.System.Log_System;
 import eightman.library.CUI.people_name.Na_Uji;
 import eightman.library.CUI.people_name.Uji_Na;
-import eightman.library.GUI.System.MT_core;
+import eightman.library.Core;
 
 import java.io.*;
 
 import static eightman.library.CUI.Main_CUI.*;
+import static eightman.library.Core.ERROR;
+
 public class peoplename {
     public void peoplenames(){
         InputStreamReader isr = new InputStreamReader(System.in);
@@ -39,7 +40,7 @@ public class peoplename {
                     Na_Uji nu = new Na_Uji();
                     nu.NAME();
                 }else {
-                    Log_System.ERROR();
+                    ERROR();
                 }
 
                 System.out.println(temp);
@@ -59,7 +60,7 @@ public class peoplename {
 
 
         } catch (IOException e) {
-            MT_core.MT_System.out.logError("Failed to load config.", e);
+            Core.out.logError("Failed to load config.", e);
         }
     }
 }

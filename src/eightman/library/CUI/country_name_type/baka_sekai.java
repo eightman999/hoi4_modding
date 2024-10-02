@@ -1,7 +1,7 @@
 package eightman.library.CUI.country_name_type;
 
 import eightman.library.CUI.Main_CUI;
-import eightman.library.CUI.System.Log_System;
+import eightman.library.Core;
 
 import java.io.*;
 
@@ -93,7 +93,7 @@ public class baka_sekai {
                 System.out.println(temp);
                 def.defaults();
                 if (sw == 0) {
-                    Log_System.BREAK();
+                    Core.BREAK();
                     break;
                 }
             }

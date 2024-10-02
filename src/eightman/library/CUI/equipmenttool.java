@@ -1,12 +1,12 @@
 package eightman.library.CUI;
 
-import eightman.library.CUI.System.Log_System;
 import eightman.library.CUI.equipment.ship_equipment_modules;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import static eightman.library.CUI.Main_CUI.*;
+import static eightman.library.Core.ERROR;
 
 public class equipmenttool {
     public void equipment_modues(){
@@ -26,7 +26,7 @@ public class equipmenttool {
             if (mode == 1||mode == 2){
 
             }else {
-                Log_System.ERROR();
+                ERROR();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,7 +37,7 @@ public class equipmenttool {
         else if (mode == 2){
             ship_equipment_modules.SEM();
         }else {
-            Log_System.ERROR();
+            ERROR();
         }
 
     }

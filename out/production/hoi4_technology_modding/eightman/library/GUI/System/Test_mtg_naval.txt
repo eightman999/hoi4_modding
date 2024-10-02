@@ -1,14 +1,28 @@
 units = {
-	fleet = {
-		name = "地球連邦宇宙海軍 遣イ艦隊"
-		naval_base = 0
-		task_force = {
-			name = "第65護衛隊"
-			location = 0
-			ship = {name = "BBY-01 ヤマト" definition = space_battleship start_experience_factor = 1 equipment = { ship_hull_sbb_1 = { amount = 1 owner = JPN version_name = "ヤマト型" } }}
-			ship = {name = "DAOE-01 アスカ" definition = space_supply_base start_experience_factor = 0.25 equipment = { ship_hull_sd_1 = { amount = 1 owner = JPN version_name = "アスカ級" } }}
-            ship = {name = "DCV-01 アスカ" definition = light_battle_carrier start_experience_factor = 0.25 equipment = { ship_hull_sd_1 = { amount = 1 owner = JPN version_name = "ヒュウガ級" } }}
-		}
+        fleet = {
+        name = "地球連邦宇宙海軍 遣イ艦隊"
+        naval_base = 0
+        task_force = {
+            name = "第65護衛隊"
+            location = 0
+            ship = {name = "BBY-01 ヤマト" definition = space_battleship start_experience_factor = 1 equipment = { ship_hull_1 = { amount = 1 owner = JPN version_name = "ヤマト型" } }}
+            ship = {name = "DAOE-01 アスカ" definition = space_supply_base start_experience_factor = 0.25 equipment = { ship_hull_1 = { amount = 1 owner = JPN version_name = "アスカ級" } }}
+            ship = {name = "DCV-01 アスカ" definition = light_battle_carrier start_experience_factor = 0.25 equipment = { ship_hull_1 = { amount = 1 owner = JPN version_name = "ヒュウガ級" } }}
+        }
 
-	}
+    }
 }
+
+#instant_effect = {
+#    add_equipment_production = {
+#        equipment = {
+#            type = ship_hull_sdd_1
+#            creator = "JPN"
+#            version_name = "ネプチューン級"
+#        }
+#        name = "SPF-01 ネプチューン"
+#        requested_factories = 1
+#        progress = 0.85
+#        amount = 1
+#    }
+#}

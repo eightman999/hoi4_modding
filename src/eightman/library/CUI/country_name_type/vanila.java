@@ -1,6 +1,6 @@
 package eightman.library.CUI.country_name_type;
 
-import eightman.library.CUI.System.Log_System;
+import eightman.library.Core;
 
 import java.io.*;
 
@@ -30,7 +30,7 @@ public class vanila {
                 def.defaults();
                 System.out.println(sw);
                 if (sw == 0) {
-                    Log_System.BREAK();
+                    Core.BREAK();
                     break;
                 }
             }

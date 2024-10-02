@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import eightman.library.CUI.ship_name;
-import eightman.library.GUI.System.MT_core;
+import eightman.library.Core;
 
 public class SHIP_NAME {
 
@@ -62,7 +62,7 @@ public class SHIP_NAME {
         }
       }
     } catch (IOException e) {
-      MT_core.MT_System.out.logError("Failed to load config.", e);
+      Core.out.logError("Failed to load config.", e);
     }
   }
 }

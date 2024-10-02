@@ -13,8 +13,7 @@ import java.nio.file.Path;
 import java.text.ParseException;
 import java.util.*;
 
-import static eightman.library.GUI.Main_GUI.loading;
-import static eightman.library.GUI.Main_GUI.modPathMap;
+import static eightman.library.GUI.Main_GUI.*;
 import static eightman.library.GUI.language.*;
 
 public class module_maker_GUI extends JFrame {
@@ -32,7 +31,7 @@ public class module_maker_GUI extends JFrame {
     private JList<String> moduleList = new JList<>(listModel);
     private String EQMs = "equipment_modules = {\n";
 
-    public void module_maker_GUI() {
+    public void moduleMakerGUI() {
 //        this.mainGui = mainGui;
         setTitle(MODULE + " " +MAKER);
         setupFrame();
@@ -59,7 +58,7 @@ public class module_maker_GUI extends JFrame {
     private void setupgui() {
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        modNameDropdown = new JComboBox<>(modPathMap.keySet().toArray(new String[0]));
+        modNameDropdown = new JComboBox<>(modList.toArray(new String[0]));
         modNameDropdown.addActionListener(e -> updateModPathLabel());
 
         modPathLabel = new JLabel();
@@ -351,7 +350,7 @@ public class module_maker_GUI extends JFrame {
     private void removeBracketsFromFile(String filePath) {
         String outputFilePath = filePath + "_temp";
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line.replace("[", "").replace("]", "");
@@ -387,8 +386,6 @@ public class module_maker_GUI extends JFrame {
     private void loading_animation() {
         // アニメーションを表示
         loadingLabel.setVisible(true);
-
-
 
         // ロード処理が完了したらアニメーションを非表示にする
         loadingLabel.setVisible(false);

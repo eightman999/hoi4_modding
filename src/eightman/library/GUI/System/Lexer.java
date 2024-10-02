@@ -94,6 +94,21 @@ public class Lexer {
             case "texturefile":
                 type = Token.TokenType.TEXTURE_FILE;
                 break;
+            case "instant_effect":
+                type = Token.TokenType.INSTANT_EFFECT;
+                break;
+            case "add_equipment_production":
+                type = Token.TokenType.ADD_EQUIPMENT_PRODUCTION;
+                break;
+            case "creator":
+                type = Token.TokenType.CREATOR;
+                break;
+            case "requested_factories":
+                type = Token.TokenType.REQUESTED_FACTORIES;
+                break;
+            case "progress":
+                type = Token.TokenType.PROGRESS;
+                break;
             default:
                 if (tokenValue.matches("#.*")) {
                     type = Token.TokenType.CMMENTOUT;

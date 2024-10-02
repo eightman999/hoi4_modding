@@ -111,7 +111,7 @@ public class NV_MOD_GFX_GUI extends JFrame implements ActionListener {
         }
     }
 
-    class LoadActionListener implements ActionListener {
+    static class LoadActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
         }

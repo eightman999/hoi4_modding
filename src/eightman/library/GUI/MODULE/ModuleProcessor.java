@@ -86,30 +86,6 @@ public class ModuleProcessor {
         }
     }
 
-//    private void writeToCSV(String moduleID, String moduleBlock) {
-//        String[] statsCategories = {"multiply_stats", "add_stats", "add_average_stats"};
-//        Pattern pattern = Pattern.compile("(multiply_stats|add_stats|add_average_stats)=\\{(.*?)\\}", Pattern.DOTALL);
-//
-//        Matcher matcher = pattern.matcher(moduleBlock);
-//        Map<String, String> statsMap = new HashMap<>();
-//        while (matcher.find()) {
-//            statsMap.put(matcher.group(1), matcher.group(2));
-//        }
-//
-//        try (FileWriter fw = new FileWriter("output.csv", true);
-//             PrintWriter pw = new PrintWriter(fw)) {
-//
-//            for (String category : statsCategories) {
-//                if (statsMap.containsKey(category)) {
-//                    String stats = statsMap.get(category);
-//                    pw.println(moduleID + "," + category + "," + stats);
-//                }
-//            }
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private Ship_Module createShipModule(String moduleID, String moduleBlock) {
         Pattern pattern = Pattern.compile("(.*?)=(.*)");

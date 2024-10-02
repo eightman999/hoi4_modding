@@ -1,6 +1,7 @@
 package eightman.library.GUI.GFX;
 
 import eightman.library.GUI.Main_GUI;
+import eightman.library.GUI.System.MT_core;
 import eightman.library.GUI.language;
 
 import javax.imageio.ImageIO;
@@ -365,7 +366,7 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
                 osw.close();
                 fos.close();
             } catch (IOException er) {
-                System.out.println(er);
+                MT_core.MT_System.out.logError("Failed to load config.", er);
             }
         }
     }

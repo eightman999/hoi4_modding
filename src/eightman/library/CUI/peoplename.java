@@ -3,6 +3,7 @@ package eightman.library.CUI;
 import eightman.library.CUI.System.Log_System;
 import eightman.library.CUI.people_name.Na_Uji;
 import eightman.library.CUI.people_name.Uji_Na;
+import eightman.library.GUI.System.MT_core;
 
 import java.io.*;
 
@@ -58,7 +59,7 @@ public class peoplename {
 
 
         } catch (IOException e) {
-            System.out.println(e);
+            MT_core.MT_System.out.logError("Failed to load config.", e);
         }
     }
 }

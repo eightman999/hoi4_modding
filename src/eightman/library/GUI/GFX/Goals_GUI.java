@@ -217,7 +217,7 @@ public class Goals_GUI extends JFrame implements ActionListener {
                 osw.close();
                 fos.close();
             } catch (IOException er) {
-                System.out.println(er);
+                MT_core.MT_System.out.logError("Failed to load config.", er);
             }
             temp = "#" + language.CCC + "\n" + "spriteTypes = {\n";
         }

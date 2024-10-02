@@ -1,140 +1,123 @@
 package eightman.library.GUI.GFX;
 
-import static java.awt.event.KeyEvent.VK_CONTROL;
+import eightman.library.GUI.Main_GUI;
+import eightman.library.GUI.language;
+import eightman.library.GUI.System.MT_core.*;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import javax.swing.*;
-import eightman.library.GUI.language;
+import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 
-public class GFX_GUI extends JFrame implements ActionListener {
+import static eightman.library.GUI.language.Title;
+import static java.awt.event.KeyEvent.VK_CONTROL;
 
-  JTextArea textArea_s = new JTextArea();
-  String file_name = "00_GFX.gfx";
-  language l = new language();
-  JPanel p = new JPanel();
-  JLabel path = new JLabel("");
-  String file_path = "";
-  JTextField texture_file_path = new JTextField("", 15);
-  JTextField fn = new JTextField("File Path", 15);
-  JTextField fnm = new JTextField("File name", 15);
-  String temp = "#" + language.CCC + "\n" + "spriteTypes = {\n";
+public class GFX_GUI extends JFrame {
 
-  public void gfx_GUI() {
-    GFX_GUI Lframe = new GFX_GUI();
-    Lframe.setLocationRelativeTo(null);
-    Lframe.setVisible(true);
-  }
 
-  public GFX_GUI() {
-    setBounds(100, 100, 660, 700);
-    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    JPanel p1 = new JPanel();
+    private JTextArea textArea_s = new JTextArea();
+    private String file_name = "00_GFX.gfx";
+    private language l = new language();
+    private JPanel p = new JPanel();
+    private JLabel path = new JLabel("");
+    private String file_path = "";
+    private JTextField texture_file_path = new JTextField("", 15);
+    private JTextField fn = new JTextField("File Path", 15);
+    private JTextField fnm = new JTextField("File name", 15);
+    private String temp = "#" + language.CCC + "\n" + "spriteTypes = {\n";
 
-    Container contentPane = getContentPane();
-    contentPane.add(p, BorderLayout.CENTER);
-
-    JMenuBar menuBar = new JMenuBar();
-    JMenu menuFile = new JMenu("File");
-    JMenuItem menuSave = new JMenuItem("Save");
-
-    menuSave.setMnemonic(VK_CONTROL + 'S');
-    textArea_s.setWrapStyleWord(true);
-    textArea_s.setLineWrap(false);
-    JScrollPane scrollPane = new JScrollPane(textArea_s);
-    scrollPane.setVerticalScrollBarPolicy(
-      JScrollPane.VERTICAL_SCROLLBAR_ALWAYS
-    );
-    scrollPane.setPreferredSize(new Dimension(500, 1000));
-
-    getRootPane().setJMenuBar(menuBar);
-    menuBar.add(menuFile);
-    menuFile.add(menuSave);
-
-    add(p1);
-    JLabel label = new JLabel("Path : ");
-
-    p1.setLayout(null);
-    JLabel label1 = new JLabel(".gfx");
-    //        label1.setBounds(465,10,40,20);
-    label.setBounds(120, 10, 40, 20);
-    path.setBounds(120, 50, 340, 20);
-    texture_file_path.setBounds(120, 35, 340, 20);
-    JButton done = new JButton(language.DONE);
-    JButton load = new JButton("Load&Save");
-    done.setBounds(505, 10, 80, 20);
-    load.setBounds(505, 50, 80, 20);
-    fn.setBounds(160, 10, 300, 20);
-    p1.add(done);
-    p1.add(label1);
-    p1.add(label);
-    p1.add(fn);
-    p1.add(path);
-    p1.add(load);
-    p1.add(texture_file_path);
-    fnm.setBounds(160, 75, 300, 20);
-    p1.add(fnm);
-    done.addActionListener(new GFX_GUI.DoneActionListener());
-    load.addActionListener(new GFX_GUI.LoadActionListener());
-  }
-
-  @Override
-  public void actionPerformed(ActionEvent e) {}
-
-  class DoneActionListener implements ActionListener {
-
-    public void actionPerformed(ActionEvent e) {
-      file_path = fn.getText();
-      path.setText("file Path : " + file_path);
+    public GFX_GUI() {
+        setupFrame();
+        setupMenu();
+        setupPanel();
+//        setupButtons();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    new Main_GUI(Title).setVisible(true);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
-  }
 
-  class LoadActionListener implements ActionListener {
+    private void setupFrame() {
+        setBounds(100, 100, 660, 700);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        getContentPane().add(p, BorderLayout.CENTER);
+    }
 
-    public void actionPerformed(ActionEvent e) {
-      File dir = new File(file_path);
-      File[] list = dir.listFiles();
-      for (int i = 0; i < list.length; i++) {
-        if (list[i].isFile()) { //ファイルの場合
-          System.out.println(list[i].getName());
-          String fileName = list[i].getName();
-          System.out.println(fileName);
-          int index = fileName.lastIndexOf(".");
-          temp =
-            temp +
-            "\t\tSpriteType = {\n\t\tname = \"GFX_" +
-            fileName.substring(0, index) +
-            "\"";
-          temp =
-            temp +
-            "\n\t\t\ttexturefile = \"" +
-            texture_file_path.getText() +
-            "/" +
-            list[i].getName() +
-            "\"";
-          temp = temp + "\n\t\t}\n";
-        } else if (list[i].isDirectory()) { //ディレクトリの場合
-          //何もしない
+    private void setupMenu() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menuFile = new JMenu("File");
+        JMenuItem menuSave = new JMenuItem("Save");
+        menuSave.setMnemonic(KeyEvent.VK_CONTROL + 'S');
+        menuBar.add(menuFile);
+        menuFile.add(menuSave);
+        getRootPane().setJMenuBar(menuBar);
+    }
+
+    private void setupPanel() {
+        JPanel p1 = new JPanel();
+        add(p1);
+        p1.setLayout(null);
+        JLabel label = new JLabel("Path : ");
+        label.setBounds(120, 10, 40, 20);
+        path.setBounds(120, 50, 340, 20);
+        texture_file_path.setBounds(120, 35, 340, 20);
+        fn.setBounds(160, 10, 300, 20);
+        JButton done = new JButton(language.DONE);
+        done.setBounds(505, 10, 80, 20);
+        done.addActionListener(e -> updateFilePath());
+        JButton load = new JButton("Load&Save");
+        load.setBounds(505, 50, 80, 20);
+        load.addActionListener(e -> loadAndSave());
+        p1.add(done);
+        p1.add(load);
+        p1.add(label);
+        p1.add(fn);
+        p1.add(path);
+        p1.add(texture_file_path);
+    }
+
+
+
+    private void updateFilePath() {
+        file_path = fn.getText();
+        path.setText("file Path : " + file_path);
+    }
+    public void loadAndSave() {
+        File dir = new File(file_path);
+        File[] list = dir.listFiles();
+        if (list != null) {
+            for (File file : list) {
+                if (file.isFile()) {
+                    String fileName = file.getName();
+                    int index = fileName.lastIndexOf(".");
+                    if (index > 0) {
+                        String baseName = fileName.substring(0, index);
+                        temp += "\tSpriteType = {\n\t\tname = \"GFX_" + baseName + "\"\n\t}\n";
+                    }
+                }
+            }
         }
-      }
-      temp = temp + "}\n";
-      try {
-        FileOutputStream fos = new FileOutputStream(
-          "/" + file_path + "/" + fnm.getText() + ".gfx"
-        );
-        System.out.println("/" + file_path + "/" + fnm.getText() + ".gfx");
-        OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
-        osw.write(temp);
-        osw.close();
-        fos.close();
-      } catch (IOException er) {
-        System.out.println(er);
-      }
+        temp += "}\n";
+
+        try (FileOutputStream fos = new FileOutputStream(file_path + "/" + fnm.getText() + ".gfx");
+             OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8)) {
+            osw.write(temp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Reset temp for future use
+        temp = "#" + language.CCC + "\n" + "spriteTypes = {\n";
     }
-  }
 }

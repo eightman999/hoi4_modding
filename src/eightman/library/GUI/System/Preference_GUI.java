@@ -213,6 +213,7 @@ public class Preference_GUI extends JFrame {
             settings.put("modPathMap", modPathMap);
         }
         String selectedLanguage = (String) languageComboBox.getSelectedItem();
+        
         settings.put("lang", selectedLanguage);
         settings.put("font", font);
         settings.put("runCount_h", runtime_h); // runtime_hを追加

@@ -345,9 +345,9 @@ public class Main_GUI extends JFrame implements Runnable {
             final Main_GUI mainFrame = new Main_GUI(Title);
             if (isMac()) {
                 Class<?> clz = Class.forName(MF_CLASS_NAME);
-                Method mtd = clz.getMethod("setupScreenMenu", new Class[] {MainFrame.class});
+                Method mtd = clz.getMethod("setupScreenMenu", MainFrame.class);
                 MainFrame mainFrameInstance = new MainFrame();
-                mtd.invoke(null, new Object[] {mainFrameInstance});
+                mtd.invoke(null, mainFrameInstance);
             }
             mainFrame.setLocationRelativeTo(null);
             // 画面表示

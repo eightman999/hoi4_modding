@@ -4,3 +4,8 @@ profile:
   name: qodana.recommended
 include:
   - name: CheckDependencyLicenses
+exclude:
+  - name: RegExpRedundantEscape
+    paths:
+      - src/eightman/library/GUI/MODULE/ModuleProcessor.java
+      - src/eightman/library/GUI/System/Lexer.java

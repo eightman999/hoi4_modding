@@ -134,9 +134,11 @@ public class Core {
                 // その他の設定を反映
                 String language = (String) settings.get("lang");
                 if (language != null) {
-                    if (language.equals("ENGLISH")) {
+                    if (language.equals("en_en")) {
                         Main_GUI.L_mode = 1;
-                    } else if (language.equals("JAPANESE")) {
+                    } else if (language.equals("ja_jp")) {
+                        Main_GUI.L_mode = 0;
+                    } else {
                         Main_GUI.L_mode = 0;
                     }
                 }

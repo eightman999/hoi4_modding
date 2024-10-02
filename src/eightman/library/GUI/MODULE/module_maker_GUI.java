@@ -330,7 +330,7 @@ public class module_maker_GUI extends JFrame {
         writer.write("\t\t\t" + Arrays.toString(module.getCriticalParts()) + "\n");
         writer.write("\t\t}\n");
         writer.write("\t}\n");
-        Core.out.println("Loaded " + module.getId() + ", " + module.getName() + ", " + "" + ", " + module.getCategory() + ", " + 0.0 + ", " + module.getBuildCostIc() + ", " + module.getManpower() + ", " + module.isCanLicense() + ", " + module.isIsConvertable() + ", " + module.getXpCost() +
+        Core.out.println("Loaded " + module.getId() + ", " + module.getName() + ", " + ", " + module.getCategory() + ", " + 0.0 + ", " + module.getBuildCostIc() + ", " + module.getManpower() + ", " + module.isCanLicense() + ", " + module.isIsConvertable() + ", " + module.getXpCost() +
                 ", " + module.getNavalSpeed() + ", " + 0.0 + ", " + module.getHgArmorPiercing()  + ", " + module.getHgAttack() + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 +
                 ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + 0.0 + ", " + Arrays.toString(module.getCriticalParts()) + ", " + Arrays.toString(module.getCanConvertFromModuleCategorie()) + ", ");
         listModel.addElement("ID: " + module.getId() + ", Name: " + module.getName() + ", Category: " + module.getCategory() + ", Build Cost: " + module.getBuildCostIc() + ", Manpower: " + module.getManpower());

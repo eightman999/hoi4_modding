@@ -26,7 +26,8 @@ import java.util.Date;
 import java.util.Objects;
 
 import static eightman.library.Core.*;
-import static eightman.library.GUI.System.Mac_OS.*;
+import static eightman.library.GUI.System.Mac_OS.isMac;
+import static eightman.library.GUI.System.Mac_OS.mac_system;
 import static eightman.library.GUI.language.*;
 import static eightman.library.GUI.language.C_languages;
 import static javax.swing.UIManager.setLookAndFeel;

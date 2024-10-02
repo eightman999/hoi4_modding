@@ -1,9 +1,10 @@
 package eightman.library.CUI.equipment;
 
 import static eightman.library.CUI.Main_CUI.*;
+import static eightman.library.Core.ERROR;
 
 import java.io.*;
-import eightman.library.CUI.System.Log_System;
+import eightman.library.Core;
 import eightman.library.CUI.equipment.ship_modules.add_average_stats;
 import eightman.library.CUI.equipment.ship_modules.add_stats;
 import eightman.library.CUI.equipment.ship_modules.build_cost_resources;
@@ -104,8 +105,8 @@ public class ship_equipment_modules {
       localization.close();
       modules.close();
     } catch (IOException e) {
-      Log_System.ERROR();
-      System.out.println(e);
+      ERROR();
+      Core.out.logError("Failed to load config.", e);
     }
   }
 }

@@ -60,12 +60,4 @@ public class Ship {
     public void setVersionName(String versionName) {
         this.equipment.setVersionName(versionName);
     }
-
-    public String getOwner() {
-        return equipment.getOwner();
-    }
-
-    public String getVersionName() {
-        return equipment.getVersionName();
-    }
 }

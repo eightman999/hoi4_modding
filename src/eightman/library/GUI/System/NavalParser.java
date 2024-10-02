@@ -1,12 +1,14 @@
 // NavalParser.java
 package eightman.library.GUI.System;
 
+import eightman.library.Core;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class NavalParser {
 
-    private List<Token> tokens;
+    private final List<Token> tokens;
     private int currentTokenIndex = 0;
 
     public NavalParser(Lexer lexer) {
@@ -28,7 +30,8 @@ public class NavalParser {
                 // Handle unexpected close brace
                 advance();
             }else if (check(Token.TokenType.INSTANT_EFFECT)) {
-
+                // Handle instant effect
+                advance();
             }else {
                 throw new RuntimeException("Unexpected token: " + currentToken().getValue());
             }
@@ -155,25 +158,25 @@ public class NavalParser {
                         String temp_equip = consume(Token.TokenType.SHIP_HULL).getValue();
                         consume(Token.TokenType.ASSIGNMENT);
                         consume(Token.TokenType.OPEN_BRACE);
-//                        System.out.println("Equipment: " + temp_equip);
+                        System.out.println("Equipment: " + temp_equip);
                         ship.addEquipment(temp_equip);
                     } else if (check(Token.TokenType.AMOUNT)) {
                         consume(Token.TokenType.AMOUNT);
                         consume(Token.TokenType.ASSIGNMENT);
                         int amount = Integer.parseInt(consume(Token.TokenType.NUMBER).getValue());
-//                        System.out.println("Amount: " + amount);
+                        System.out.println("Amount: " + amount);
                         ship.setAmount(amount);
                     } else if (check(Token.TokenType.OWNER)) {
                         consume(Token.TokenType.OWNER);
                         consume(Token.TokenType.ASSIGNMENT);
                         String owner = consume(Token.TokenType.IDENT).getValue();
-//                        System.out.println("Owner: " + owner);
+                        System.out.println("Owner: " + owner);
                         ship.setOwner(owner);
                     } else if (check(Token.TokenType.VERSION_NAME)) {
                         consume(Token.TokenType.VERSION_NAME);
                         consume(Token.TokenType.ASSIGNMENT);
                         String versionName = consume(Token.TokenType.STRING).getValue();
-//                        System.out.println("Version name: " + versionName);
+                        System.out.println("Version name: " + versionName);
                         ship.setVersionName(versionName);
                     } else {
                         throw new RuntimeException("Unexpected token in equipment: " + currentToken().getValue());
@@ -189,30 +192,30 @@ public class NavalParser {
         return ship;
     }
 
-    private void parseInstanceEffect(List<production_ships> production_ships) {
-        consume(Token.TokenType.INSTANT_EFFECT);
-        consume(Token.TokenType.ASSIGNMENT);
-        consume(Token.TokenType.OPEN_BRACE);
-        while (!check(Token.TokenType.CLOSE_BRACE)) {
-            if (check(Token.TokenType.CMMENTOUT)) {
-                skipComment();
-            } else if (check(Token.TokenType.ADD_EQUIPMENT_PRODUCTION)) {
-                production_ships.add(parseProductionShips());
-            } else {
-                throw new RuntimeException("Unexpected token in instant effect: " + currentToken().getValue());
-            }
-        }
-        consume(Token.TokenType.CLOSE_BRACE);
-    }
+//    private List<production_ships> void parseInstanceEffect() {
+//        consume(Token.TokenType.INSTANT_EFFECT);
+//        consume(Token.TokenType.ASSIGNMENT);
+//        consume(Token.TokenType.OPEN_BRACE);
+//        while (!check(Token.TokenType.CLOSE_BRACE)) {
+//            if (check(Token.TokenType.CMMENTOUT)) {
+//                skipComment();
+//            } else if (check(Token.TokenType.ADD_EQUIPMENT_PRODUCTION)) {
+//                production_ships.add(parseProductionShips());
+//            } else {
+//                throw new RuntimeException("Unexpected token in instant effect: " + currentToken().getValue());
+//            }
+//        }
+//        consume(Token.TokenType.CLOSE_BRACE);
+//    }
 
     private
 
-    private void skipComment() {
-        while (!isEOF() && currentToken().getType() != Token.TokenType.CMMENTOUT) {
+    void skipComment() {
+        while (isEOF() && currentToken().getType() != Token.TokenType.CMMENTOUT) {
             advance();
         }
         // Skip the comment token itself
-        if (!isEOF()) {
+        if (isEOF()) {
             advance();
         }
     }
@@ -241,6 +244,6 @@ public class NavalParser {
     }
 
     private boolean isEOF() {
-        return currentTokenIndex >= tokens.size() || currentToken().getType() == Token.TokenType.EOF;
+        return currentTokenIndex < tokens.size() && currentToken().getType() != Token.TokenType.EOF;
     }
 }

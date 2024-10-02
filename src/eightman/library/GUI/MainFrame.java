@@ -1,6 +1,6 @@
 package eightman.library.GUI;
 
-import eightman.library.GUI.System.MT_core;
+import eightman.library.Core;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -224,7 +224,7 @@ public class MainFrame extends JFrame {
                 wr.flush();
             }
         } catch (Exception ex) {
-            MT_core.MT_System.ERROR();
+            Core.ERROR();
             ex.printStackTrace();
 
         }

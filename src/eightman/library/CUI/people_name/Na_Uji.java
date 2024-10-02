@@ -1,5 +1,7 @@
 package eightman.library.CUI.people_name;
 
+import eightman.library.Core;
+
 import static eightman.library.CUI.Main_CUI.temp;
 
 import java.io.BufferedReader;
@@ -108,7 +110,7 @@ public class Na_Uji {
         }
       }
     } catch (IOException e) {
-      System.out.println(e);
+      Core.ERROR();
     }
   }
 }

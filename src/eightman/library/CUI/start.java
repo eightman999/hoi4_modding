@@ -1,12 +1,12 @@
 package eightman.library.CUI;
 
-import eightman.library.CUI.System.Log_System;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import static eightman.library.CUI.Main_CUI.*;
+import static eightman.library.Core.ERROR;
 
 public class start {
     public void START(){
@@ -22,7 +22,7 @@ public class start {
             mode = Integer.parseInt(br.readLine());
             if (mode == 1||mode == 2||mode == 3||mode == 4||mode == 5){
             }else {
-                Log_System.ERROR();
+                ERROR();
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -8,7 +8,7 @@ public class Lexer {
             "\\bnaval_base\\b|\\btask_force\\b|\\bunits\\b|\\bfleet\\b|\\bship\\b|\\bname\\b|\\bdefinition\\b|\\bowner\\b|\\bversion_name\\b|\\bstart_experience_factor\\b|\\bship_hull_[a-z]+_\\d+\\b|=|\\{|\\}|\\d+\\.\\d+|\\d+|\"[^\"]*\"|\\w+|#.*"
     );
 
-    private Matcher matcher;
+    private final Matcher matcher;
     private String input;
 
     public Lexer(String input) {
@@ -118,7 +118,7 @@ public class Lexer {
                     type = Token.TokenType.NUMBER;
                 } else if (tokenValue.matches("\"[^\"]*\"")) {
                     type = Token.TokenType.STRING;
-                } else if (tokenValue.matches("ship_hull_[a-z]+_\\d+")) {
+                } else if (tokenValue.matches("ship_hull_[A-Za-z_0-9]+")) {
                     type = Token.TokenType.SHIP_HULL;
                 } else {
                     type = Token.TokenType.IDENT;

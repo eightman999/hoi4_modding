@@ -1,12 +1,12 @@
 package eightman.library.CUI;
 
 import static eightman.library.CUI.Main_CUI.*;
+import static eightman.library.Core.out.logError;
 
 import java.io.*;
-import eightman.library.CUI.System.Log_System;
 import eightman.library.CUI.ship_name_type.SHIP_NAME;
 import eightman.library.CUI.ship_name_type.SHIP_NAME_TYPES;
-import eightman.library.GUI.System.MT_core;
+import eightman.library.Core;
 
 public class ship_name {
 
@@ -112,7 +112,7 @@ public class ship_name {
           sn.FISH();
           SHIP_NAME.SHIP_NAMES();
         } else {
-          Log_System.ERROR();
+          Core.ERROR();
         }
         System.out.println(temp);
         System.out.println(
@@ -132,7 +132,7 @@ public class ship_name {
       osw.close();
       fos.close();
     } catch (IOException e) {
-      MT_core.MT_System.out.logError("Failed to load config.", e);
+      logError("Failed to load config.", e);
     }
   }
 }

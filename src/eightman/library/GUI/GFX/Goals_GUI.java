@@ -1,7 +1,7 @@
 package eightman.library.GUI.GFX;
 
+import eightman.library.Core;
 import eightman.library.GUI.Main_GUI;
-import eightman.library.GUI.System.MT_core;
 import eightman.library.GUI.language;
 
 import javax.swing.*;
@@ -211,13 +211,13 @@ public class Goals_GUI extends JFrame implements ActionListener {
                 FileOutputStream fos = new FileOutputStream(
                         "/" + file_path + "/" + fnm.getText() + ".gfx"
                 );
-                MT_core.MT_System.out.println("/" + file_path + "/" + fnm.getText() + ".gfx");
+                Core.out.println("/" + file_path + "/" + fnm.getText() + ".gfx");
                 OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
                 osw.write(temp);
                 osw.close();
                 fos.close();
             } catch (IOException er) {
-                MT_core.MT_System.out.logError("Failed to load config.", er);
+                Core.out.logError("Failed to load config.", er);
             }
             temp = "#" + language.CCC + "\n" + "spriteTypes = {\n";
         }

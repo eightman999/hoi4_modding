@@ -3,9 +3,9 @@ package eightman.library.GUI.System;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import eightman.library.Core;
 import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.language;
-import static eightman.library.GUI.System.MT_core.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -227,7 +227,7 @@ public class Preference_GUI extends JFrame {
                 writer.write(json);
             }
         } catch (IOException e) {
-            MT_System.out.println("設定の保存に失敗しました。");
+            Core.out.println("設定の保存に失敗しました。");
             logger.log(Level.SEVERE, "設定の保存に失敗しました。", e);
         }
     }

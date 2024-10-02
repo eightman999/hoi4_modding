@@ -2,7 +2,6 @@ package eightman.library.GUI.GFX;
 
 import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.language;
-import eightman.library.GUI.System.MT_core.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +14,6 @@ import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 
 import static eightman.library.GUI.language.Title;
-import static java.awt.event.KeyEvent.VK_CONTROL;
 
 public class GFX_GUI extends JFrame {
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Fleet {
     private String name;
-    private List<TaskForce> taskForces = new ArrayList<>();
+    private final List<TaskForce> taskForces = new ArrayList<>();
 
     public String getName() {
         return name;

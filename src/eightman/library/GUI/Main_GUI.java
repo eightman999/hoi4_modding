@@ -183,9 +183,6 @@ public class Main_GUI extends JFrame implements Runnable {
                         this.setVisible(false);
                     });
                 }
-//                else if (mode == convertItem) {
-//                    modeButton.addActionListener(e -> new Convert_GUI().initializeUI());
-//                }
                 groupPanel.add(modeButton);
             }
             buttonPanel.add(groupPanel);

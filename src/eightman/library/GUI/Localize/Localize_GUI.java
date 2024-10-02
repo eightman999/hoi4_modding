@@ -81,9 +81,6 @@ public class Localize_GUI extends JFrame implements ActionListener {
 
         menuSave.setMnemonic(VK_CONTROL + 'S');
 
-        //        menuSizeLarge.setMnemonic('L');
-        //        menuSizeSmall.setMnemonic('S');
-
         menuSave.addActionListener(new menuSaveListener());
 
         JButton combined = new JButton(language.combined);
@@ -200,15 +197,7 @@ public class Localize_GUI extends JFrame implements ActionListener {
                 }
                 STR = String.valueOf(sb);
                 textArea_d.setText(new String(sb));
-            }
-            //            else if (linecount_s == 1 || linecount_t == 1){
-            //                JOptionPane.showMessageDialog(null,
-            //                        "何も入力されていません！",
-            //                        "",
-            //                        JOptionPane.WARNING_MESSAGE);
-            //
-            //            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(
                         null,
                         language.LR_no,
@@ -233,11 +222,5 @@ public class Localize_GUI extends JFrame implements ActionListener {
             }
         }
     }
-    //    class SetActionListener implements ActionListener {
-    //        public void actionPerformed(ActionEvent e) {
-    //            setBounds(100, 100, 600, 600);
-    //            Container contentPane = getContentPane();
-    //            contentPane.add(p, BorderLayout.CENTER);
-    //        }
-    //    }
+
 }

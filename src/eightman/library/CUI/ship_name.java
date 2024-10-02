@@ -6,6 +6,7 @@ import java.io.*;
 import eightman.library.CUI.System.Log_System;
 import eightman.library.CUI.ship_name_type.SHIP_NAME;
 import eightman.library.CUI.ship_name_type.SHIP_NAME_TYPES;
+import eightman.library.GUI.System.MT_core;
 
 public class ship_name {
 
@@ -131,7 +132,7 @@ public class ship_name {
       osw.close();
       fos.close();
     } catch (IOException e) {
-      System.out.println(e);
+      MT_core.MT_System.out.logError("Failed to load config.", e);
     }
   }
 }

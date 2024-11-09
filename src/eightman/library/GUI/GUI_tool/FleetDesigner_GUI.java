@@ -1,25 +1,26 @@
-// FleetDesigner_GUI.java
 package eightman.library.GUI.GUI_tool;
 
+import eightman.library.Core;
 import eightman.library.GUI.Main_GUI;
 import eightman.library.GUI.System.*;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.*;
 import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.*;
+import java.nio.file.*;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import static eightman.library.GUI.Main_GUI.*;
 import static eightman.library.GUI.language.Title;
 
@@ -32,51 +33,79 @@ public class FleetDesigner_GUI {
     private JButton loadButton;
     private String modName;
     private String modpath;
+    private File tempFile;
+    private JLabel detailsLabel; // Define detailsLabel here
 
     public FleetDesigner_GUI() {
+        Core.out.println("Fleet Designer GUI is now opening");
         frame = new JFrame("Fleet Designer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
 
-        // Mod選択プルダウンと読み込み開始ボタンを作成
         modComboBox = new JComboBox<>(modList.toArray(new String[0]));
         modComboBox.addActionListener(e -> updateModPathLabel());
         loadButton = new JButton("読み込み開始");
         loadButton.addActionListener(e -> LoadingModsNaval());
-
-        // 上部パネルに追加
+        Core.out.println("set up the modComboBox and loadButton");
         JPanel topPanel = new JPanel();
         topPanel.add(modComboBox);
         topPanel.add(loadButton);
-        // ファイル名をルートノードの名前として設定
+
         String fileName = Paths.get(naval_path).getFileName().toString();
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(fileName);
-
+        Core.out.println("set up the root node");
         try {
+            Core.out.println("Reading file: " + naval_path);
             String content = new String(Files.readAllBytes(Paths.get(naval_path)));
-            Lexer lexer = new Lexer(content);
-            NavalParser parser = new NavalParser(lexer);
-            List<Fleet> fleets = parser.parse();
+            Core.out.println("File read successfully, initializing lexer and parser.");
 
-            for (Fleet fleet : fleets) {
-                DefaultMutableTreeNode fleetNode = findOrCreateNode(root, fleet.getName());
+            Core.out.println("Initializing Lexer");
+            Lexer lexer = new Lexer(content);
+            Core.out.println("Lexer initialized successfully");
+
+            Core.out.println("Initializing Parser");
+            NavalParser parser = new NavalParser(lexer);
+            Core.out.println("Parser initialized successfully");
+
+            Core.out.println("Starting parsing process");
+            Units units = parser.parse();
+            Core.out.println("Parsing completed, processing units.");
+
+            for (Fleet fleet : units.getFleets()) {
+                Core.out.println("Setting up fleet node: " + fleet.getName());
+                DefaultMutableTreeNode fleetNode = new DefaultMutableTreeNode(fleet);
+                root.add(fleetNode);
                 for (TaskForce taskForce : fleet.getTaskForces()) {
-                    DefaultMutableTreeNode taskForceNode = findOrCreateNode(fleetNode,  taskForce.getName());
+                    Core.out.println("Setting up task force node: " + taskForce.getName());
+                    DefaultMutableTreeNode taskForceNode = new DefaultMutableTreeNode(taskForce);
+                    fleetNode.add(taskForceNode);
                     for (Ship ship : taskForce.getShips()) {
-                        findOrCreateNode(taskForceNode, "Ship: " + ship.getName());
+                        Core.out.println("Setting up ship node: " + ship.getName());
+                        DefaultMutableTreeNode shipNode = new DefaultMutableTreeNode(ship);
+                        taskForceNode.add(shipNode);
+                        for (Equipment equipment : ship.getEquipmentList()) {
+                            Core.out.println("Setting up equipment node: " + equipment.getOwner());
+                            DefaultMutableTreeNode equipmentNode = new DefaultMutableTreeNode(equipment);
+                            shipNode.add(equipmentNode);
+                        }
                     }
                 }
             }
+            Core.out.println("All nodes set up successfully.");
         } catch (IOException e) {
+            Core.ERROR();
             e.printStackTrace();
         }
-
+        Core.out.println("set up the tree nodes");
         tree = new JTree(root);
+        tree.setDragEnabled(true);
+        tree.setDropMode(DropMode.ON_OR_INSERT);
+        tree.setTransferHandler(new TreeTransferHandler());
         JScrollPane treeScrollPane = new JScrollPane(tree);
 
         detailsPanel = new JPanel();
         detailsPanel.setLayout(new BorderLayout());
-        JLabel detailsLabel = new JLabel("Select a node to see details");
+        detailsLabel = new JLabel("Select a node to see details"); // Initialize detailsLabel
         detailsPanel.add(detailsLabel, BorderLayout.CENTER);
 
         tree.addTreeSelectionListener(new TreeSelectionListener() {
@@ -84,7 +113,18 @@ public class FleetDesigner_GUI {
             public void valueChanged(TreeSelectionEvent e) {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
                 if (node == null) return;
-                detailsLabel.setText(node.toString());
+
+                Object userObject = node.getUserObject();
+
+                if (userObject instanceof Fleet) {
+                    displayFleetDetails((Fleet) userObject);
+                } else if (userObject instanceof TaskForce) {
+                    displayTaskForceDetails((TaskForce) userObject);
+                } else if (userObject instanceof Ship) {
+                    displayShipDetails((Ship) userObject);
+                } else {
+                    "Select a node to see details".equals(detailsLabel.getText());
+                }
             }
         });
 
@@ -93,85 +133,127 @@ public class FleetDesigner_GUI {
 
         frame.getContentPane().add(topPanel, BorderLayout.NORTH);
         frame.getContentPane().add(splitPane, BorderLayout.CENTER);
-        addWindowListener(new WindowAdapter() {
+        frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
                     new Main_GUI(Title).setVisible(true);
                 } catch (ParseException ex) {
-                    throw new RuntimeException(ex);
+                    ex.printStackTrace();
                 }
             }
         });
-    }
 
-    private void LoadingModsNaval() {
-        // modpath/history/unitsディレクトリ内の*_mtg_naval.txtファイルを列挙
-        String FolderPath = modpath + "/history/units";
-        System.out.println("FolderPath=" + FolderPath);
-        File unitDir = new File(FolderPath);
-        File[] navalFiles = unitDir.listFiles((dir, name) ->
-                name.endsWith("_naval_mtg") || name.endsWith("_navy") || name.endsWith("_naval")
-        );
-
-        if (navalFiles == null || navalFiles.length == 0) {
-            JOptionPane.showMessageDialog(frame, "No naval files found in the specified directory.");
-            return;
+        File tempDir = new File("Hoi4_modding_Tool/temp");
+        if (!tempDir.exists()) {
+            tempDir.mkdirs();
         }
 
-        // 既存のツリーを削除
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
-        root.removeAllChildren();
+        try {
+            tempFile = File.createTempFile("fleet", ".ftmp", tempDir);
+            tempFile.deleteOnExit();
 
-        // 各ファイルを解析してツリーを生成
-        for (File navalFile : navalFiles) {
-            try {
-                String content = new String(Files.readAllBytes(navalFile.toPath()));
-                Lexer lexer = new Lexer(content);
-                NavalParser parser = new NavalParser(lexer);
-                List<Fleet> fleets = parser.parse();
+            try (FileWriter writer = new FileWriter(tempFile)) {
+                writer.write("units = {\n");
+                for (Fleet fleet : Units.getFleets()) {
+                    writer.write("\tfleet = {\n");
+                    writer.write("\t\tname = " + fleet.getName() + "\n");
+                    writer.write("\t\tnaval_base = " + fleet.getNavalBase() + "\n");
 
-                for (Fleet fleet : fleets) {
-                    DefaultMutableTreeNode fleetNode = findOrCreateNode(root, fleet.getName());
+
                     for (TaskForce taskForce : fleet.getTaskForces()) {
-                        DefaultMutableTreeNode taskForceNode = findOrCreateNode(fleetNode, taskForce.getName());
+                        writer.write("\t\ttask_force = {\n");
+                        writer.write("\t\t\tname = " + taskForce.getName() + "\n");
+                        writer.write("\t\t\tlocation = " + taskForce.getLocation() + "\n");
                         for (Ship ship : taskForce.getShips()) {
-                            findOrCreateNode(taskForceNode, "Ship: " + ship.getName());
+                            writer.write("\t\t\tship = {\n");
+                            writer.write("\t\t\t\tname = " + ship.getName() + "\n");
+                            writer.write("\t\t\t\tdefinition = \"" + ship.getDefinition() + "\"\n");
+                            writer.write("\t\t\t\tstart_experience_factor = " + ship.getStartExperienceFactor() + "\n");
+                            writer.write("\t\t\t\tequipment = {\n");
+                            writer.write("\t\t\t\t\t" + ship.getShipHull() + " = {\n");
+                            writer.write("\t\t\t\t\t\tamount = " + ship.getEquipmentList().get(0).getAmount() + "\n");
+                            writer.write("\t\t\t\t\t\towner = \"" + ship.getEquipmentList().get(0).getOwner() + "\"\n");
+                            writer.write("\t\t\t\t\t\tversion_name = \"" + ship.getEquipmentList().get(0).getVersionName() + "\"\n");
+                            writer.write("\t\t\t\t\t}\n");
+                            writer.write("\t\t\t\t}\n");
+                            writer.write("\t\t\t}\n");
                         }
+                        writer.write("\t\t}\n");
                     }
+                    writer.write("\t}\n");
+                    writer.write("    #変更日時: " + new Date() + "\n");
+                    writer.write("}\n");
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        // ツリーのモデルを更新
-        ((DefaultTreeModel) tree.getModel()).reload();
-    }
-
-    private DefaultMutableTreeNode findOrCreateNode(DefaultMutableTreeNode parent, String nodeName) {
-        for (int i = 0; i < parent.getChildCount(); i++) {
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) parent.getChildAt(i);
-            if (node.getUserObject().equals(nodeName)) {
-                return node;
-            }
-        }
-        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(nodeName);
-        parent.add(newNode);
-        return newNode;
-    }
-
-    public void showGUI() {
-        frame.setVisible(true);
     }
 
     private void updateModPathLabel() {
-        String selectedModName = (String) modComboBox.getSelectedItem();
-        modName = selectedModName;
-        System.out.println("selectedModName=" + selectedModName);
-        String modPath = modPathMap.get(selectedModName);
-        modpath = modPath;
-        System.out.println("modPath=" + modPath);
-//        modPathLabel.setText(modPath);
+    }
+
+    private void LoadingModsNaval() {
+
+    }
+
+    private void displayFleetDetails(Fleet fleet) {
+        detailsPanel.removeAll();
+        JTextArea detailsLabel = new JTextArea();
+        detailsLabel.setEditable(false);
+        detailsLabel.setLineWrap(true);
+        detailsLabel.setWrapStyleWord(true);
+        detailsLabel.setText(
+                "Name: " + fleet.getName() + "\n" +
+                        "Naval Base: " + fleet.getNavalBase() + "\n" +
+                        "Number of Task Forces: " + fleet.getTaskForces().size() + "\n"
+        );
+        detailsPanel.add(new JScrollPane(detailsLabel), BorderLayout.CENTER);
+        detailsPanel.revalidate();
+        detailsPanel.repaint();
+    }
+
+    private void displayTaskForceDetails(TaskForce taskForce) {
+        detailsPanel.removeAll();
+        JTextArea detailsLabel = new JTextArea();
+        detailsLabel.setEditable(false);
+        detailsLabel.setLineWrap(true);
+        detailsLabel.setWrapStyleWord(true);
+        detailsLabel.setText(
+                "Name: " + taskForce.getName() + "\n" +
+                        "Location: " + taskForce.getLocation() + "\n"
+        );
+        detailsPanel.add(new JScrollPane(detailsLabel), BorderLayout.CENTER);
+        detailsPanel.revalidate();
+        detailsPanel.repaint();
+    }
+
+
+
+    private void displayShipDetails(Ship ship) {
+        detailsPanel.removeAll();
+        JTextArea detailsLabel = new JTextArea();
+        detailsLabel.setEditable(false);
+        detailsLabel.setLineWrap(true);
+        detailsLabel.setWrapStyleWord(true);
+        detailsLabel.setText(
+                "Name: " + ship.getName() + "\n" +
+                        "Definition: " + ship.getDefinition() + "\n" +
+                        "Ship_hull: " + ship.getEquipmentList().get(0).getShipHull() + "\n" +
+                        "Start Experience Factor: " + ship.getStartExperienceFactor() + "\n" +
+                        "Pride of the Fleet: " + ship.isPrideOfTheFleet() + "\n"+
+                        "Version Name: " + ship.getEquipmentList().get(0).getVersionName() + "\n" +
+                        "Owner: " + ship.getEquipmentList().get(0).getOwner() + "\n" +
+                        "Amount: " + ship.getEquipmentList().get(0).getAmount() + "\n"
+        );
+        detailsPanel.add(new JScrollPane(detailsLabel), BorderLayout.CENTER);
+        detailsPanel.revalidate();
+        detailsPanel.repaint();
+    }
+
+    public void showGUI() {
+        Core.out.logInfo("Fleet Designer GUI is now running");
+        frame.setVisible(true);
     }
 }

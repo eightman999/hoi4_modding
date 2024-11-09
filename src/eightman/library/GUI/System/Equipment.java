@@ -1,9 +1,12 @@
+// Equipment.java
 package eightman.library.GUI.System;
 
 public class Equipment {
     private String owner;
     private String versionName;
     private int amount;
+    private String ship_Hull; // Add ship_Hull field
+
     public String getOwner() {
         return owner;
     }
@@ -20,7 +23,19 @@ public class Equipment {
         this.versionName = versionName;
     }
 
-    public void setAmount(int tempEAmount) {
-        this.amount = tempEAmount;
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getShipHull() {
+        return ship_Hull;
+    }
+
+    public void setShipHull(String ship_Hull) {
+        this.ship_Hull = ship_Hull;
     }
 }

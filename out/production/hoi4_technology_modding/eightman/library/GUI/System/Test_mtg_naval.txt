@@ -1,28 +1,3166 @@
 units = {
-        fleet = {
-        name = "地球連邦宇宙海軍 遣イ艦隊"
-        naval_base = 0
-        task_force = {
-            name = "第65護衛隊"
-            location = 0
-            ship = {name = "BBY-01 ヤマト" definition = space_battleship start_experience_factor = 1 equipment = { ship_hull_1 = { amount = 1 owner = JPN version_name = "ヤマト型" } }}
-            ship = {name = "DAOE-01 アスカ" definition = space_supply_base start_experience_factor = 0.25 equipment = { ship_hull_1 = { amount = 1 owner = JPN version_name = "アスカ級" } }}
-            ship = {name = "DCV-01 アスカ" definition = light_battle_carrier start_experience_factor = 0.25 equipment = { ship_hull_1 = { amount = 1 owner = JPN version_name = "ヒュウガ級" } }}
-        }
-
-    }
+	fleet = {
+		name = "The Home Fleet"
+		naval_base = 9458
+		task_force = {
+			name = "Task Force1"
+			location = 9458
+			ship = {
+				name = "HMS Incomparable"
+				definition = battleship
+				equipment = {
+					ship_hull_super_heavy_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Incomparable Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Lion"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Lion Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Temeraire"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Lion Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force2"
+			location = 9458
+			ship = {
+				name = "HMS Revenge"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Revenge Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Resolution"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Revenge Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Ramillies"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Revenge Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Royal Sovereign"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Revenge Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force3"
+			location = 9458
+			ship = {
+				name = "HMS London"
+				definition = heavy_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "London Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Devonshire"
+				definition = heavy_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "London Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Shropshire"
+				definition = heavy_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "London Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force4"
+			location = 9458
+			ship = {
+				name = "HMS Audacious"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Audacious Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 26
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 10
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Ark Royal"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Audacious Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 26
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 10
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Swiftsure"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_3 = {
+						amount = 1
+						owner = ENG
+						version_name = "Swiftsure Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Comus"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Concord"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Contest"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Consort"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force5"
+			location = 9458
+			ship = {
+				name = "HMS Ceylon"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Crispin"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Creole"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Cheviot"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Childers"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force6"
+			location = 9458
+			ship = {
+				name = "HMS Affray"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Andrew"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Aurochs"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Aeneas"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Alaric"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Astute"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Artemis"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Artful"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Anchorite"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Amphion"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force7"
+			location = 9458
+			ship = {
+				name = "HMS Centaur"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Centaur Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 30
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 10
+				# 	}
+				# 	cv_CAS_equipment_4 = {
+				# 		owner = "ENG"
+				# 		amount = 3
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Superb"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_4 = {
+						amount = 1
+						owner = ENG
+						version_name = "Tiger Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Chaplet"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Chequers"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Chieftain"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Chevron"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force8"
+			location = 9458
+			ship = {
+				name = "HMS Latona"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Abdiel Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Manxman"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Abdiel Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Myngs"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Z Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Zephyr"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Z Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Zambesi"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Z Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Zealous"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Z Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Zebra"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Z Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Zenith"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Z Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Zest"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Z Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Zodiac"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Z Class"
+					}
+				}
+			}
+		}
+	}
+	fleet = {
+		name = "North America Station"
+		naval_base = 7361
+		task_force = {
+			name = "Task Force9"
+			location = 7361
+			ship = {
+				name = "HMS Renown"
+				definition = battle_cruiser
+				equipment = {
+					ship_hull_heavy_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Revenge Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS York"
+				definition = heavy_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "York Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Exeter"
+				definition = heavy_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "York Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force10"
+			location = 7361
+			ship = {
+				name = "HMS Iron Duke"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_conversion_bb = {
+						amount = 1
+						owner = ENG
+						version_name = "Iron Duke Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 20
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 20
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 8
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Tiger"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_4 = {
+						amount = 1
+						owner = ENG
+						version_name = "Tiger Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Cockade"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Comet"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS  Constance"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Cossack"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force11"
+			location = 7361
+			ship = {
+				name = "HMS Hercules"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Majestic Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	cv_CAS_equipment_4 = {
+				# 		owner = "ENG"
+				# 		amount = 5
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Leviathan"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Majestic Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	cv_CAS_equipment_4 = {
+				# 		owner = "ENG"
+				# 		amount = 5
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Dido"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Phoebe"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Teazer"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "T Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Tenacious"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "T Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Termagant"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "T Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Terpsichore"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "T Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force12"
+			location = 7361
+			ship = {
+				name = "HMS Acheron"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Ace"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Alcide"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Alderney"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Alliance"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Ambush"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force13"
+			location = 7361
+			ship = {
+				name = "HMS Welshman"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Abdiel Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Racehorse"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second R Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Rapid"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second R Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Relentless"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second R Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Rocket"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second R Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Roebuck"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second R Class"
+					}
+				}
+			}
+		}
+	}
+	fleet = {
+		name = "China Squadron"
+		naval_base = 10062
+		task_force = {
+			name = "Task Force14"
+			location = 10062
+			ship = {
+				name = "HMS Colossus"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Colossus Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Glory"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Colossus Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Defencce"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_4 = {
+						amount = 1
+						owner = ENG
+						version_name = "Tiger Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Agincourt"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Late Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Alamein"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Late Battle Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force15"
+			location = 10062
+			ship = {
+				name = "HMS Maidstone"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_0_transport_remodeling = {
+						amount = 1
+						owner = ENG
+						version_name = "Maidstone Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Minotaur"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_3 = {
+						amount = 1
+						owner = ENG
+						version_name = "Swiftsure Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Milne"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second M Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Mahratta"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second M Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Martin"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second M Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Auriga"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "A Class"
+					}
+				}
+			}
+		}
+	}
+	fleet = {
+		name = "Far East Fleet"
+		naval_base = 10201
+		task_force = {
+			name = "Task Force16"
+			location = 10201
+			ship = {
+				name = "HMS Duke of York"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "King George V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Anson"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "King George V Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force17"
+			location = 10201
+			ship = {
+				name = "HMS Centurion"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_conversion_bb = {
+						amount = 1
+						owner = ENG
+						version_name = "Centurion Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 20
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 20
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 8
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Newfoundland"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Crown Colony Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Caprice"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Cassandra"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Caesar"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Cavendish"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 10201
+			name = "Task Force18"
+			ship = {
+				name = "HMS Abdiel"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Abdiel Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Sayurala"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Hunt III Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Sindurala"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Hunt III Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Sumedha"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Hunt III Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Sumitra"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Hunt III Class"
+					}
+				}
+			}
+		}
+	}
+	fleet = {
+		name = "Atlantic Squadron"
+		naval_base = 540
+		task_force = {
+			name = "Task Force19"
+			location = 540
+			ship = {
+				name = "HMS Warspite"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Queen Elizabeth Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Valiant"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Queen Elizabeth Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force20"
+			location = 540
+			ship = {
+				name = "HMS Norfolk"
+				definition = heavy_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Norfolk Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Dorsetshire"
+				definition = heavy_cruiser
+				equipment = {
+					ship_hull_cruiser_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Norfolk Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Brocklesby"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Hunt II Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force21"
+			location = 540
+			ship = {
+				name = "HMS Magnificent"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Majestic Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	cv_CAS_equipment_4 = {
+				# 		owner = "ENG"
+				# 		amount = 5
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Majestic"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Majestic Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	cv_CAS_equipment_4 = {
+				# 		owner = "ENG"
+				# 		amount = 5
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Bonaventure"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Naiad"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Undine"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "U Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Ursa"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "U Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Urchin"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "U Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Urania"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "U Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 540
+			name = "Task Force22"
+			ship = {
+				name = "HMS Implacable"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Implacable Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 20
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 13
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Indefatigable"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Implacable Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 20
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 13
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Cambrian"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Carron"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Carysfort"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Cavalier"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Third C Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 540
+			name = "Task Force23"
+			ship = {
+				name = "HMS Uganda"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Crown Colony Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Battleaxe"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Weapon Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Broadsword"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Weapon Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Aisne"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Late Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Barrosa"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Late Battle Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 540
+			name = "Task Force24"
+			ship = {
+				name = "HMS Matapan"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Late Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Corunna"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Late Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Dunkirk"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Late Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Jutland"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Late Battle Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 540
+			name = "Task Force25"
+			ship = {
+				name = "HMS Venturer"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Viking"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Veldt"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Vampire"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Vox"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Vigorous"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Virtue"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Visigoth"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Vivid"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Voracious"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+		}
+	}
+	fleet = {
+		name = "America and West Indies Station"
+		naval_base = 351
+		task_force = {
+			location = 351
+			name = "Task Force26"
+			ship = {
+				name = "HMS Howe"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "King George V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Gravelines"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS St. James"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Vigo"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force27"
+			location = 351
+			ship = {
+				name = "HMS Solebay"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Saintes"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Camperdown"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Finisterre"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Hogue"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Lagos"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 351
+			name = "Task Force28"
+			ship = {
+				name = "HMS Bulwark"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Centaur Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 30
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 10
+				# 	}
+				# 	cv_CAS_equipment_4 = {
+				# 		owner = "ENG"
+				# 		amount = 3
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Albion"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Centaur Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 30
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 10
+				# 	}
+				# 	cv_CAS_equipment_4 = {
+				# 		owner = "ENG"
+				# 		amount = 3
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Bellerophon"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_4 = {
+						amount = 1
+						owner = ENG
+						version_name = "Tiger Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Barfleur"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Trafalgar"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS St. Kitts"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Armada"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Prophase Battle Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force29"
+			location = 4989
+			ship = {
+				name = "HMS Spartan"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Bellona Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Obdurate"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "O Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Obedient"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "O Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Opportune"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "O Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Orwell"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "O Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Pathfinder"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "P Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Penn"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "P Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force30"
+			location = 4989
+			ship = {
+				name = "HMS Diadem"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Bellona Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Pakenham"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "P Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Paladin"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "P Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Panther"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "P Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Partridge"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "P Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Petard"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "P Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Porcupine"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "P Class"
+					}
+				}
+			}
+		}
+	}
+	fleet = {
+		name = "Pacific Squadron"
+		naval_base = 12406
+		task_force = {
+			name = "Task Force31"
+			location = 12406
+			ship = {
+				name = "HMS Nelson"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Nelson Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Rodney"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Nelson Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force32"
+			location = 12406
+			ship = {
+				name = "HMS Terrible"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "Majestic Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	cv_CAS_equipment_4 = {
+				# 		owner = "ENG"
+				# 		amount = 5
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Venerable"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Colossus Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Hermione"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Euryalus"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Troubridge"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "T Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Tumult"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "T Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Tuscan"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "T Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Tyrian"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "T Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force33"
+			location = 12406
+			ship = {
+				name = "HMS Victorious"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_3 = {
+						amount = 1
+						owner = ENG
+						version_name = "Illustrious Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 24
+				# 	}
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 1
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Illustrious"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_3 = {
+						amount = 1
+						owner = ENG
+						version_name = "Illustrious Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 24
+				# 	}
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 1
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Bermuda"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Crown Colony Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Fiji"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Crown Colony Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Wakeful"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "W Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Whirlwind"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "W Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Wizard"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "W Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			name = "Task Force34"
+			location = 12406
+			ship = {
+				name = "HMS Birmingham"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Southampton Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Glasgow"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Southampton Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Newcastle"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Southampton Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Sheffield"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Southampton Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Saumarez"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second S Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Savage"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second S Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Scorpion"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second S Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Scourge"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second S Class"
+					}
+				}
+			}
+		}
+	}
+	fleet = {
+		name = "East Indies Station"
+		naval_base = 12589
+		task_force = {
+			name = "Task Force 41"
+			location = 12589
+			ship = {
+				name = "HMS Malaya"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Queen Elizabeth Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Barham"
+				definition = battleship
+				equipment = {
+					ship_hull_heavy_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Queen Elizabeth Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 12589
+			name = "Task Force35"
+			ship = {
+				name = "HMS Ocean"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Colossus Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Perseus"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Colossus Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Mauritius"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Crown Colony Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Jamaica"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Crown Colony Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Kenya"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Crown Colony Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Serapis"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second S Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Shark"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second S Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 4696
+			name = "Task Force36"
+			ship = {
+				name = "HMS Cleopatra"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Argonaut"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Charybdis"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Scylla"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Dido Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 12589
+			name = "Task Force37"
+			ship = {
+				name = "HMS Formidable"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_3 = {
+						amount = 1
+						owner = ENG
+						version_name = "Illustrious Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 24
+				# 	}
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 1
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS indomitable"
+				definition = carrier
+				equipment = {
+					ship_hull_carrier_3 = {
+						amount = 1
+						owner = ENG
+						version_name = "Illustrious Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 24
+				# 	}
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 18
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# 	cv_nav_bomber_equipment_3 = {
+				# 		owner = "ENG"
+				# 		amount = 1
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Liverpool"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Gloucester Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Manchester"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Gloucester Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Verulam"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Virago"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Vigilant"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Venus"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Success"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second S Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Swift"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Second S Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 1468
+			name = "Task Force38"
+			ship = {
+				name = "HMS Theseus"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Colossus Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Triumph"
+				definition = light_carrier
+				equipment = {
+					ship_hull_light_carrier_0 = {
+						amount = 1
+						owner = ENG
+						version_name = "Colossus Class"
+					}
+				}
+				# air_wings = {
+				# 	jet_cv_fighter_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 14
+				# 	}
+				# 	jet_cv_CAS_equipment_1 = {
+				# 		owner = "ENG"
+				# 		amount = 12
+				# 	}
+				# }
+			}
+			ship = {
+				name = "HMS Edinburgh"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Edinburgh Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Belfast"
+				definition = light_cruiser
+				equipment = {
+					ship_hull_cruiser_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "Edinburgh Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Grenville"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "U Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Ulster"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "U Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Ulysses"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "U Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Undaunted"
+				definition = destroyer
+				equipment = {
+					ship_hull_light_2 = {
+						amount = 1
+						owner = ENG
+						version_name = "U Class"
+					}
+				}
+			}
+		}
+	}
+	fleet = {
+		name = "Channel Fleet"
+		naval_base = 3501
+		task_force = {
+			location = 3501
+			name = "Task Force39"
+			ship = {
+				name = "HMS Vulpine"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Varne"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Upshot"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Urtica"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Vineyard"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Variance"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+		}
+		task_force = {
+			location = 3501
+			name = "Task Force40"
+			ship = {
+				name = "HMS Vengeful"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Vortex"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Virulent"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Volatile"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Vagabond"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+			ship = {
+				name = "HMS Votary"
+				definition = submarine
+				equipment = {
+					ship_hull_submarine_1 = {
+						amount = 1
+						owner = ENG
+						version_name = "V Class"
+					}
+				}
+			}
+		}
+	}
 }
-
-#instant_effect = {
-#    add_equipment_production = {
-#        equipment = {
-#            type = ship_hull_sdd_1
-#            creator = "JPN"
-#            version_name = "ネプチューン級"
-#        }
-#        name = "SPF-01 ネプチューン"
-#        requested_factories = 1
-#        progress = 0.85
-#        amount = 1
-#    }
-#}

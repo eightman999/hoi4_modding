@@ -40,6 +40,7 @@ public class Token {
         CREATOR,
         REQUESTED_FACTORIES,
         PROGRESS,
+        pride_of_the_fleet,
         DIVISION_TEMPLATE,
         REGIMENTS,
         DIVISION,
@@ -69,6 +70,7 @@ public class Token {
         CRITICAL_PARTS,
         CRITICAL_PART_DAMAGE_CHANCE_MULT,
         HIT_PROFILE_MULT,
+        OWNER_IDENTIFIER
 
     }
 

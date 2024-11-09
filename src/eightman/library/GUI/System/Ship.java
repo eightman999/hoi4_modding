@@ -1,19 +1,18 @@
 // Ship.java
 package eightman.library.GUI.System;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ship {
-    private String name;
-    private String definition;
-    private double startExperienceFactor;
-    private Equipment equipment;
-    private String ship_Hull;
+    private static String name;
+    private static String definition;
+    private static double startExperienceFactor;
+    private static boolean prideOfTheFleet;
+    private List<Equipment> equipmentList = new ArrayList<>();
+    private List<Ship> children = new ArrayList<>();
 
-
-    public Ship() {
-        this.equipment = new Equipment();
-    }
-
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
@@ -21,7 +20,7 @@ public class Ship {
         this.name = name;
     }
 
-    public String getDefinition() {
+    public static String getDefinition() {
         return definition;
     }
 
@@ -29,7 +28,7 @@ public class Ship {
         this.definition = definition;
     }
 
-    public double getStartExperienceFactor() {
+    public static double getStartExperienceFactor() {
         return startExperienceFactor;
     }
 
@@ -37,27 +36,35 @@ public class Ship {
         this.startExperienceFactor = startExperienceFactor;
     }
 
-    public Equipment getEquipment() {
-        return equipment;
+    public static boolean isPrideOfTheFleet() {
+        return prideOfTheFleet;
     }
 
-    public void setEquipment(Equipment equipment) {
-        this.equipment = equipment;
+    public void setPrideOfTheFleet(boolean prideOfTheFleet) {
+        this.prideOfTheFleet = prideOfTheFleet;
     }
 
-    public void addEquipment(String ship_Hull) {
-        this.ship_Hull = ship_Hull;
+    public List<Equipment> getEquipmentList() {
+        return equipmentList;
     }
 
-    public void setAmount(int amount) {
-        this.equipment.setAmount(amount);
+    public void addEquipment(Equipment equipment) {
+        this.equipmentList.add(equipment);
     }
 
-    public void setOwner(String owner) {
-        this.equipment.setOwner(owner);
+    public List<Ship> getChildren() {
+        return children;
     }
 
-    public void setVersionName(String versionName) {
-        this.equipment.setVersionName(versionName);
+    public void addChild(Ship child) {
+        this.children.add(child);
+    }
+
+    public String getShipHull() {
+        return equipmentList.isEmpty() ? null : equipmentList.get(0).getShipHull();
+    }
+    @Override
+    public String toString() {
+        return getName(); // ここで表示したい情報を返す
     }
 }

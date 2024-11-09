@@ -13,10 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.text.ParseException;
 
 import static eightman.library.GUI.language.Title;
@@ -38,33 +35,28 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
     String temp1 =
             "#It is described by eightman.library and software created by  eightman\n" +
                     "spriteTypes = {\n";
-    Boolean f1 = true;
-    Boolean f2 = true;
+    // CSV読み込みボタンの追加
+    JButton loadCSVButton = new JButton("Load CSV");
 
-    Boolean m1 = true;
-    Boolean m2 = true;
-    Boolean m3 = true;
+    Boolean Type_slot = true;
+    Boolean PrArS = true;
 
-    Boolean r1 = true;
-    Boolean r2 = true;
+    Boolean SecArS = true;
+    Boolean PrSuArS = true;
+    Boolean SecSuArS = true;
 
-    JButton front_1_custom_slot = new JButton();
-    JButton front_2_custom_slot = new JButton();
+    Boolean PrLiArS = true;
+    Boolean SecLiArS = true;
 
-    JButton mid_1_custom_slot = new JButton();
-    JButton mid_2_custom_slot = new JButton();
-    JButton mid_3_custom_slot = new JButton();
+    JButton ship_type_slot = new JButton();
+    JButton primary_armament_slot = new JButton();
 
-    JButton rear_1_custom_slot = new JButton();
-    JButton rear_2_custom_slot = new JButton();
+    JButton secondary_armament_slot = new JButton();
+    JButton primary_sub_armament_slot = new JButton();
+    JButton secondary_sub_armament_slot = new JButton();
 
-    JButton fixed_ship_battery_slot = new JButton();
-    JButton fixed_ship_anti_air_slot = new JButton();
-    JButton fixed_ship_fire_control_system_slot = new JButton();
-    JButton fixed_ship_radar_slot = new JButton();
-    JButton fixed_ship_engine_slot = new JButton();
-    JButton fixed_ship_secondaries_slot = new JButton();
-    JButton fixed_ship_armor_slot = new JButton();
+    JButton primary_light_armament_slot = new JButton();
+    JButton secondary_light_armament_slot = new JButton();
 
     JLabel Speed = new JLabel("Speed:");
     JTextField Speed_in = new JTextField("");
@@ -112,37 +104,32 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
             e.printStackTrace();
         }
         ImageIcon slot_icon = new ImageIcon(sloticon);
-        front_1_custom_slot.setIcon(slot_icon);
-        front_2_custom_slot.setIcon(slot_icon);
-        mid_1_custom_slot.setIcon(slot_icon);
-        mid_2_custom_slot.setIcon(slot_icon);
-        mid_3_custom_slot.setIcon(slot_icon);
-        rear_1_custom_slot.setIcon(slot_icon);
-        rear_2_custom_slot.setIcon(slot_icon);
+        ship_type_slot.setIcon(slot_icon);
+        primary_armament_slot.setIcon(slot_icon);
+        secondary_armament_slot.setIcon(slot_icon);
+        primary_sub_armament_slot.setIcon(slot_icon);
+        secondary_sub_armament_slot.setIcon(slot_icon);
+        primary_light_armament_slot.setIcon(slot_icon);
+        secondary_light_armament_slot.setIcon(slot_icon);
         wIcon.setIcon(new ImageIcon(wPic));
         BG.setIcon(new ImageIcon(BGpic));
         BG.setHorizontalAlignment(JLabel.CENTER);
         wIcon.setHorizontalAlignment(JLabel.CENTER);
 
         p1.setLayout(null);
+        loadCSVButton.setBounds(500, 260, 100, 20);
+        p1.add(loadCSVButton);
         BG.setBounds(60, 10, 540, 200);
         wIcon.setBounds(60, 10, 540, 200);
         select.setBounds(500, 225, 100, 20);
         impath.setBounds(60, 225, 400, 20);
-        front_1_custom_slot.setBounds(60, 245, 80, 50);
-        //            front_1_custom_slot_l.setBounds(60 - 2, 300, 80 + 4, 50);
-        front_2_custom_slot.setBounds(140, 245, 80, 50);
-        //            front_2_custom_slot_l.setBounds(140 - 2, 300, 80 + 4, 50);
-        mid_1_custom_slot.setBounds(220, 245, 80, 50);
-        //            mid_1_custom_slot_l.setBounds(220 - 2, 300, 80 + 4, 50);
-        mid_2_custom_slot.setBounds(300, 245, 80, 50);
-        //            mid_2_custom_slot_l.setBounds(300 - 2, 300, 80 + 4, 50);
-        mid_3_custom_slot.setBounds(380, 245, 80, 50);
-        //            mid_3_custom_slot_l.setBounds(380 - 2, 300, 80 + 4, 50);
-        rear_1_custom_slot.setBounds(460, 245, 80, 50);
-        //            rear_1_custom_slot_l.setBounds(460 - 2, 245, 80 + 4, 50);
-        rear_2_custom_slot.setBounds(540, 245, 80, 50);
-        //            rear_2_custom_slot_l.setBounds(540 - 2, 245, 80 + 4, 50);
+        ship_type_slot.setBounds(60, 245, 80, 50);
+        primary_armament_slot.setBounds(140, 245, 80, 50);
+        secondary_armament_slot.setBounds(220, 245, 80, 50);
+        primary_sub_armament_slot.setBounds(300, 245, 80, 50);
+        secondary_sub_armament_slot.setBounds(380, 245, 80, 50);
+        primary_light_armament_slot.setBounds(460, 245, 80, 50);
+        secondary_light_armament_slot.setBounds(540, 245, 80, 50);
         Speed.setBounds(60, 500, 80, 20);
         Speed_in.setBounds(140, 500, 80, 20);
         Kn.setBounds(220, 500, 40, 20);
@@ -151,26 +138,48 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
         p1.add(select);
         p1.add(impath);
         //*上段スロット*//
-        p1.add(front_1_custom_slot);
-        p1.add(front_2_custom_slot);
-        p1.add(mid_1_custom_slot);
-        p1.add(mid_2_custom_slot);
-        p1.add(mid_3_custom_slot);
-        p1.add(rear_1_custom_slot);
-        p1.add(rear_2_custom_slot);
+        p1.add(ship_type_slot);
+        p1.add(primary_armament_slot);
+        p1.add(secondary_armament_slot);
+        p1.add(primary_sub_armament_slot);
+        p1.add(secondary_sub_armament_slot);
+        p1.add(primary_light_armament_slot);
+        p1.add(secondary_light_armament_slot);
         //*ステータス*//
         p1.add(Speed);
         p1.add(Speed_in);
         p1.add(Kn);
 
         select.addActionListener(this);
-        front_1_custom_slot.addActionListener(new front_1_custom_slot_l());
-        front_2_custom_slot.addActionListener(new front_2_custom_slot_l());
-        mid_1_custom_slot.addActionListener(new mid_1_custom_slot_l());
-        mid_2_custom_slot.addActionListener(new mid_2_custom_slot_l());
-        mid_3_custom_slot.addActionListener(new mid_3_custom_slot_l());
-        rear_1_custom_slot.addActionListener(new rear_1_custom_slot_l());
-        rear_2_custom_slot.addActionListener(new rear_2_custom_slot_l());
+        ship_type_slot.addActionListener(new ship_type_slot_l());
+        primary_armament_slot.addActionListener(new primary_armament_slot_l());
+        secondary_armament_slot.addActionListener(new secondary_armament_slot_l());
+        primary_sub_armament_slot.addActionListener(new primary_sub_armament_slot_l());
+        secondary_sub_armament_slot.addActionListener(new secondary_sub_armament_slot_l());
+        primary_light_armament_slot.addActionListener(new primary_light_armament_slot_l());
+        secondary_light_armament_slot.addActionListener(new secondary_light_armament_slot_l());
+        loadCSVButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileFilter(new FileNameExtensionFilter("CSV Files", "csv"));
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    try {
+                        BufferedReader br = new BufferedReader(new FileReader(selectedFile));
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            // CSVファイルの各行を処理
+                            System.out.println(line);
+                        }
+                        br.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -216,158 +225,110 @@ public class SHIP_GFX_GUI extends JFrame implements ActionListener {
     }
 
     /*スロットロック*/
-    class front_1_custom_slot_l implements ActionListener {
+    class ship_type_slot_l implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (f1 == true) {
-                f1 = false;
+            if (Type_slot == true) {
+                Type_slot = false;
                 ImageIcon slot_icon = new ImageIcon(slotlock);
-                front_1_custom_slot.setIcon(slot_icon);
-            } else if (f1 == false) {
-                f1 = true;
+                ship_type_slot.setIcon(slot_icon);
+            } else if (Type_slot == false) {
+                Type_slot = true;
                 ImageIcon slot_icon = new ImageIcon(slot);
-                front_1_custom_slot.setIcon(slot_icon);
+                ship_type_slot.setIcon(slot_icon);
             }
         }
     }
 
-    class front_2_custom_slot_l implements ActionListener {
+    class primary_armament_slot_l implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (f2 == true) {
-                f2 = false;
+            if (PrArS == true) {
+                PrArS = false;
                 ImageIcon slot_icon = new ImageIcon(slotlock);
-                front_2_custom_slot.setIcon(slot_icon);
-            } else if (f2 == false) {
-                f2 = true;
+                primary_armament_slot.setIcon(slot_icon);
+            } else if (PrArS == false) {
+                PrArS = true;
                 ImageIcon slot_icon = new ImageIcon(slot);
-                front_2_custom_slot.setIcon(slot_icon);
+                primary_armament_slot.setIcon(slot_icon);
             }
         }
     }
 
-    class mid_1_custom_slot_l implements ActionListener {
+    class secondary_armament_slot_l implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (m1 == true) {
-                m1 = false;
+            if (SecArS == true) {
+                SecArS = false;
                 ImageIcon slot_icon = new ImageIcon(slotlock);
-                mid_1_custom_slot.setIcon(slot_icon);
-            } else if (m1 == false) {
-                m1 = true;
+                secondary_armament_slot.setIcon(slot_icon);
+            } else if (SecArS == false) {
+                SecArS = true;
                 ImageIcon slot_icon = new ImageIcon(slot);
-                mid_1_custom_slot.setIcon(slot_icon);
+                secondary_armament_slot.setIcon(slot_icon);
             }
         }
     }
 
-    class mid_2_custom_slot_l implements ActionListener {
+    class primary_sub_armament_slot_l implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (m2 == true) {
-                m2 = false;
+            if (PrSuArS == true) {
+                PrSuArS = false;
                 ImageIcon slot_icon = new ImageIcon(slotlock);
-                mid_2_custom_slot.setIcon(slot_icon);
-            } else if (m2 == false) {
-                m2 = true;
+                primary_sub_armament_slot.setIcon(slot_icon);
+            } else if (PrSuArS == false) {
+                PrSuArS = true;
                 ImageIcon slot_icon = new ImageIcon(slot);
-                mid_2_custom_slot.setIcon(slot_icon);
+                primary_sub_armament_slot.setIcon(slot_icon);
             }
         }
     }
 
-    class mid_3_custom_slot_l implements ActionListener {
+    class secondary_sub_armament_slot_l implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (m3 == true) {
-                m3 = false;
+            if (SecSuArS == true) {
+                SecSuArS = false;
                 ImageIcon slot_icon = new ImageIcon(slotlock);
-                mid_3_custom_slot.setIcon(slot_icon);
-            } else if (m3 == false) {
-                m3 = true;
+                secondary_sub_armament_slot.setIcon(slot_icon);
+            } else if (SecSuArS == false) {
+                SecSuArS = true;
                 ImageIcon slot_icon = new ImageIcon(slot);
-                mid_3_custom_slot.setIcon(slot_icon);
+                secondary_sub_armament_slot.setIcon(slot_icon);
             }
         }
     }
 
-    class rear_1_custom_slot_l implements ActionListener {
+    class primary_light_armament_slot_l implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (r1 == true) {
-                r1 = false;
+            if (PrLiArS == true) {
+                PrLiArS = false;
                 ImageIcon slot_icon = new ImageIcon(slotlock);
-                rear_1_custom_slot.setIcon(slot_icon);
-            } else if (r1 == false) {
-                r1 = true;
+                primary_light_armament_slot.setIcon(slot_icon);
+            } else if (PrLiArS == false) {
+                PrLiArS = true;
                 ImageIcon slot_icon = new ImageIcon(slot);
-                rear_1_custom_slot.setIcon(slot_icon);
+                primary_light_armament_slot.setIcon(slot_icon);
             }
         }
     }
 
-    class rear_2_custom_slot_l implements ActionListener {
+    class secondary_light_armament_slot_l implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            if (r2 == true) {
-                r2 = false;
+            if (SecLiArS == true) {
+                SecLiArS = false;
                 ImageIcon slot_icon = new ImageIcon(slotlock);
-                rear_2_custom_slot.setIcon(slot_icon);
-            } else if (r2 == false) {
-                r2 = true;
+                secondary_light_armament_slot.setIcon(slot_icon);
+            } else if (SecLiArS == false) {
+                SecLiArS = true;
                 ImageIcon slot_icon = new ImageIcon(slot);
-                rear_2_custom_slot.setIcon(slot_icon);
+                secondary_light_armament_slot.setIcon(slot_icon);
             }
         }
     }
 
-    /*セーブ*/
-    class SAVE_ActionListener implements ActionListener {
 
-        public void actionPerformed(ActionEvent e) {
-            File dir = new File(file_path);
-            File[] list = dir.listFiles();
-            for (int i = 0; i < list.length; i++) {
-                if (list[i].isFile()) { //ファイルの場合
-                    System.out.println(list[i].getName());
-                    String fileName = list[i].getName();
-                    System.out.println(fileName);
-                    int index = fileName.lastIndexOf(".");
-                    temp1 =
-                            temp1 +
-                                    "\t\tSpriteType = {\n\t\tname = \"GFX_" +
-                                    fileName.substring(0, index) +
-                                    "_medium\"";
-                    temp1 =
-                            temp1 +
-                                    "\n\t\t\ttexturefile = \"" +
-                                    texture_file_path.getText() +
-                                    "/" +
-                                    list[i].getName() +
-                                    "\"";
-                    temp1 = temp1 + "\n\t\t}\n";
-                } else if (list[i].isDirectory()) { //ディレクトリの場合
-                    //何もしない
-                }
-            }
-            temp1 = temp1 + "}\n";
-        }
-    }
-
-    class SaveActionListener implements ActionListener {
-
-        public void actionPerformed(ActionEvent e) {
-            try {
-                FileOutputStream fos = new FileOutputStream(
-                        System.getProperty("user.home") + "/Desktop/" + fnm.getText()
-                );
-                OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
-                osw.write(temp1);
-                osw.close();
-                fos.close();
-            } catch (IOException er) {
-                Core.out.logError("Failed to load config.", er);
-            }
-        }
-    }
 }

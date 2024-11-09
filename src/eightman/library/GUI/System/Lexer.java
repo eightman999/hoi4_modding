@@ -109,6 +109,9 @@ public class Lexer {
             case "progress":
                 type = Token.TokenType.PROGRESS;
                 break;
+            case "pride_of_the_fleet":
+                type = Token.TokenType.pride_of_the_fleet;
+                break;
             default:
                 if (tokenValue.matches("#.*")) {
                     type = Token.TokenType.CMMENTOUT;
@@ -120,7 +123,13 @@ public class Lexer {
                     type = Token.TokenType.STRING;
                 } else if (tokenValue.matches("ship_hull_[A-Za-z_0-9]+")) {
                     type = Token.TokenType.SHIP_HULL;
-                } else {
+                } else if (tokenValue.matches("SSH_[A-Za-z_0-9]+")) {
+                    type = Token.TokenType.SHIP_HULL;
+                }else if (tokenValue.matches("USH_[A-Za-z_0-9]+")) {
+                    type = Token.TokenType.SHIP_HULL;
+                }else if(tokenValue.matches("[A-Z0-9]{3}")){
+                    type = Token.TokenType.OWNER_IDENTIFIER;
+                }else{
                     type = Token.TokenType.IDENT;
                 }
                 break;

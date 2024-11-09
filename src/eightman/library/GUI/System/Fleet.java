@@ -1,3 +1,4 @@
+// Fleet.java
 package eightman.library.GUI.System;
 
 import java.util.ArrayList;
@@ -5,7 +6,8 @@ import java.util.List;
 
 public class Fleet {
     private String name;
-    private final List<TaskForce> taskForces = new ArrayList<>();
+    private int navalBase;
+    private List<TaskForce> taskForces = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -15,6 +17,14 @@ public class Fleet {
         this.name = name;
     }
 
+    public int getNavalBase() {
+        return navalBase;
+    }
+
+    public void setNavalBase(int navalBase) {
+        this.navalBase = navalBase;
+    }
+
     public List<TaskForce> getTaskForces() {
         return taskForces;
     }
@@ -22,12 +32,8 @@ public class Fleet {
     public void addTaskForce(TaskForce taskForce) {
         this.taskForces.add(taskForce);
     }
-
-    public void setNavalBase(int i) {
-
-    }
-
-    public void addShip(Ship ship) {
-        taskForces.get(taskForces.size() - 1).addShip(ship);
+    @Override
+    public String toString() {
+        return getName(); // ここで表示したい情報を返す
     }
 }

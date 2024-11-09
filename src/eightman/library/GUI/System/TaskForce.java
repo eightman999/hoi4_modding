@@ -4,23 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskForce {
-    private List<Ship> ships;
-    private String name;
-    private int location;
+    private static String name;
+    private static int location;
+    private List<Ship> ships = new ArrayList<>();
 
-    public TaskForce() {
-        this.ships = new ArrayList<>();
-    }
-
-    public void addShip(Ship ship) {
-        ships.add(ship);
-    }
-
-    public List<Ship> getShips() {
-        return ships;
-    }
-
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
@@ -28,11 +16,23 @@ public class TaskForce {
         this.name = name;
     }
 
-    public int getLocation() {
+    public static int getLocation() {
         return location;
     }
 
     public void setLocation(int location) {
         this.location = location;
+    }
+
+    public List<Ship> getShips() {
+        return ships;
+    }
+
+    public void addShip(Ship ship) {
+        this.ships.add(ship);
+    }
+    @Override
+    public String toString() {
+        return getName(); // ここで表示したい情報を返す
     }
 }

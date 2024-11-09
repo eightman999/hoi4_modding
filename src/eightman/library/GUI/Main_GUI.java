@@ -165,6 +165,7 @@ public class Main_GUI extends JFrame implements Runnable {
                 } else if (mode == fdItem) {
                     modeButton.addActionListener(e -> {
                         FleetDesigner_GUI fleetDesigner = new FleetDesigner_GUI();
+                        Core.out.println("Fleet Designer");
                         fleetDesigner.showGUI();
                         this.setVisible(false);
                     });

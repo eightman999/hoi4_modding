@@ -19,7 +19,7 @@ public class language {
     public static String Please_Select_mode = "Please Select mode";
     public static String GFX = "GFX";
     public static String GOAL = "Goals";
-    public static String SHL = "Ship Hull";
+    public static String SHL = "Ship Hull(SSW)";
     public static String Title = "Hoi4 modding tool";
     public static String File = "File";
     public static String Save = "Save";

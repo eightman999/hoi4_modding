@@ -157,34 +157,37 @@ public class FleetDesigner_GUI {
                 writer.write("units = {\n");
                 for (Fleet fleet : Units.getFleets()) {
                     writer.write("\tfleet = {\n");
-                    writer.write("\t\tname = " + fleet.getName() + "\n");
+                    writer.write("\t\tname = \"" + fleet.getName() + "\"\n");
                     writer.write("\t\tnaval_base = " + fleet.getNavalBase() + "\n");
-
 
                     for (TaskForce taskForce : fleet.getTaskForces()) {
                         writer.write("\t\ttask_force = {\n");
-                        writer.write("\t\t\tname = " + taskForce.getName() + "\n");
+                        writer.write("\t\t\tname = \"" + taskForce.getName() + "\"\n");
                         writer.write("\t\t\tlocation = " + taskForce.getLocation() + "\n");
                         for (Ship ship : taskForce.getShips()) {
                             writer.write("\t\t\tship = {\n");
-                            writer.write("\t\t\t\tname = " + ship.getName() + "\n");
+                            writer.write("\t\t\t\tname = \"" + ship.getName() + "\"\n");
                             writer.write("\t\t\t\tdefinition = \"" + ship.getDefinition() + "\"\n");
                             writer.write("\t\t\t\tstart_experience_factor = " + ship.getStartExperienceFactor() + "\n");
                             writer.write("\t\t\t\tequipment = {\n");
-                            writer.write("\t\t\t\t\t" + ship.getShipHull() + " = {\n");
-                            writer.write("\t\t\t\t\t\tamount = " + ship.getEquipmentList().get(0).getAmount() + "\n");
-                            writer.write("\t\t\t\t\t\towner = \"" + ship.getEquipmentList().get(0).getOwner() + "\"\n");
-                            writer.write("\t\t\t\t\t\tversion_name = \"" + ship.getEquipmentList().get(0).getVersionName() + "\"\n");
-                            writer.write("\t\t\t\t\t}\n");
+                            for (Equipment equipment : ship.getEquipmentList()) {
+                                writer.write("\t\t\t\t\t" + equipment.getShipHull() + " = {\n");
+                                writer.write("\t\t\t\t\t\tamount = " + equipment.getAmount() + "\n");
+                                writer.write("\t\t\t\t\t\towner = \"" + equipment.getOwner() + "\"\n");
+                                writer.write("\t\t\t\t\t\tversion_name = \"" + equipment.getVersionName() + "\"\n");
+                                writer.write("\t\t\t\t\t}\n");
+                            }
                             writer.write("\t\t\t\t}\n");
                             writer.write("\t\t\t}\n");
                         }
                         writer.write("\t\t}\n");
                     }
                     writer.write("\t}\n");
-                    writer.write("    #変更日時: " + new Date() + "\n");
-                    writer.write("}\n");
                 }
+                writer.write("    #変更日時: " + new Date() + "\n");
+                writer.write("}\n");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -229,8 +232,6 @@ public class FleetDesigner_GUI {
         detailsPanel.repaint();
     }
 
-
-
     private void displayShipDetails(Ship ship) {
         detailsPanel.removeAll();
         JTextArea detailsLabel = new JTextArea();
@@ -240,9 +241,9 @@ public class FleetDesigner_GUI {
         detailsLabel.setText(
                 "Name: " + ship.getName() + "\n" +
                         "Definition: " + ship.getDefinition() + "\n" +
-                        "Ship_hull: " + ship.getEquipmentList().get(0).getShipHull() + "\n" +
+                        "Ship_hull: " + ship.getShipHull() + "\n" +
                         "Start Experience Factor: " + ship.getStartExperienceFactor() + "\n" +
-                        "Pride of the Fleet: " + ship.isPrideOfTheFleet() + "\n"+
+                        "Pride of the Fleet: " + ship.isPrideOfTheFleet() + "\n" +
                         "Version Name: " + ship.getEquipmentList().get(0).getVersionName() + "\n" +
                         "Owner: " + ship.getEquipmentList().get(0).getOwner() + "\n" +
                         "Amount: " + ship.getEquipmentList().get(0).getAmount() + "\n"
@@ -251,7 +252,6 @@ public class FleetDesigner_GUI {
         detailsPanel.revalidate();
         detailsPanel.repaint();
     }
-
     public void showGUI() {
         Core.out.logInfo("Fleet Designer GUI is now running");
         frame.setVisible(true);

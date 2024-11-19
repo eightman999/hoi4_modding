@@ -124,7 +124,7 @@ public class ModuleProcessor {
         double search_and_destroy_coordination = Double.parseDouble(stats.getOrDefault("search_and_destroy_coordination", "0.0"));
         double convoy_raiding_coordination = Double.parseDouble(stats.getOrDefault("convoy_raiding_coordination", "0.0"));
         String[] critical_parts = stats.getOrDefault("critical_parts", "N/A").split(" ");
-        String[] can_convert_from_module_categorie = stats.getOrDefault("can_convert_from_module_categorie", "N/A").split(" ");
+        String[] can_convert_from_module_categorie = stats.getOrDefault("can_convert_from_module_categories", "N/A").split(" ");
         double[] convert_cost_ic = Arrays.stream(stats.getOrDefault("convert_cost_ic", "0.0").split(" ")).mapToDouble(Double::parseDouble).toArray();
 
         return new Ship_Module(moduleID,name, content, category, lend_lease_cost, build_cost_ic, manpower, can_license, is_convertable, xp_cost,
